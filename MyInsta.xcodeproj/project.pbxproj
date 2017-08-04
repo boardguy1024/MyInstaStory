@@ -12,6 +12,7 @@
 		A2997E351F34280300D8230B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2997E341F34280300D8230B /* Assets.xcassets */; };
 		A2997E381F34280300D8230B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2997E361F34280300D8230B /* LaunchScreen.storyboard */; };
 		A2997E401F342B7F00D8230B /* SigninViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2997E3F1F342B7F00D8230B /* SigninViewController.swift */; };
+		A2997E421F34319500D8230B /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2997E411F34319500D8230B /* SignupViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		A2997E371F34280300D8230B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A2997E391F34280300D8230B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A2997E3F1F342B7F00D8230B /* SigninViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SigninViewController.swift; sourceTree = "<group>"; };
+		A2997E411F34319500D8230B /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			children = (
 				A2997E2D1F34280300D8230B /* AppDelegate.swift */,
 				A2997E3F1F342B7F00D8230B /* SigninViewController.swift */,
+				A2997E411F34319500D8230B /* SignupViewController.swift */,
 				A2997E311F34280300D8230B /* Main.storyboard */,
 				A2997E341F34280300D8230B /* Assets.xcassets */,
 				A2997E361F34280300D8230B /* LaunchScreen.storyboard */,
@@ -137,6 +140,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2997E421F34319500D8230B /* SignupViewController.swift in Sources */,
 				A2997E401F342B7F00D8230B /* SigninViewController.swift in Sources */,
 				A2997E2E1F34280300D8230B /* AppDelegate.swift in Sources */,
 			);
