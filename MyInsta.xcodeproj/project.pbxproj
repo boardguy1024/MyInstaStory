@@ -13,6 +13,11 @@
 		A2997E381F34280300D8230B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2997E361F34280300D8230B /* LaunchScreen.storyboard */; };
 		A2997E401F342B7F00D8230B /* SigninViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2997E3F1F342B7F00D8230B /* SigninViewController.swift */; };
 		A2997E421F34319500D8230B /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2997E411F34319500D8230B /* SignupViewController.swift */; };
+		A2997E441F344E0C00D8230B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2997E431F344E0C00D8230B /* HomeViewController.swift */; };
+		A2997E461F344E2300D8230B /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2997E451F344E2300D8230B /* DiscoverViewController.swift */; };
+		A2997E481F344E3F00D8230B /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2997E471F344E3F00D8230B /* CameraViewController.swift */; };
+		A2997E4A1F344E4D00D8230B /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2997E491F344E4D00D8230B /* ActivityViewController.swift */; };
+		A2997E4C1F344E5F00D8230B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2997E4B1F344E5F00D8230B /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +29,11 @@
 		A2997E391F34280300D8230B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A2997E3F1F342B7F00D8230B /* SigninViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SigninViewController.swift; sourceTree = "<group>"; };
 		A2997E411F34319500D8230B /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		A2997E431F344E0C00D8230B /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		A2997E451F344E2300D8230B /* DiscoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
+		A2997E471F344E3F00D8230B /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		A2997E491F344E4D00D8230B /* ActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
+		A2997E4B1F344E5F00D8230B /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +67,11 @@
 			isa = PBXGroup;
 			children = (
 				A2997E2D1F34280300D8230B /* AppDelegate.swift */,
+				A2997E431F344E0C00D8230B /* HomeViewController.swift */,
+				A2997E451F344E2300D8230B /* DiscoverViewController.swift */,
+				A2997E471F344E3F00D8230B /* CameraViewController.swift */,
+				A2997E491F344E4D00D8230B /* ActivityViewController.swift */,
+				A2997E4B1F344E5F00D8230B /* ProfileViewController.swift */,
 				A2997E3F1F342B7F00D8230B /* SigninViewController.swift */,
 				A2997E411F34319500D8230B /* SignupViewController.swift */,
 				A2997E311F34280300D8230B /* Main.storyboard */,
@@ -143,6 +158,11 @@
 				A2997E421F34319500D8230B /* SignupViewController.swift in Sources */,
 				A2997E401F342B7F00D8230B /* SigninViewController.swift in Sources */,
 				A2997E2E1F34280300D8230B /* AppDelegate.swift in Sources */,
+				A2997E441F344E0C00D8230B /* HomeViewController.swift in Sources */,
+				A2997E4A1F344E4D00D8230B /* ActivityViewController.swift in Sources */,
+				A2997E461F344E2300D8230B /* DiscoverViewController.swift in Sources */,
+				A2997E4C1F344E5F00D8230B /* ProfileViewController.swift in Sources */,
+				A2997E481F344E3F00D8230B /* CameraViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
