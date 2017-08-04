@@ -100,6 +100,10 @@
                             <constraint firstItem="vs4-ZZ-yiU" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="8" id="mov-eM-BkB"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="HMH-Mc-l9u" id="dZP-uT-2I0"/>
+                        <outlet property="passwordTextField" destination="QFc-Az-d7O" id="rEz-Bj-ce0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -206,10 +210,16 @@
                             <constraint firstItem="5ZT-Sf-wts" firstAttribute="centerX" secondItem="NZ3-7d-uNX" secondAttribute="centerX" id="wHW-GI-G94"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="M3w-JW-zIH" id="cmB-35-jB2"/>
+                        <outlet property="passwordTextField" destination="47r-dv-oWO" id="PrH-us-BtX"/>
+                        <outlet property="profileImageView" destination="wUd-oZ-6jk" id="Dd1-LY-jS3"/>
+                        <outlet property="usernameTextField" destination="E3R-P2-253" id="4Vo-kc-WCf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PQ1-EZ-E9m" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137" y="639"/>
+            <point key="canvasLocation" x="137" y="470"/>
         </scene>
         <!--TabBarId-->
         <scene sceneID="jSY-mK-bbs">
@@ -225,6 +235,6 @@
         <image name="profile" width="76" height="76"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="BSE-NW-iNS"/>
+        <segue reference="IIG-c9-rIK"/>
     </inferredMetricsTieBreakers>
 </document>
