@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //TabBarIconをBlackに設定
         UITabBar.appearance().tintColor = .black
+        
+        //enable Firebase Analytics 
+        FIRApp.configure()
         return true
     }
 
