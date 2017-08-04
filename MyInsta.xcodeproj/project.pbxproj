@@ -19,6 +19,11 @@
 		A2997E4A1F344E4D00D8230B /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2997E491F344E4D00D8230B /* ActivityViewController.swift */; };
 		A2997E4C1F344E5F00D8230B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2997E4B1F344E5F00D8230B /* ProfileViewController.swift */; };
 		A2997E4F1F34591800D8230B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2997E4D1F34591800D8230B /* Main.storyboard */; };
+		A2997E511F34606300D8230B /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2997E501F34606300D8230B /* Home.storyboard */; };
+		A2997E561F3461F600D8230B /* Discover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2997E551F3461F600D8230B /* Discover.storyboard */; };
+		A2997E591F34623200D8230B /* Camera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2997E571F34623200D8230B /* Camera.storyboard */; };
+		A2997E5B1F34625C00D8230B /* Activity.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2997E5A1F34625C00D8230B /* Activity.storyboard */; };
+		A2997E5E1F34628400D8230B /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2997E5C1F34628400D8230B /* Profile.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +41,11 @@
 		A2997E491F344E4D00D8230B /* ActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		A2997E4B1F344E5F00D8230B /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		A2997E4E1F34591800D8230B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A2997E501F34606300D8230B /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		A2997E551F3461F600D8230B /* Discover.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Discover.storyboard; sourceTree = "<group>"; };
+		A2997E581F34623200D8230B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Camera.storyboard; sourceTree = "<group>"; };
+		A2997E5A1F34625C00D8230B /* Activity.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Activity.storyboard; sourceTree = "<group>"; };
+		A2997E5D1F34628400D8230B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Profile.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +88,11 @@
 				A2997E411F34319500D8230B /* SignupViewController.swift */,
 				A2997E311F34280300D8230B /* Start.storyboard */,
 				A2997E4D1F34591800D8230B /* Main.storyboard */,
+				A2997E5C1F34628400D8230B /* Profile.storyboard */,
+				A2997E5A1F34625C00D8230B /* Activity.storyboard */,
+				A2997E571F34623200D8230B /* Camera.storyboard */,
+				A2997E551F3461F600D8230B /* Discover.storyboard */,
+				A2997E501F34606300D8230B /* Home.storyboard */,
 				A2997E341F34280300D8230B /* Assets.xcassets */,
 				A2997E361F34280300D8230B /* LaunchScreen.storyboard */,
 				A2997E391F34280300D8230B /* Info.plist */,
@@ -146,9 +161,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2997E381F34280300D8230B /* LaunchScreen.storyboard in Resources */,
+				A2997E591F34623200D8230B /* Camera.storyboard in Resources */,
+				A2997E511F34606300D8230B /* Home.storyboard in Resources */,
 				A2997E351F34280300D8230B /* Assets.xcassets in Resources */,
 				A2997E331F34280300D8230B /* Start.storyboard in Resources */,
 				A2997E4F1F34591800D8230B /* Main.storyboard in Resources */,
+				A2997E5E1F34628400D8230B /* Profile.storyboard in Resources */,
+				A2997E561F3461F600D8230B /* Discover.storyboard in Resources */,
+				A2997E5B1F34625C00D8230B /* Activity.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,6 +215,22 @@
 				A2997E4E1F34591800D8230B /* Base */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A2997E571F34623200D8230B /* Camera.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A2997E581F34623200D8230B /* Base */,
+			);
+			name = Camera.storyboard;
+			sourceTree = "<group>";
+		};
+		A2997E5C1F34628400D8230B /* Profile.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A2997E5D1F34628400D8230B /* Base */,
+			);
+			name = Profile.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
