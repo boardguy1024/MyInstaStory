@@ -175,7 +175,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="fLI-0L-2x0" kind="presentation" id="IIG-c9-rIK"/>
+                                                    <action selector="signUpBtnTapped:" destination="oJ9-Xb-byS" eventType="touchUpInside" id="Dzv-uj-oE3"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -234,7 +234,4 @@
         <image name="logo" width="1012" height="351"/>
         <image name="profile" width="76" height="76"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="IIG-c9-rIK"/>
-    </inferredMetricsTieBreakers>
 </document>
