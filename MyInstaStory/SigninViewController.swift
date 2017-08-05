@@ -17,7 +17,7 @@ class SigninViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        signInBtn.isEnabled = false
         //textField Extension(TextfieldをBlackスタイルに変更)
         emailTextField.setCustomBlackStyleTextField()
         passwordTextField.setCustomBlackStyleTextField()
@@ -53,15 +53,13 @@ class SigninViewController: UIViewController {
     }
     @IBAction func signInBtnTapped(_ sender: UIButton) {
         
-        FIRAuth.auth()?.signIn(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: { (user, error) in
-            
-            if error != nil {
-                print("Failed signin :\(error!)")
-                return
-            }
-            
+        AuthService.signIn(email: emailTextField.text!, password: passwordTextField.text!, completion: { 
             self.performSegue(withIdentifier: "signToTabBarVC", sender: nil)
-        })
+        }) { (error) in
+            print("Failed to Signin: \(error!.localizedDescription)")
+        }
+        
+
     }
     
 }

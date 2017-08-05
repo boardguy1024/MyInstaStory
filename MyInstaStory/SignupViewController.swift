@@ -21,7 +21,7 @@ class SignupViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        signUpBtn.isEnabled = false
         profileImageView.layer.cornerRadius = profileImageView.frame.width / 2
         profileImageView.layer.masksToBounds = true
         profileImageView.isUserInteractionEnabled = true
@@ -62,46 +62,18 @@ class SignupViewController: UIViewController {
     
     @IBAction func signUpBtnTapped(_ sender: UIButton) {
         
-        FIRAuth.auth()?.createUser(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: { (user, error) in
+        if let profileImage = self.profileImageView.image, let imageData = UIImageJPEGRepresentation(profileImage, 0.1) {
             
-            if error != nil {
-                print("Failed create user to firebase : \(error!)")
-                return
-            }
-            
-            guard let uid = user?.uid else { return }
-            //ストレージRef
-            let storageRef = FIRStorage.storage().reference().child("profile_images").child(uid)
-            if let profileImage = self.profileImageView.image, let imageData = UIImageJPEGRepresentation(profileImage, 0.1) {
-                
-                //ストレージにprofileImageを保存
-                storageRef.put(imageData, metadata: nil, completion: { (metaData, error) in
-                    
-                    if error != nil {
-                        print("Some Error to put strorage a profileImage :\(error!)")
-                        return
-                    }
-                    
-                    let profileImageUrl = metaData?.downloadURL()?.absoluteString
-                    
-                    //データベースにユーザー情報を保存
-                    self.setUserInfomationToDataBase(profileImageUrl: profileImageUrl!,
-                                                     username: self.usernameTextField.text!,
-                                                     email: self.emailTextField.text!, uid: uid)
-                    
-                    self.performSegue(withIdentifier: "signToTabBarVC", sender: nil)
-                })
-            }
-        })
-    }
-    
-    private func setUserInfomationToDataBase(profileImageUrl: String, username: String, email: String, uid: String) {
-        let ref = FIRDatabase.database().reference()
-        let userRef = ref.child("users")
-        let newUserRef = userRef.child(uid)
-        newUserRef.setValue(["username": username,
-                             "email": email,
-                             "profileImageUrl": profileImageUrl])
+            AuthService.signUp(username: usernameTextField.text!,
+                               email: emailTextField.text!,
+                               password: passwordTextField.text!,
+                               imageData: imageData, completion: {
+                               self.performSegue(withIdentifier: "signToTabBarVC", sender: nil)
+                                
+            }, onError: { (error) in
+                print(error!.localizedDescription)
+            })
+        }
     }
 }
 
