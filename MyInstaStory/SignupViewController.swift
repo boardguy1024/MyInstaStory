@@ -17,6 +17,7 @@ class SignupViewController: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var signUpBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +31,30 @@ class SignupViewController: UIViewController {
         usernameTextField.setCustomBlackStyleTextField()
         emailTextField.setCustomBlackStyleTextField()
         passwordTextField.setCustomBlackStyleTextField()
+        
+        addObserveTextingChangedForTextField()
     }
+    
+    private func addObserveTextingChangedForTextField() {
+        usernameTextField.addTarget(self, action: #selector(textFieldDidChanged), for: .editingChanged)
+        emailTextField.addTarget(self, action: #selector(textFieldDidChanged), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(textFieldDidChanged), for: .editingChanged)
+    }
+    //TextFieldがeditingするたびに呼び出される。
+    func textFieldDidChanged() {
+        
+        guard let username = usernameTextField.text, !username.isEmpty,
+            let email = emailTextField.text, !email.isEmpty,
+            let password = passwordTextField.text, !password.isEmpty else {
+                
+                signUpBtn.setTitleColor(.lightText, for: .normal)
+                signUpBtn.isEnabled = false
+                return
+        }
+        signUpBtn.setTitleColor(.white, for: .normal)
+        signUpBtn.isEnabled = true
+    }
+    
     
     @IBAction func signInBtnTappedForDismiss(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -38,8 +62,6 @@ class SignupViewController: UIViewController {
     
     @IBAction func signUpBtnTapped(_ sender: UIButton) {
         
-        //MARK: - TODO
-        //入力バリデーションを追加する予定
         FIRAuth.auth()?.createUser(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: { (user, error) in
             
             if error != nil {
@@ -62,16 +84,22 @@ class SignupViewController: UIViewController {
                     
                     let profileImageUrl = metaData?.downloadURL()?.absoluteString
                     
-                    //データベースRef
-                    let ref = FIRDatabase.database().reference()
-                    let userRef = ref.child("users")
-                    let newUserRef = userRef.child(uid)
-                    newUserRef.setValue(["username": self.usernameTextField.text!,
-                                         "email": self.emailTextField.text!,
-                                         "profileImageUrl": profileImageUrl!])
+                    //データベースにユーザー情報を保存
+                    self.setUserInfomationToDataBase(profileImageUrl: profileImageUrl!,
+                                                     username: self.usernameTextField.text!,
+                                                     email: self.emailTextField.text!, uid: uid)
                 })
             }
         })
+    }
+    
+    private func setUserInfomationToDataBase(profileImageUrl: String, username: String, email: String, uid: String) {
+        let ref = FIRDatabase.database().reference()
+        let userRef = ref.child("users")
+        let newUserRef = userRef.child(uid)
+        newUserRef.setValue(["username": username,
+                             "email": email,
+                             "profileImageUrl": profileImageUrl])
     }
 }
 
