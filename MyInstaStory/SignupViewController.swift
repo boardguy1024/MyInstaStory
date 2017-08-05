@@ -88,6 +88,8 @@ class SignupViewController: UIViewController {
                     self.setUserInfomationToDataBase(profileImageUrl: profileImageUrl!,
                                                      username: self.usernameTextField.text!,
                                                      email: self.emailTextField.text!, uid: uid)
+                    
+                    self.performSegue(withIdentifier: "signToTabBarVC", sender: nil)
                 })
             }
         })

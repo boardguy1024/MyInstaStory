@@ -12,7 +12,7 @@
         <!--Home-->
         <scene sceneID="NXf-sD-Kvu">
             <objects>
-                <viewController id="3Ww-pe-dFx" customClass="HomeViewController" customModule="MyInsta" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="3Ww-pe-dFx" customClass="HomeViewController" customModule="MyInstaStory" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="YQa-gY-d7s"/>
                         <viewControllerLayoutGuide type="bottom" id="O5c-oW-zLS"/>
@@ -22,7 +22,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Home" id="bd5-tj-hhl"/>
+                    <navigationItem key="navigationItem" title="Home" id="bd5-tj-hhl">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="nEo-oq-83o">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ehh-VA-CEk">
+                                <rect key="frame" x="16" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="LogOut"/>
+                                <connections>
+                                    <action selector="logOutBtnTapped:" destination="3Ww-pe-dFx" eventType="touchUpInside" id="6lw-Tv-zV6"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9ib-f0-zWn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

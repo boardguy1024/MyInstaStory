@@ -7,13 +7,23 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+    }
+    @IBAction func logOutBtnTapped(_ sender: Any) {
+        
+        do {
+         try FIRAuth.auth()?.signOut()
+        } catch let error {
+            print("Failed SignOut. reson is: \(error)")
+            return
+        }
+        dismiss(animated: true, completion: nil)
     }
 
   }

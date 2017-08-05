@@ -64,10 +64,10 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="327" height="44"/>
                                                 <color key="backgroundColor" white="1" alpha="0.40000000000000002" colorSpace="calibratedWhite"/>
                                                 <state key="normal" title="Sign In">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleColor" cocoaTouchSystemColor="lightTextColor"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="fLI-0L-2x0" kind="presentation" id="BSE-NW-iNS"/>
+                                                    <action selector="signInBtnTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WVz-Zi-pNo"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -103,6 +103,8 @@
                     <connections>
                         <outlet property="emailTextField" destination="HMH-Mc-l9u" id="dZP-uT-2I0"/>
                         <outlet property="passwordTextField" destination="QFc-Az-d7O" id="rEz-Bj-ce0"/>
+                        <outlet property="signInBtn" destination="Jf1-en-Ld4" id="bf7-9H-4AT"/>
+                        <segue destination="fLI-0L-2x0" kind="presentation" identifier="signToTabBarVC" id="Sv2-Ga-dlB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -216,6 +218,7 @@
                         <outlet property="profileImageView" destination="wUd-oZ-6jk" id="Dd1-LY-jS3"/>
                         <outlet property="signUpBtn" destination="tO6-as-9LM" id="JU9-up-uXp"/>
                         <outlet property="usernameTextField" destination="E3R-P2-253" id="4Vo-kc-WCf"/>
+                        <segue destination="fLI-0L-2x0" kind="presentation" identifier="signToTabBarVC" id="kYh-Oc-Q7q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PQ1-EZ-E9m" sceneMemberID="firstResponder"/>
@@ -235,4 +238,7 @@
         <image name="logo" width="1003" height="231"/>
         <image name="profile" width="76" height="76"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="kYh-Oc-Q7q"/>
+    </inferredMetricsTieBreakers>
 </document>
