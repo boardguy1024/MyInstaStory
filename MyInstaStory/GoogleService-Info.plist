@@ -7,9 +7,9 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>442246394298-scviq9cs19ndnf2nk5kielchmc4i44n1.apps.googleusercontent.com</string>
+	<string>442246394298-5jemlkppc25424ci0dls2p7qmlpg2cgh.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.442246394298-scviq9cs19ndnf2nk5kielchmc4i44n1</string>
+	<string>com.googleusercontent.apps.442246394298-5jemlkppc25424ci0dls2p7qmlpg2cgh</string>
 	<key>API_KEY</key>
 	<string>AIzaSyD360HCKXAg44OYWxrfjuMPJf1mS8hhvQs</string>
 	<key>GCM_SENDER_ID</key>
@@ -17,7 +17,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.ninimepaku.MyInsta</string>
+	<string>com.ninimepaku.MyInstaStory</string>
 	<key>PROJECT_ID</key>
 	<string>myinsta-db32c</string>
 	<key>STORAGE_BUCKET</key>
@@ -33,7 +33,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:442246394298:ios:bb36c0660ec05cb3</string>
+	<string>1:442246394298:ios:20713a2ed30d0e67</string>
 	<key>DATABASE_URL</key>
 	<string>https://myinsta-db32c.firebaseio.com</string>
 </dict>

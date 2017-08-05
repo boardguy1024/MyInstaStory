@@ -35,6 +35,8 @@ class SignupViewController: UIViewController {
     
     @IBAction func signUpBtnTapped(_ sender: UIButton) {
         
+        //MARK: - TODO
+        //入力バリデーションを追加する予定
         FIRAuth.auth()?.createUser(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: { (user, error) in
             
             if error != nil {

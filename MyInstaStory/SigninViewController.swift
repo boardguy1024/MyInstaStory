@@ -1,6 +1,6 @@
 //
 //  SigninViewController.swift
-//  MyInsta
+//  MyInstaStory
 //
 //  Created by park kyung suk on 2017/08/04.
 //  Copyright © 2017年 park kyung suk. All rights reserved.

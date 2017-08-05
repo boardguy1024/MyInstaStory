@@ -1,0 +1,6 @@
+framework module Pods_MyInstaStory {
+  umbrella header "Pods-MyInstaStory-umbrella.h"
+
+  export *
+  module * { export * }
+}
