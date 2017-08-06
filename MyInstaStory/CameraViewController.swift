@@ -28,7 +28,7 @@ class CameraViewController: UIViewController {
         ProgressHUD.show("Waiting..", interaction: false)
         
         if let photoImage = self.photoImageView.image, let imageData = UIImageJPEGRepresentation(photoImage, 0.1) {
-        
+            
             //postImageのuidを自動生成
             let uid = NSUUID().uuidString
             //ストレージRef
@@ -51,16 +51,22 @@ class CameraViewController: UIViewController {
         let postsRef = ref.child("posts")
         let newPostsId = postsRef.childByAutoId().key
         let newPostsRef = postsRef.child(newPostsId)
-        newPostsRef.setValue(["photoUrl":photoUrl]) { (error, ref) in
-            
-            if error != nil {
-                ProgressHUD.showError(error!.localizedDescription)
-                return
-            }
-            ProgressHUD.showSuccess("Success")
+        newPostsRef.setValue(["photoUrl":photoUrl,
+                              "captionText": captionTextView.text!]) { (error, ref) in
+                                
+                                if error != nil {
+                                    ProgressHUD.showError(error!.localizedDescription)
+                                    return
+                                }
+                                ProgressHUD.showSuccess("Success")
+                                self.captionTextView.text = ""
+                                self.photoImageView.image = UIImage(named: "Placeholder-image")
+                                //DBに保存成功した場合、HomeTabBarVCに遷移する
+                                self.tabBarController?.selectedIndex = 0
+                                
         }
     }
-
+    
     
 }
 
@@ -83,4 +89,5 @@ extension CameraViewController: UIImagePickerControllerDelegate, UINavigationCon
         dismiss(animated: true, completion: nil)
     }
 }
+
 
