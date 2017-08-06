@@ -50,9 +50,9 @@
                                     <constraint firstItem="U8f-jU-DQ9" firstAttribute="top" secondItem="0yq-I8-YeL" secondAttribute="top" constant="10" id="yB1-jG-u6G"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rfJ-XH-KHe">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rfJ-XH-KHe">
                                 <rect key="frame" x="8" y="566" width="359" height="44"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="HzJ-eT-88W"/>
                                 </constraints>
@@ -74,10 +74,23 @@
                             <constraint firstAttribute="trailing" secondItem="0yq-I8-YeL" secondAttribute="trailing" id="idI-KU-mWu"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Camera" id="VcC-7C-zAs"/>
+                    <navigationItem key="navigationItem" title="Camera" id="VcC-7C-zAs">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="4Ci-Fn-7Uf">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="TsW-gG-D1T">
+                                <rect key="frame" x="16" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Remove"/>
+                                <connections>
+                                    <action selector="removeBtnTapped:" destination="YcY-Vy-rAm" eventType="touchUpInside" id="X0M-rO-UXV"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="captionTextView" destination="U8f-jU-DQ9" id="bsR-7V-haK"/>
                         <outlet property="photoImageView" destination="0Gs-9j-mDZ" id="Qho-SM-ikf"/>
+                        <outlet property="removeBtn" destination="TsW-gG-D1T" id="y1u-0n-Piu"/>
+                        <outlet property="shareBtn" destination="rfJ-XH-KHe" id="gRZ-9x-EQ9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kv3-uh-Z3I" userLabel="First Responder" sceneMemberID="firstResponder"/>

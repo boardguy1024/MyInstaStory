@@ -12,14 +12,48 @@ import FirebaseStorage
 
 
 class CameraViewController: UIViewController {
+    
+    @IBOutlet weak var removeBtn: UIButton!
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var captionTextView: UITextView!
+    @IBOutlet weak var shareBtn: UIButton!
+    var selectedImage: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         photoImageView.isUserInteractionEnabled = true
         photoImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectPhoto)))
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        handlePost()
+    }
+    
+    func handlePost() {
+        if selectedImage != nil {
+            shareBtn.backgroundColor = .black
+            shareBtn.isEnabled = true
+            removeBtn.isEnabled = true
+        } else {
+            shareBtn.backgroundColor = .darkGray
+            shareBtn.isEnabled = false
+            removeBtn.isEnabled = false
+        }
+        
+    }
+    @IBAction func removeBtnTapped(_ sender: Any) {
+        postClean()
+        handlePost()
+    }
+    
+    func postClean() {
+        
+        self.captionTextView.text = ""
+        self.photoImageView.image = UIImage(named: "Placeholder-image")
+        //Shareボタンを非活性化するため
+        self.selectedImage = nil
     }
     
     @IBAction func shareBtnTapped(_ sender: Any) {
@@ -42,11 +76,11 @@ class CameraViewController: UIViewController {
                 let photoUrl = metaData?.downloadURL()?.absoluteString
                 
                 //データベースにpostを保存
-                self.setUserInfomationToDataBase(photoUrl: photoUrl!)
+                self.sendDataToDataBase(photoUrl: photoUrl!)
             })
         }
     }
-    func setUserInfomationToDataBase(photoUrl: String) {
+    func sendDataToDataBase(photoUrl: String) {
         let ref = FIRDatabase.database().reference()
         let postsRef = ref.child("posts")
         let newPostsId = postsRef.childByAutoId().key
@@ -59,15 +93,16 @@ class CameraViewController: UIViewController {
                                     return
                                 }
                                 ProgressHUD.showSuccess("Success")
-                                self.captionTextView.text = ""
-                                self.photoImageView.image = UIImage(named: "Placeholder-image")
+                                self.postClean()
                                 //DBに保存成功した場合、HomeTabBarVCに遷移する
                                 self.tabBarController?.selectedIndex = 0
                                 
         }
     }
     
-    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
 }
 
 extension CameraViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -83,8 +118,9 @@ extension CameraViewController: UIImagePickerControllerDelegate, UINavigationCon
     
     //MARK:- UIImagePicker Delegate Mathods
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let seletedImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
-            photoImageView.image = seletedImage
+        if let image = info["UIImagePickerControllerEditedImage"] as? UIImage {
+            photoImageView.image = image
+            selectedImage = image
         }
         dismiss(animated: true, completion: nil)
     }
