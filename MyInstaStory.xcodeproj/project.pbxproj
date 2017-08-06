@@ -12,6 +12,7 @@
 		A24FDEB81F36BD7F0019A061 /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A24FDEB51F36BD7F0019A061 /* ProgressHUD.bundle */; };
 		A24FDEB91F36BD7F0019A061 /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A24FDEB71F36BD7F0019A061 /* ProgressHUD.m */; };
 		A24FDEBB1F36CD9D0019A061 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FDEBA1F36CD9D0019A061 /* Constant.swift */; };
+		A24FDEBE1F370B040019A061 /* post.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FDEBD1F370B040019A061 /* post.swift */; };
 		A2997E2E1F34280300D8230B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2997E2D1F34280300D8230B /* AppDelegate.swift */; };
 		A2997E331F34280300D8230B /* Start.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2997E311F34280300D8230B /* Start.storyboard */; };
 		A2997E351F34280300D8230B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2997E341F34280300D8230B /* Assets.xcassets */; };
@@ -45,6 +46,7 @@
 		A24FDEB61F36BD7F0019A061 /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressHUD.h; sourceTree = "<group>"; };
 		A24FDEB71F36BD7F0019A061 /* ProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressHUD.m; sourceTree = "<group>"; };
 		A24FDEBA1F36CD9D0019A061 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		A24FDEBD1F370B040019A061 /* post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = post.swift; sourceTree = "<group>"; };
 		A2997E2A1F34280300D8230B /* MyInstaStory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyInstaStory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2997E2D1F34280300D8230B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = MyInstaStory/AppDelegate.swift; sourceTree = "<group>"; };
 		A2997E321F34280300D8230B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Start.storyboard; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 		A24FDEAF1F3561790019A061 /* MyInstaStory */ = {
 			isa = PBXGroup;
 			children = (
+				A24FDEBC1F370AF50019A061 /* Model */,
 				A24FDEB41F36BD7F0019A061 /* MyInstaStory-Bridging-Header.h */,
 				A2997E5F1F34A87700D8230B /* Extensions.swift */,
 				A24FDEBA1F36CD9D0019A061 /* Constant.swift */,
@@ -127,6 +130,14 @@
 				A2997E391F34280300D8230B /* Info.plist */,
 			);
 			name = MyInstaStory;
+			sourceTree = "<group>";
+		};
+		A24FDEBC1F370AF50019A061 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A24FDEBD1F370B040019A061 /* post.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		A2997E211F34280300D8230B = {
@@ -307,6 +318,7 @@
 				A2997E601F34A87700D8230B /* Extensions.swift in Sources */,
 				A2997E401F342B7F00D8230B /* SigninViewController.swift in Sources */,
 				A2997E2E1F34280300D8230B /* AppDelegate.swift in Sources */,
+				A24FDEBE1F370B040019A061 /* post.swift in Sources */,
 				A2997E441F344E0C00D8230B /* HomeViewController.swift in Sources */,
 				A2997E4A1F344E4D00D8230B /* ActivityViewController.swift in Sources */,
 				A24FDEB91F36BD7F0019A061 /* ProgressHUD.m in Sources */,
