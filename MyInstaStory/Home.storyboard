@@ -20,7 +20,29 @@
                     <view key="view" contentMode="scaleToFill" id="Rmg-fX-8Qn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lJC-Af-qOi">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="44" id="vun-ou-qFr">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vun-ou-qFr" id="YTe-eG-6l8">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="lJC-Af-qOi" firstAttribute="top" secondItem="Rmg-fX-8Qn" secondAttribute="top" id="Ad4-Qb-4Zt"/>
+                            <constraint firstAttribute="trailing" secondItem="lJC-Af-qOi" secondAttribute="trailing" id="QaZ-WQ-qWf"/>
+                            <constraint firstItem="lJC-Af-qOi" firstAttribute="leading" secondItem="Rmg-fX-8Qn" secondAttribute="leading" id="jMl-D2-wJQ"/>
+                            <constraint firstAttribute="bottom" secondItem="lJC-Af-qOi" secondAttribute="bottom" id="km1-YP-Ep6"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="bd5-tj-hhl">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="nEo-oq-83o">
@@ -34,10 +56,13 @@
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="lJC-Af-qOi" id="xcg-Or-amS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9ib-f0-zWn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="249" y="103"/>
+            <point key="canvasLocation" x="248.80000000000001" y="102.99850074962519"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="nEp-qD-fuz">
