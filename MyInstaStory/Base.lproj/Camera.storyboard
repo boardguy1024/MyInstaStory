@@ -12,7 +12,7 @@
         <!--Camera-->
         <scene sceneID="SQR-7z-ndg">
             <objects>
-                <viewController id="YcY-Vy-rAm" customClass="CameraViewController" customModule="MyInsta" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="YcY-Vy-rAm" customClass="CameraViewController" customModule="MyInstaStory" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MXW-4Y-pKs"/>
                         <viewControllerLayoutGuide type="bottom" id="3To-Jf-bfC"/>
@@ -20,13 +20,70 @@
                     <view key="view" contentMode="scaleToFill" id="IQS-YA-SE4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0yq-I8-YeL">
+                                <rect key="frame" x="0.0" y="64" width="375" height="100"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Placeholder-image" translatesAutoresizingMaskIntoConstraints="NO" id="0Gs-9j-mDZ">
+                                        <rect key="frame" x="8" y="10" width="80" height="80"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="3Dg-XE-Nzr"/>
+                                            <constraint firstAttribute="width" constant="80" id="Icu-nM-nJ5"/>
+                                        </constraints>
+                                    </imageView>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="U8f-jU-DQ9">
+                                        <rect key="frame" x="96" y="10" width="271" height="80"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="U8f-jU-DQ9" firstAttribute="leading" secondItem="0Gs-9j-mDZ" secondAttribute="trailing" constant="8" id="8sd-o1-XZ5"/>
+                                    <constraint firstItem="0Gs-9j-mDZ" firstAttribute="leading" secondItem="0yq-I8-YeL" secondAttribute="leading" constant="8" id="CkJ-uH-7tV"/>
+                                    <constraint firstItem="0Gs-9j-mDZ" firstAttribute="top" secondItem="0yq-I8-YeL" secondAttribute="top" constant="10" id="FMx-AQ-ZJO"/>
+                                    <constraint firstAttribute="bottom" secondItem="0Gs-9j-mDZ" secondAttribute="bottom" constant="10" id="Gup-GP-w0K"/>
+                                    <constraint firstAttribute="height" constant="100" id="MlV-WS-JcN"/>
+                                    <constraint firstAttribute="bottom" secondItem="U8f-jU-DQ9" secondAttribute="bottom" constant="10" id="UZs-2a-kl3"/>
+                                    <constraint firstAttribute="trailing" secondItem="U8f-jU-DQ9" secondAttribute="trailing" constant="8" id="tCq-3o-Smi"/>
+                                    <constraint firstItem="U8f-jU-DQ9" firstAttribute="top" secondItem="0yq-I8-YeL" secondAttribute="top" constant="10" id="yB1-jG-u6G"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rfJ-XH-KHe">
+                                <rect key="frame" x="8" y="566" width="359" height="44"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="HzJ-eT-88W"/>
+                                </constraints>
+                                <state key="normal" title="Share">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="shareBtnTapped:" destination="YcY-Vy-rAm" eventType="touchUpInside" id="Fgo-GI-VqQ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="3To-Jf-bfC" firstAttribute="top" secondItem="rfJ-XH-KHe" secondAttribute="bottom" constant="8" id="5HK-A9-lSr"/>
+                            <constraint firstItem="rfJ-XH-KHe" firstAttribute="leading" secondItem="IQS-YA-SE4" secondAttribute="leading" constant="8" id="7CF-4w-heO"/>
+                            <constraint firstItem="0yq-I8-YeL" firstAttribute="leading" secondItem="IQS-YA-SE4" secondAttribute="leading" id="7e5-Za-ZRp"/>
+                            <constraint firstAttribute="trailing" secondItem="rfJ-XH-KHe" secondAttribute="trailing" constant="8" id="MSe-Z1-jnY"/>
+                            <constraint firstItem="0yq-I8-YeL" firstAttribute="top" secondItem="MXW-4Y-pKs" secondAttribute="bottom" id="XAv-gd-E7a"/>
+                            <constraint firstAttribute="trailing" secondItem="0yq-I8-YeL" secondAttribute="trailing" id="idI-KU-mWu"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Camera" id="VcC-7C-zAs"/>
+                    <connections>
+                        <outlet property="captionTextView" destination="U8f-jU-DQ9" id="bsR-7V-haK"/>
+                        <outlet property="photoImageView" destination="0Gs-9j-mDZ" id="Qho-SM-ikf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kv3-uh-Z3I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1970" y="103"/>
+            <point key="canvasLocation" x="1968.8" y="102.99850074962519"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="HU8-dt-f5X">
@@ -53,5 +110,6 @@
     </scenes>
     <resources>
         <image name="Photo" width="22" height="23"/>
+        <image name="Placeholder-image" width="840" height="600"/>
     </resources>
 </document>

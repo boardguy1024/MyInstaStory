@@ -37,7 +37,7 @@ class AuthService {
             
             guard let uid = user?.uid else { return }
             //ストレージRef
-            let storageRef = FIRStorage.storage().reference().child("profile_images").child(uid)
+            let storageRef = FIRStorage.storage().reference().child(PROFILE_IMAGES).child(uid)
             
             //ストレージにprofileImageを保存
             storageRef.put(imageData, metadata: nil, completion: { (metaData, error) in
