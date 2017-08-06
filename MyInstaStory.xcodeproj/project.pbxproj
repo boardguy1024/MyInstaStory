@@ -106,7 +106,6 @@
 		A24FDEAF1F3561790019A061 /* MyInstaStory */ = {
 			isa = PBXGroup;
 			children = (
-				A24FDEBC1F370AF50019A061 /* Model */,
 				A24FDEB41F36BD7F0019A061 /* MyInstaStory-Bridging-Header.h */,
 				A2997E5F1F34A87700D8230B /* Extensions.swift */,
 				A24FDEBA1F36CD9D0019A061 /* Constant.swift */,
@@ -114,6 +113,7 @@
 				A24FDEB51F36BD7F0019A061 /* ProgressHUD.bundle */,
 				A24FDEB61F36BD7F0019A061 /* ProgressHUD.h */,
 				A24FDEB71F36BD7F0019A061 /* ProgressHUD.m */,
+				A24FDEBC1F370AF50019A061 /* Model */,
 				A2997E631F34A8C900D8230B /* Controllers */,
 				A2997E3F1F342B7F00D8230B /* SigninViewController.swift */,
 				A2997E411F34319500D8230B /* SignupViewController.swift */,

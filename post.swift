@@ -10,11 +10,21 @@ import Foundation
 
 class Post {
     
-    var caption: String
-    var photoUrl: String
-    
-    init(captionText: String, photoUrl: String) {
-        self.caption = captionText
-        self.photoUrl = photoUrl
-    }
+    var caption: String?
+    var photoUrl: String?
+    var videoUrl: String?
 }
+
+extension Post {
+    
+   static func tranformPost(dic: [String: Any]) -> Post {
+ 
+        let post = Post()
+        post.caption = dic["captionText"] as? String
+        post.photoUrl = dic["photoUrl"] as? String
+        
+        return post
+    }
+    
+}
+

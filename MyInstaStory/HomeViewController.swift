@@ -27,11 +27,9 @@ class HomeViewController: UIViewController {
         //PostsDBにAddEventが生じた場合、呼び出される。
         FIRDatabase.database().reference().child(POSTS).observe(.childAdded, with: { (snapshot) in
             
-            if let dic = snapshot.value as? [String: Any] {
-                guard let caption = dic["captionText"] as? String, let photoUrl = dic["photoUrl"] as? String else { return }
-                let post = Post(captionText: caption, photoUrl: photoUrl)
-                self.posts.append(post)
-                
+            if let dictionary = snapshot.value as? [String: Any] {
+                let newPost = Post.tranformPost(dic: dictionary)
+                self.posts.append(newPost)
                 //print(Thread.isMainThread) <- true
                 self.tableView.reloadData()
             }
