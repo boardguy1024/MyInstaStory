@@ -40,6 +40,11 @@ class SignupViewController: UIViewController {
         emailTextField.addTarget(self, action: #selector(textFieldDidChanged), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(textFieldDidChanged), for: .editingChanged)
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
     //TextFieldがeditingするたびに呼び出される。
     func textFieldDidChanged() {
         
@@ -64,14 +69,16 @@ class SignupViewController: UIViewController {
         
         if let profileImage = self.profileImageView.image, let imageData = UIImageJPEGRepresentation(profileImage, 0.1) {
             
+            ProgressHUD.show("Waiting..", interaction: false)
             AuthService.signUp(username: usernameTextField.text!,
                                email: emailTextField.text!,
                                password: passwordTextField.text!,
                                imageData: imageData, completion: {
+                               ProgressHUD.showSuccess("Success")
                                self.performSegue(withIdentifier: "signToTabBarVC", sender: nil)
                                 
             }, onError: { (error) in
-                print(error!.localizedDescription)
+                ProgressHUD.showError(error!.localizedDescription)
             })
         }
     }

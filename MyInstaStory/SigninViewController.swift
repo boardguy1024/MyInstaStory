@@ -38,6 +38,11 @@ class SigninViewController: UIViewController {
         emailTextField.addTarget(self, action: #selector(textFieldDidChanged), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(textFieldDidChanged), for: .editingChanged)
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
     //TextFieldがeditingするたびに呼び出される。
     func textFieldDidChanged() {
         
@@ -52,11 +57,13 @@ class SigninViewController: UIViewController {
         signInBtn.isEnabled = true
     }
     @IBAction func signInBtnTapped(_ sender: UIButton) {
-        
-        AuthService.signIn(email: emailTextField.text!, password: passwordTextField.text!, completion: { 
+        view.endEditing(true)
+        ProgressHUD.show("Waiting..", interaction: false)
+        AuthService.signIn(email: emailTextField.text!, password: passwordTextField.text!, completion: {
+            ProgressHUD.showSuccess("Success")
             self.performSegue(withIdentifier: "signToTabBarVC", sender: nil)
         }) { (error) in
-            print("Failed to Signin: \(error!.localizedDescription)")
+            ProgressHUD.showError(error?.localizedDescription)
         }
         
 

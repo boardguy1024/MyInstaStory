@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		A24FDEB11F3561A30019A061 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A24FDEB01F3561A30019A061 /* GoogleService-Info.plist */; };
 		A24FDEB31F3608630019A061 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FDEB21F3608630019A061 /* AuthService.swift */; };
+		A24FDEB81F36BD7F0019A061 /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A24FDEB51F36BD7F0019A061 /* ProgressHUD.bundle */; };
+		A24FDEB91F36BD7F0019A061 /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A24FDEB71F36BD7F0019A061 /* ProgressHUD.m */; };
 		A2997E2E1F34280300D8230B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2997E2D1F34280300D8230B /* AppDelegate.swift */; };
 		A2997E331F34280300D8230B /* Start.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2997E311F34280300D8230B /* Start.storyboard */; };
 		A2997E351F34280300D8230B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2997E341F34280300D8230B /* Assets.xcassets */; };
@@ -37,6 +39,10 @@
 		619EE85C78FA9D166600BE81 /* Pods-MyInstaStory.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyInstaStory.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyInstaStory/Pods-MyInstaStory.debug.xcconfig"; sourceTree = "<group>"; };
 		A24FDEB01F3561A30019A061 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "MyInstaStory/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A24FDEB21F3608630019A061 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthService.swift; path = MyInstaStory/AuthService.swift; sourceTree = "<group>"; };
+		A24FDEB41F36BD7F0019A061 /* MyInstaStory-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MyInstaStory-Bridging-Header.h"; sourceTree = "<group>"; };
+		A24FDEB51F36BD7F0019A061 /* ProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ProgressHUD.bundle; sourceTree = "<group>"; };
+		A24FDEB61F36BD7F0019A061 /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressHUD.h; sourceTree = "<group>"; };
+		A24FDEB71F36BD7F0019A061 /* ProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressHUD.m; sourceTree = "<group>"; };
 		A2997E2A1F34280300D8230B /* MyInstaStory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyInstaStory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2997E2D1F34280300D8230B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = MyInstaStory/AppDelegate.swift; sourceTree = "<group>"; };
 		A2997E321F34280300D8230B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Start.storyboard; sourceTree = "<group>"; };
@@ -96,8 +102,12 @@
 		A24FDEAF1F3561790019A061 /* MyInstaStory */ = {
 			isa = PBXGroup;
 			children = (
+				A24FDEB41F36BD7F0019A061 /* MyInstaStory-Bridging-Header.h */,
 				A2997E5F1F34A87700D8230B /* Extensions.swift */,
 				A24FDEB21F3608630019A061 /* AuthService.swift */,
+				A24FDEB51F36BD7F0019A061 /* ProgressHUD.bundle */,
+				A24FDEB61F36BD7F0019A061 /* ProgressHUD.h */,
+				A24FDEB71F36BD7F0019A061 /* ProgressHUD.m */,
 				A2997E631F34A8C900D8230B /* Controllers */,
 				A2997E3F1F342B7F00D8230B /* SigninViewController.swift */,
 				A2997E411F34319500D8230B /* SignupViewController.swift */,
@@ -193,6 +203,7 @@
 					A2997E291F34280300D8230B = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 4NG4Y8JK7B;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -220,6 +231,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A24FDEB81F36BD7F0019A061 /* ProgressHUD.bundle in Resources */,
 				A2997E381F34280300D8230B /* LaunchScreen.storyboard in Resources */,
 				A2997E591F34623200D8230B /* Camera.storyboard in Resources */,
 				A2997E511F34606300D8230B /* Home.storyboard in Resources */,
@@ -294,6 +306,7 @@
 				A2997E2E1F34280300D8230B /* AppDelegate.swift in Sources */,
 				A2997E441F344E0C00D8230B /* HomeViewController.swift in Sources */,
 				A2997E4A1F344E4D00D8230B /* ActivityViewController.swift in Sources */,
+				A24FDEB91F36BD7F0019A061 /* ProgressHUD.m in Sources */,
 				A2997E461F344E2300D8230B /* DiscoverViewController.swift in Sources */,
 				A24FDEB31F3608630019A061 /* AuthService.swift in Sources */,
 				A2997E4C1F344E5F00D8230B /* ProfileViewController.swift in Sources */,
@@ -447,11 +460,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 619EE85C78FA9D166600BE81 /* Pods-MyInstaStory.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 4NG4Y8JK7B;
 				INFOPLIST_FILE = MyInstaStory/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ninimepaku.MyInstaStory;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MyInstaStory-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -460,11 +476,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 31BB1266603867734A1F0154 /* Pods-MyInstaStory.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 4NG4Y8JK7B;
 				INFOPLIST_FILE = MyInstaStory/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ninimepaku.MyInstaStory;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MyInstaStory-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
