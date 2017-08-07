@@ -33,12 +33,17 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="513"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholderImg" translatesAutoresizingMaskIntoConstraints="NO" id="kce-z8-Ws0">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholderImg" translatesAutoresizingMaskIntoConstraints="NO" id="kce-z8-Ws0">
                                                     <rect key="frame" x="14" y="23" width="36" height="36"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="36" id="3iy-Mt-jDs"/>
                                                         <constraint firstAttribute="height" constant="36" id="U9R-wm-tkE"/>
                                                     </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="18"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cSd-Bc-mN8">
                                                     <rect key="frame" x="58" y="33" width="36" height="16"/>
@@ -46,7 +51,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5xG-JZ-PeV">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5xG-JZ-PeV">
                                                     <rect key="frame" x="0.0" y="67" width="375" height="320"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="320" id="euw-dg-Ryv"/>

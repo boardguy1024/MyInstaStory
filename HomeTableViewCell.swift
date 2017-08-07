@@ -10,12 +10,7 @@ import UIKit
 
 class HomeTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var profileImageView: UIImageView! {
-        didSet {
-            profileImageView.layer.cornerRadius = profileImageView.frame.width / 2
-            profileImageView.layer.masksToBounds = true
-        }
-    }
+    @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var postImageView: UIImageView!
     @IBOutlet weak var likeImageView: UIImageView!
