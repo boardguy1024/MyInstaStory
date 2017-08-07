@@ -1,5 +1,4 @@
 # MyInstaStory
-![header](./header.png)
 ![tool](https://img.shields.io/badge/tool-xcode8-blue.svg)
 ![tool](https://img.shields.io/badge/tool-Sketch-yellow.svg)
 ![tool](https://img.shields.io/badge/tool-PhotoshopCC-blue.svg)
@@ -11,7 +10,7 @@
 
 ## 仕様
 Firebase RealTimeDataBase,Storageを使ったアプリを開発。
-写真や動画の共有、写真のフィルター、通知、ユーザー設定、いいね機能など実装予定
+写真や動画の共有、写真のフィルター、通知、ユーザー設定、いいね機能など実装中
 
 ## スクリーンショット
 ![header](./background.jpg)
