@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
+import SDWebImage
 
 class HomeViewController: UIViewController {
     
@@ -56,18 +57,20 @@ extension HomeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 10
+        return posts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! HomeTableViewCell
-        
+        let post = posts[indexPath.row]
         cell.profileImageView.image = UIImage(named: "sample.jpg")
         cell.nameLabel.text = "tanaka miho"
-        cell.postImageView.image = UIImage(named: "post.jpg")
-        cell.captionLabel.text = "Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!"
         
+        if let postImageUrlString = post.photoUrl, let postImageUrl = URL(string: postImageUrlString) {
+            cell.postImageView.sd_setImage(with: postImageUrl)
+            cell.captionLabel.text = post.caption
+        }
         return cell
     }
 }
