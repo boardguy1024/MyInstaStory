@@ -69,8 +69,6 @@
 		A2997E5A1F34625C00D8230B /* Activity.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Activity.storyboard; sourceTree = "<group>"; };
 		A2997E5D1F34628400D8230B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Profile.storyboard; sourceTree = "<group>"; };
 		A2997E5F1F34A87700D8230B /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = MyInstaStory/Extensions.swift; sourceTree = "<group>"; };
-		E97D233B6BD62FDE06C5F8D4 /* Pods-MyInsta.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyInsta.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyInsta/Pods-MyInsta.debug.xcconfig"; sourceTree = "<group>"; };
-		F1E9268B86B93D5EF9752785 /* Pods-MyInsta.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyInsta.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyInsta/Pods-MyInsta.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,8 +95,6 @@
 		5198D531D780E55CDB100F5E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				E97D233B6BD62FDE06C5F8D4 /* Pods-MyInsta.debug.xcconfig */,
-				F1E9268B86B93D5EF9752785 /* Pods-MyInsta.release.xcconfig */,
 				619EE85C78FA9D166600BE81 /* Pods-MyInstaStory.debug.xcconfig */,
 				31BB1266603867734A1F0154 /* Pods-MyInstaStory.release.xcconfig */,
 			);
@@ -489,11 +485,14 @@
 			baseConfigurationReference = 619EE85C78FA9D166600BE81 /* Pods-MyInstaStory.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 4NG4Y8JK7B;
 				INFOPLIST_FILE = MyInstaStory/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ninimepaku.MyInstaStory;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MyInstaStory-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -505,11 +504,14 @@
 			baseConfigurationReference = 31BB1266603867734A1F0154 /* Pods-MyInstaStory.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 4NG4Y8JK7B;
 				INFOPLIST_FILE = MyInstaStory/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ninimepaku.MyInstaStory;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MyInstaStory-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};

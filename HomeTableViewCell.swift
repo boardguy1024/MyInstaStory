@@ -18,6 +18,24 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var shareImageView: UIImageView!
     @IBOutlet weak var likeCountBtn: UIButton!
     @IBOutlet weak var captionLabel: UILabel!
+    
+    var post: Post? {
+        didSet {
+            updateView()
+        }
+    }
+    
+    //cellさんの個人タスク
+    private func updateView() {
+        
+        profileImageView.image = UIImage(named: "sample.jpg")
+        nameLabel.text = "tanaka miho"
+        if let postImageUrlString = post?.photoUrl, let postImageUrl = URL(string: postImageUrlString) {
+            postImageView.sd_setImage(with: postImageUrl)
+            captionLabel.text = post?.caption
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
