@@ -11,3 +11,4 @@ import Foundation
 //Firebase storageフォルダ名
 let PROFILE_IMAGES = "profile_images"
 let POSTS = "posts"
+let USERS = "users"

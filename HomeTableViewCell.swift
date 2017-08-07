@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class HomeTableViewCell: UITableViewCell {
 
@@ -28,11 +29,30 @@ class HomeTableViewCell: UITableViewCell {
     //cellさんの個人タスク
     private func updateView() {
         
-        profileImageView.image = UIImage(named: "sample.jpg")
-        nameLabel.text = "tanaka miho"
+        //profileImageView.image = UIImage(named: "sample.jpg")
         if let postImageUrlString = post?.photoUrl, let postImageUrl = URL(string: postImageUrlString) {
             postImageView.sd_setImage(with: postImageUrl)
             captionLabel.text = post?.caption
+            setupUserInfo()
+        }
+    }
+    
+    private func setupUserInfo() {
+        if let userId = post?.userId {
+            //該当Postに対しユーザー情報を取得するため、1回だけデータを取得するobserveSingleEventを使う
+            FIRDatabase.database().reference().child(USERS).child(userId).observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                if let dic = snapshot.value as? [String: Any] {
+                    
+                    let user = User.fransformUser(dic: dic)
+                    
+                    if let profileImageUrlString = user.profileImageUrl, let profileImageUrl = URL(string: profileImageUrlString) {
+                    
+                        self.profileImageView.sd_setImage(with: profileImageUrl)
+                        self.nameLabel.text = user.username
+                    }
+                }
+            })
         }
     }
     

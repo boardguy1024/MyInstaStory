@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseDatabase
 import FirebaseStorage
+import FirebaseAuth
 
 
 class CameraViewController: UIViewController {
@@ -85,7 +86,9 @@ class CameraViewController: UIViewController {
         let postsRef = ref.child("posts")
         let newPostsId = postsRef.childByAutoId().key
         let newPostsRef = postsRef.child(newPostsId)
-        newPostsRef.setValue(["photoUrl":photoUrl,
+        guard let currentUserId = FIRAuth.auth()?.currentUser?.uid else { return }
+        newPostsRef.setValue(["userId": currentUserId,
+                              "photoUrl":photoUrl,
                               "captionText": captionTextView.text!]) { (error, ref) in
                                 
                                 if error != nil {
@@ -96,7 +99,6 @@ class CameraViewController: UIViewController {
                                 self.postClean()
                                 //DBに保存成功した場合、HomeTabBarVCに遷移する
                                 self.tabBarController?.selectedIndex = 0
-                                
         }
     }
     

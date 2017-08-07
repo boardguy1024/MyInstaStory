@@ -29,6 +29,7 @@ class AuthService {
     
     static func signUp(username: String, email: String, password: String, imageData: Data, completion: @escaping ()->(), onError: @escaping (_ errorMessage: Error?)->()) {
         
+        //Authenticationにユーザーを登録
         FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
             if error != nil {
                 onError(error)
@@ -39,7 +40,7 @@ class AuthService {
             //ストレージRef
             let storageRef = FIRStorage.storage().reference().child(PROFILE_IMAGES).child(uid)
             
-            //ストレージにprofileImageを保存
+            //ストレージにユーザーのprofileImageを保存
             storageRef.put(imageData, metadata: nil, completion: { (metaData, error) in
                 
                 if error != nil {
