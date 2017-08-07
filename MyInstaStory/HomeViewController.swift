@@ -14,12 +14,15 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    
     var posts = [Post]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.estimatedRowHeight = 513
+        //Cellの高さを自動に調整してくれる
+        tableView.rowHeight = UITableViewAutomaticDimension
         tableView.dataSource = self
-        
         loadPosts()
     }
     
@@ -53,13 +56,18 @@ extension HomeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return posts.count
+        return 10
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = UITableViewCell()
-        cell.textLabel?.text = posts[indexPath.row].caption
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! HomeTableViewCell
+        
+        cell.profileImageView.image = UIImage(named: "sample.jpg")
+        cell.nameLabel.text = "tanaka miho"
+        cell.postImageView.image = UIImage(named: "post.jpg")
+        cell.captionLabel.text = "Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!Some text!"
+        
         return cell
     }
 }
