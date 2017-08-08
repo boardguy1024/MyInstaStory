@@ -10,7 +10,7 @@ import UIKit
 import FirebaseDatabase
 
 class HomeTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var postImageView: UIImageView!
@@ -26,44 +26,46 @@ class HomeTableViewCell: UITableViewCell {
         }
     }
     
-    //cellさんの個人タスク
+    var user: User? {
+        didSet {
+            setupUserInfo()
+        }
+    }
+    
     private func updateView() {
         
         //profileImageView.image = UIImage(named: "sample.jpg")
         if let postImageUrlString = post?.photoUrl, let postImageUrl = URL(string: postImageUrlString) {
             postImageView.sd_setImage(with: postImageUrl)
             captionLabel.text = post?.caption
-            setupUserInfo()
         }
     }
     
     private func setupUserInfo() {
-        if let userId = post?.userId {
-            //該当Postに対しユーザー情報を取得するため、1回だけデータを取得するobserveSingleEventを使う
-            FIRDatabase.database().reference().child(USERS).child(userId).observeSingleEvent(of: .value, with: { (snapshot) in
-                
-                if let dic = snapshot.value as? [String: Any] {
-                    
-                    let user = User.fransformUser(dic: dic)
-                    
-                    if let profileImageUrlString = user.profileImageUrl, let profileImageUrl = URL(string: profileImageUrlString) {
-                    
-                        self.profileImageView.sd_setImage(with: profileImageUrl)
-                        self.nameLabel.text = user.username
-                    }
-                }
-            })
+        
+        nameLabel.text = user?.username
+        if let profileImageUrlString = user?.profileImageUrl, let profileImageUrl = URL(string: profileImageUrlString) {
+            profileImageView.sd_setImage(with: profileImageUrl, placeholderImage: UIImage(named: "placeholderImg.png"))
         }
+        
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        nameLabel.text = ""
+        captionLabel.text = ""
     }
-
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        //セルがreuseされる際、表示中のデータが誤って一瞬表示する不具合を防ぐためここでdefaultデータを設定
+        profileImageView.image = UIImage(named: "placeholderImg.png")
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-
+    
 }

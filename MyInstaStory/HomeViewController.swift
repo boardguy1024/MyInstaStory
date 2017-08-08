@@ -17,6 +17,7 @@ class HomeViewController: UIViewController {
     
     
     var posts = [Post]()
+    var users = [User]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,11 +34,27 @@ class HomeViewController: UIViewController {
             
             if let dictionary = snapshot.value as? [String: Any] {
                 let newPost = Post.tranformPost(dic: dictionary)
-                self.posts.append(newPost)
-                //print(Thread.isMainThread) <- true
-                self.tableView.reloadData()
+                self.fetchUser(userId: newPost.userId!, completion: {
+                    //postInfoをposts配列にセット
+                    self.posts.append(newPost)
+                    //print(Thread.isMainThread) <- true
+                    self.tableView.reloadData()
+                })
             }
         })
+    }
+    
+    private func fetchUser(userId: String, completion: @escaping ()->()) {
+        //UserInfoをFetchしてusers配列にセット
+        FIRDatabase.database().reference().child(USERS).child(userId).observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dic = snapshot.value as? [String: Any] {
+                let user = User.fransformUser(dic: dic)
+                self.users.append(user)
+            }
+            completion()
+        })
+        
+        
     }
     
     @IBAction func logOutBtnTapped(_ sender: Any) {
@@ -63,6 +80,7 @@ extension HomeViewController: UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! HomeTableViewCell
         cell.post = posts[indexPath.row]
+        cell.user = users[indexPath.row]
         return cell
     }
 }
