@@ -14,6 +14,7 @@ import SDWebImage
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     
     
     var posts = [Post]()
@@ -29,6 +30,7 @@ class HomeViewController: UIViewController {
     }
     
     func loadPosts() {
+        activityIndicatorView.startAnimating()
         //PostsDBにAddEventが生じた場合、呼び出される。
         FIRDatabase.database().reference().child(POSTS).observe(.childAdded, with: { (snapshot) in
             
@@ -37,6 +39,7 @@ class HomeViewController: UIViewController {
                 self.fetchUser(userId: newPost.userId!, completion: {
                     //postInfoをposts配列にセット
                     self.posts.append(newPost)
+                    self.activityIndicatorView.stopAnimating()
                     //print(Thread.isMainThread) <- true
                     self.tableView.reloadData()
                 })
