@@ -29,6 +29,11 @@ class HomeViewController: UIViewController {
         loadPosts()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    
     func loadPosts() {
         activityIndicatorView.startAnimating()
         //PostsDBにAddEventが生じた場合、呼び出される。
@@ -69,6 +74,11 @@ class HomeViewController: UIViewController {
             return
         }
         dismiss(animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func dummyBtn(_ sender: Any) {
+        performSegue(withIdentifier: "CommentViewController", sender: nil)
     }
     
 }

@@ -15,6 +15,8 @@
 		A24FDEBE1F370B040019A061 /* post.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FDEBD1F370B040019A061 /* post.swift */; };
 		A24FDEC11F3802CE0019A061 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FDEC01F3802CE0019A061 /* HomeTableViewCell.swift */; };
 		A24FDEC31F384D010019A061 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FDEC21F384D010019A061 /* User.swift */; };
+		A24FDEC51F3992A60019A061 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FDEC41F3992A60019A061 /* CommentViewController.swift */; };
+		A24FDEC71F3993480019A061 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FDEC61F3993480019A061 /* CommentTableViewCell.swift */; };
 		A2997E2E1F34280300D8230B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2997E2D1F34280300D8230B /* AppDelegate.swift */; };
 		A2997E331F34280300D8230B /* Start.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2997E311F34280300D8230B /* Start.storyboard */; };
 		A2997E351F34280300D8230B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2997E341F34280300D8230B /* Assets.xcassets */; };
@@ -51,19 +53,21 @@
 		A24FDEBD1F370B040019A061 /* post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = post.swift; sourceTree = "<group>"; };
 		A24FDEC01F3802CE0019A061 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		A24FDEC21F384D010019A061 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		A24FDEC41F3992A60019A061 /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
+		A24FDEC61F3993480019A061 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		A2997E2A1F34280300D8230B /* MyInstaStory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyInstaStory.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		A2997E2D1F34280300D8230B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = MyInstaStory/AppDelegate.swift; sourceTree = "<group>"; };
+		A2997E2D1F34280300D8230B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2997E321F34280300D8230B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Start.storyboard; sourceTree = "<group>"; };
 		A2997E341F34280300D8230B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = MyInstaStory/Assets.xcassets; sourceTree = "<group>"; };
 		A2997E371F34280300D8230B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A2997E391F34280300D8230B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = MyInstaStory/Info.plist; sourceTree = "<group>"; };
-		A2997E3F1F342B7F00D8230B /* SigninViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SigninViewController.swift; path = MyInstaStory/SigninViewController.swift; sourceTree = "<group>"; };
-		A2997E411F34319500D8230B /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupViewController.swift; path = MyInstaStory/SignupViewController.swift; sourceTree = "<group>"; };
-		A2997E431F344E0C00D8230B /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = MyInstaStory/HomeViewController.swift; sourceTree = "<group>"; };
-		A2997E451F344E2300D8230B /* DiscoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverViewController.swift; path = MyInstaStory/DiscoverViewController.swift; sourceTree = "<group>"; };
-		A2997E471F344E3F00D8230B /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CameraViewController.swift; path = MyInstaStory/CameraViewController.swift; sourceTree = "<group>"; };
-		A2997E491F344E4D00D8230B /* ActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityViewController.swift; path = MyInstaStory/ActivityViewController.swift; sourceTree = "<group>"; };
-		A2997E4B1F344E5F00D8230B /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = MyInstaStory/ProfileViewController.swift; sourceTree = "<group>"; };
+		A2997E3F1F342B7F00D8230B /* SigninViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SigninViewController.swift; sourceTree = "<group>"; };
+		A2997E411F34319500D8230B /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		A2997E431F344E0C00D8230B /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		A2997E451F344E2300D8230B /* DiscoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
+		A2997E471F344E3F00D8230B /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		A2997E491F344E4D00D8230B /* ActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
+		A2997E4B1F344E5F00D8230B /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		A2997E4E1F34591800D8230B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A2997E501F34606300D8230B /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		A2997E551F3461F600D8230B /* Discover.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Discover.storyboard; sourceTree = "<group>"; };
@@ -116,14 +120,6 @@
 				A24FDEBC1F370AF50019A061 /* Models */,
 				A24FDEBF1F3802800019A061 /* Views */,
 				A2997E631F34A8C900D8230B /* Controllers */,
-				A2997E3F1F342B7F00D8230B /* SigninViewController.swift */,
-				A2997E411F34319500D8230B /* SignupViewController.swift */,
-				A2997E431F344E0C00D8230B /* HomeViewController.swift */,
-				A2997E451F344E2300D8230B /* DiscoverViewController.swift */,
-				A2997E471F344E3F00D8230B /* CameraViewController.swift */,
-				A2997E491F344E4D00D8230B /* ActivityViewController.swift */,
-				A2997E4B1F344E5F00D8230B /* ProfileViewController.swift */,
-				A2997E2D1F34280300D8230B /* AppDelegate.swift */,
 				A2997E641F34AFB200D8230B /* Storyboards */,
 				A2997E341F34280300D8230B /* Assets.xcassets */,
 				A2997E361F34280300D8230B /* LaunchScreen.storyboard */,
@@ -146,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				A24FDEC01F3802CE0019A061 /* HomeTableViewCell.swift */,
+				A24FDEC61F3993480019A061 /* CommentTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -171,6 +168,15 @@
 		A2997E631F34A8C900D8230B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A2997E3F1F342B7F00D8230B /* SigninViewController.swift */,
+				A2997E411F34319500D8230B /* SignupViewController.swift */,
+				A2997E431F344E0C00D8230B /* HomeViewController.swift */,
+				A24FDEC41F3992A60019A061 /* CommentViewController.swift */,
+				A2997E451F344E2300D8230B /* DiscoverViewController.swift */,
+				A2997E471F344E3F00D8230B /* CameraViewController.swift */,
+				A2997E491F344E4D00D8230B /* ActivityViewController.swift */,
+				A2997E4B1F344E5F00D8230B /* ProfileViewController.swift */,
+				A2997E2D1F34280300D8230B /* AppDelegate.swift */,
 			);
 			name = Controllers;
 			path = MyInstaStory;
@@ -330,8 +336,10 @@
 				A2997E401F342B7F00D8230B /* SigninViewController.swift in Sources */,
 				A2997E2E1F34280300D8230B /* AppDelegate.swift in Sources */,
 				A24FDEBE1F370B040019A061 /* post.swift in Sources */,
+				A24FDEC71F3993480019A061 /* CommentTableViewCell.swift in Sources */,
 				A2997E441F344E0C00D8230B /* HomeViewController.swift in Sources */,
 				A2997E4A1F344E4D00D8230B /* ActivityViewController.swift in Sources */,
+				A24FDEC51F3992A60019A061 /* CommentViewController.swift in Sources */,
 				A24FDEC31F384D010019A061 /* User.swift in Sources */,
 				A24FDEB91F36BD7F0019A061 /* ProgressHUD.m in Sources */,
 				A2997E461F344E2300D8230B /* DiscoverViewController.swift in Sources */,
