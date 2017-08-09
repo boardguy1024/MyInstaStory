@@ -28,36 +28,25 @@ class HomeViewController: UIViewController {
         tableView.dataSource = self
         loadPosts()
     }
-
+    
     func loadPosts() {
         activityIndicatorView.startAnimating()
-        //PostsDBにAddEventが生じた場合、呼び出される。
-        FIRDatabase.database().reference().child(POSTS).observe(.childAdded, with: { (snapshot) in
-            
-            if let dictionary = snapshot.value as? [String: Any] {
-                let newPost = Post.tranformPost(dic: dictionary, key: snapshot.key)
-                self.fetchUser(userId: newPost.userId!, completion: {
-                    //postInfoをposts配列にセット
-                    self.posts.append(newPost)
-                    self.activityIndicatorView.stopAnimating()
-                    //print(Thread.isMainThread) <- true
-                    self.tableView.reloadData()
-                })
-            }
-        })
+        Api.Post.observePosts { (newPost) in
+            self.fetchUser(userId: newPost.userId!, completion: {
+                self.posts.append(newPost)
+                self.activityIndicatorView.stopAnimating()
+                self.tableView.reloadData()
+            })
+        }
     }
     
     private func fetchUser(userId: String, completion: @escaping ()->()) {
         //UserInfoをFetchしてusers配列にセット
-        FIRDatabase.database().reference().child(USERS).child(userId).observeSingleEvent(of: .value, with: { (snapshot) in
-            if let dic = snapshot.value as? [String: Any] {
-                let user = User.fransformUser(dic: dic)
-                self.users.append(user)
-            }
+        
+        Api.User.observeUser(withId: userId) { (user) in
+            self.users.append(user)
             completion()
-        })
-        
-        
+        }
     }
     
     @IBAction func logOutBtnTapped(_ sender: Any) {

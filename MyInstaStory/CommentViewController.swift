@@ -32,7 +32,7 @@ class CommentViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow , object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide , object: nil)
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
@@ -48,7 +48,7 @@ class CommentViewController: UIViewController {
     }
     
     func keyboardWillShow(_ notification: NSNotification) {
-    
+        
         if let keyboardFrame = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue {
             
             UIView.animate(withDuration: 0.3, animations: {
@@ -57,9 +57,9 @@ class CommentViewController: UIViewController {
             })
         }
     }
-
+    
     func keyboardWillHide(_ notification: NSNotification) {
-
+        
         UIView.animate(withDuration: 0.3, animations: {
             self.tableViewBottomConstraint.constant = 0
             self.view.layoutIfNeeded()
@@ -68,42 +68,22 @@ class CommentViewController: UIViewController {
     
     private func loadComments() {
         
-        let postCommentsRef = FIRDatabase.database().reference().child(POST_COMMENTS).child(postId)
-        postCommentsRef.observe(.childAdded, with: { (snapshot) in
-        
-            print("observe key")
-            print(snapshot.key)
+        Api.Post_Comment.REF_POSTCOMMENTS.child(postId).observe(.childAdded, with: { (snapshot) in
             
-            let commentId = snapshot.key
-            let commentsRef = FIRDatabase.database().reference().child(COMMNETS).child(commentId)
-            commentsRef.observeSingleEvent(of: .value, with: { (commentSnapshot) in
-            
-                if let dic = commentSnapshot.value as? [String: Any] {
-                    let comment = Comment.tranformComment(dic: dic)
-                    
-                    self.fetchUser(userId: comment.userId!, completion: {
-                       
-                        self.comments.append(comment)
-                        print(Thread.isMainThread)
-                        self.tableView.reloadData()
-                        
-                    })
-                    
-                   
-                }
+            Api.Comment.observeComments(withId: snapshot.key, completion: { (comment) in
+                self.fetchUser(userId: comment.userId!, completion: {
+                    self.comments.append(comment)
+                    self.tableView.reloadData()
+                })
             })
         })
     }
     
     private func fetchUser(userId: String, completion: @escaping ()->()) {
-        //UserInfoをFetchしてusers配列にセット
-        FIRDatabase.database().reference().child(USERS).child(userId).observeSingleEvent(of: .value, with: { (snapshot) in
-            if let dic = snapshot.value as? [String: Any] {
-                let user = User.fransformUser(dic: dic)
-                self.users.append(user)
-            }
+        Api.User.observeUser(withId: userId) { (user) in
+            self.users.append(user)
             completion()
-        })
+        }
     }
     
     private func handleTextField() {
@@ -122,7 +102,7 @@ class CommentViewController: UIViewController {
     
     @IBAction func sendBtnTapped(_ sender: Any) {
         
-        let commentRef = FIRDatabase.database().reference().child(COMMNETS)
+        let commentRef = Api.Comment.REF_COMMENTS
         let newCommentId = commentRef.childByAutoId().key
         let newCommentRef = commentRef.child(newCommentId)
         
@@ -135,8 +115,8 @@ class CommentViewController: UIViewController {
                                         ProgressHUD.showError(error!.localizedDescription)
                                         return
                                     }
-                                    let postCommentRef = FIRDatabase.database().reference().child(POST_COMMENTS).child(self.postId).child(newCommentId)
-                                    postCommentRef.setValue(true, withCompletionBlock: { (error, ref) in
+                                    
+                                    Api.Post_Comment.REF_POSTCOMMENTS.child(self.postId).child(newCommentId).setValue(true, withCompletionBlock: { (error, ref) in
                                         if error != nil {
                                             ProgressHUD.showError(error!.localizedDescription)
                                             return

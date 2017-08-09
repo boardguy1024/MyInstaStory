@@ -18,6 +18,11 @@
 		A24FDEC51F3992A60019A061 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FDEC41F3992A60019A061 /* CommentViewController.swift */; };
 		A24FDEC71F3993480019A061 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FDEC61F3993480019A061 /* CommentTableViewCell.swift */; };
 		A24FDEC91F3AB1870019A061 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FDEC81F3AB1870019A061 /* Comment.swift */; };
+		A24FDECB1F3B54DA0019A061 /* PostApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FDECA1F3B54DA0019A061 /* PostApi.swift */; };
+		A24FDECD1F3B5B170019A061 /* UserApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FDECC1F3B5B170019A061 /* UserApi.swift */; };
+		A24FDECF1F3B61F60019A061 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FDECE1F3B61F60019A061 /* Api.swift */; };
+		A24FDED11F3B63CD0019A061 /* CommentApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FDED01F3B63CD0019A061 /* CommentApi.swift */; };
+		A24FDED31F3B6A910019A061 /* PostCommentApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FDED21F3B6A910019A061 /* PostCommentApi.swift */; };
 		A2997E2E1F34280300D8230B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2997E2D1F34280300D8230B /* AppDelegate.swift */; };
 		A2997E331F34280300D8230B /* Start.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2997E311F34280300D8230B /* Start.storyboard */; };
 		A2997E351F34280300D8230B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2997E341F34280300D8230B /* Assets.xcassets */; };
@@ -40,7 +45,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		060844CB0E17A5EEE3414694 /* Pods_MyInsta.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyInsta.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A828218B573D88818E48C86 /* Pods_MyInstaStory.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyInstaStory.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		31BB1266603867734A1F0154 /* Pods-MyInstaStory.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyInstaStory.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyInstaStory/Pods-MyInstaStory.release.xcconfig"; sourceTree = "<group>"; };
 		619EE85C78FA9D166600BE81 /* Pods-MyInstaStory.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyInstaStory.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyInstaStory/Pods-MyInstaStory.debug.xcconfig"; sourceTree = "<group>"; };
@@ -57,6 +61,11 @@
 		A24FDEC41F3992A60019A061 /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		A24FDEC61F3993480019A061 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		A24FDEC81F3AB1870019A061 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		A24FDECA1F3B54DA0019A061 /* PostApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostApi.swift; sourceTree = "<group>"; };
+		A24FDECC1F3B5B170019A061 /* UserApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserApi.swift; sourceTree = "<group>"; };
+		A24FDECE1F3B61F60019A061 /* Api.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
+		A24FDED01F3B63CD0019A061 /* CommentApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentApi.swift; sourceTree = "<group>"; };
+		A24FDED21F3B6A910019A061 /* PostCommentApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCommentApi.swift; sourceTree = "<group>"; };
 		A2997E2A1F34280300D8230B /* MyInstaStory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyInstaStory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2997E2D1F34280300D8230B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2997E321F34280300D8230B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Start.storyboard; sourceTree = "<group>"; };
@@ -94,7 +103,6 @@
 		1E5CD7FC57347D483C7F9353 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				060844CB0E17A5EEE3414694 /* Pods_MyInsta.framework */,
 				2A828218B573D88818E48C86 /* Pods_MyInstaStory.framework */,
 			);
 			name = Frameworks;
@@ -116,6 +124,11 @@
 				A2997E5F1F34A87700D8230B /* Extensions.swift */,
 				A24FDEBA1F36CD9D0019A061 /* Constant.swift */,
 				A24FDEB21F3608630019A061 /* AuthService.swift */,
+				A24FDECA1F3B54DA0019A061 /* PostApi.swift */,
+				A24FDECC1F3B5B170019A061 /* UserApi.swift */,
+				A24FDED01F3B63CD0019A061 /* CommentApi.swift */,
+				A24FDED21F3B6A910019A061 /* PostCommentApi.swift */,
+				A24FDECE1F3B61F60019A061 /* Api.swift */,
 				A24FDEB51F36BD7F0019A061 /* ProgressHUD.bundle */,
 				A24FDEB61F36BD7F0019A061 /* ProgressHUD.h */,
 				A24FDEB71F36BD7F0019A061 /* ProgressHUD.m */,
@@ -338,16 +351,21 @@
 				A24FDEC11F3802CE0019A061 /* HomeTableViewCell.swift in Sources */,
 				A2997E401F342B7F00D8230B /* SigninViewController.swift in Sources */,
 				A2997E2E1F34280300D8230B /* AppDelegate.swift in Sources */,
+				A24FDED31F3B6A910019A061 /* PostCommentApi.swift in Sources */,
 				A24FDEBE1F370B040019A061 /* post.swift in Sources */,
 				A24FDEC71F3993480019A061 /* CommentTableViewCell.swift in Sources */,
 				A24FDEC91F3AB1870019A061 /* Comment.swift in Sources */,
 				A2997E441F344E0C00D8230B /* HomeViewController.swift in Sources */,
 				A2997E4A1F344E4D00D8230B /* ActivityViewController.swift in Sources */,
+				A24FDED11F3B63CD0019A061 /* CommentApi.swift in Sources */,
 				A24FDEC51F3992A60019A061 /* CommentViewController.swift in Sources */,
 				A24FDEC31F384D010019A061 /* User.swift in Sources */,
+				A24FDECF1F3B61F60019A061 /* Api.swift in Sources */,
 				A24FDEB91F36BD7F0019A061 /* ProgressHUD.m in Sources */,
+				A24FDECD1F3B5B170019A061 /* UserApi.swift in Sources */,
 				A2997E461F344E2300D8230B /* DiscoverViewController.swift in Sources */,
 				A24FDEB31F3608630019A061 /* AuthService.swift in Sources */,
+				A24FDECB1F3B54DA0019A061 /* PostApi.swift in Sources */,
 				A2997E4C1F344E5F00D8230B /* ProfileViewController.swift in Sources */,
 				A2997E481F344E3F00D8230B /* CameraViewController.swift in Sources */,
 				A24FDEBB1F36CD9D0019A061 /* Constant.swift in Sources */,
