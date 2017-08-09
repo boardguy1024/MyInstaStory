@@ -14,16 +14,64 @@ class CommentViewController: UIViewController {
     
     @IBOutlet weak var commentTextField: UITextField!
     @IBOutlet weak var sendBtn: UIButton!
+    @IBOutlet weak var tableView: UITableView!
+    
+    var comments = [Comment]()
+    var users = [User]()
+    
+    let postId = "-Kr17bBzfUNMNCDB6-iv"
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.dataSource = self
         sendBtn.isEnabled = false
         handleTextField()
+        loadComments()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
+    }
+    
+    private func loadComments() {
+        
+        let postCommentsRef = FIRDatabase.database().reference().child(POST_COMMENTS).child(postId)
+        postCommentsRef.observe(.childAdded, with: { (snapshot) in
+        
+            print("observe key")
+            print(snapshot.key)
+            
+            let commentId = snapshot.key
+            let commentsRef = FIRDatabase.database().reference().child(COMMNETS).child(commentId)
+            commentsRef.observeSingleEvent(of: .value, with: { (commentSnapshot) in
+            
+                if let dic = commentSnapshot.value as? [String: Any] {
+                    let comment = Comment.tranformComment(dic: dic)
+                    
+                    self.fetchUser(userId: comment.userId!, completion: {
+                       
+                        self.comments.append(comment)
+                        print(Thread.isMainThread)
+                        self.tableView.reloadData()
+                        
+                    })
+                    
+                   
+                }
+            })
+        })
+    }
+    
+    private func fetchUser(userId: String, completion: @escaping ()->()) {
+        //UserInfoをFetchしてusers配列にセット
+        FIRDatabase.database().reference().child(USERS).child(userId).observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dic = snapshot.value as? [String: Any] {
+                let user = User.fransformUser(dic: dic)
+                self.users.append(user)
+            }
+            completion()
+        })
     }
     
     private func handleTextField() {
@@ -55,9 +103,35 @@ class CommentViewController: UIViewController {
                                         ProgressHUD.showError(error!.localizedDescription)
                                         return
                                     }
+                                    let postId = "-Kr17bBzfUNMNCDB6-iv"
+                                    let postCommentRef = FIRDatabase.database().reference().child(POST_COMMENTS).child(postId).child(newCommentId)
+                                    postCommentRef.setValue(true, withCompletionBlock: { (error, ref) in
+                                        if error != nil {
+                                            ProgressHUD.showError(error!.localizedDescription)
+                                            return
+                                        }
+                                        
+                                    })
+                                    
+                                    
                                     self.commentTextField.text = ""
                                     self.textFieldDidChanged()
                                     
         }
+    }
+}
+
+extension CommentViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return comments.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as! CommentTableViewCell
+        cell.comment = comments[indexPath.row]
+        cell.user = users[indexPath.row]
+        return cell
     }
 }

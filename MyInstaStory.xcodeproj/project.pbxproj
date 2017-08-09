@@ -17,6 +17,7 @@
 		A24FDEC31F384D010019A061 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FDEC21F384D010019A061 /* User.swift */; };
 		A24FDEC51F3992A60019A061 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FDEC41F3992A60019A061 /* CommentViewController.swift */; };
 		A24FDEC71F3993480019A061 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FDEC61F3993480019A061 /* CommentTableViewCell.swift */; };
+		A24FDEC91F3AB1870019A061 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FDEC81F3AB1870019A061 /* Comment.swift */; };
 		A2997E2E1F34280300D8230B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2997E2D1F34280300D8230B /* AppDelegate.swift */; };
 		A2997E331F34280300D8230B /* Start.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2997E311F34280300D8230B /* Start.storyboard */; };
 		A2997E351F34280300D8230B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2997E341F34280300D8230B /* Assets.xcassets */; };
@@ -55,6 +56,7 @@
 		A24FDEC21F384D010019A061 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A24FDEC41F3992A60019A061 /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		A24FDEC61F3993480019A061 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
+		A24FDEC81F3AB1870019A061 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		A2997E2A1F34280300D8230B /* MyInstaStory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyInstaStory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2997E2D1F34280300D8230B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2997E321F34280300D8230B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Start.storyboard; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 			children = (
 				A24FDEBD1F370B040019A061 /* post.swift */,
 				A24FDEC21F384D010019A061 /* User.swift */,
+				A24FDEC81F3AB1870019A061 /* Comment.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 				A2997E2E1F34280300D8230B /* AppDelegate.swift in Sources */,
 				A24FDEBE1F370B040019A061 /* post.swift in Sources */,
 				A24FDEC71F3993480019A061 /* CommentTableViewCell.swift in Sources */,
+				A24FDEC91F3AB1870019A061 /* Comment.swift in Sources */,
 				A2997E441F344E0C00D8230B /* HomeViewController.swift in Sources */,
 				A2997E4A1F344E4D00D8230B /* ActivityViewController.swift in Sources */,
 				A24FDEC51F3992A60019A061 /* CommentViewController.swift in Sources */,
