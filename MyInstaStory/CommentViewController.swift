@@ -15,6 +15,7 @@ class CommentViewController: UIViewController {
     @IBOutlet weak var commentTextField: UITextField!
     @IBOutlet weak var sendBtn: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableViewBottomConstraint: NSLayoutConstraint!
     
     var comments = [Comment]()
     var users = [User]()
@@ -27,11 +28,37 @@ class CommentViewController: UIViewController {
         sendBtn.isEnabled = false
         handleTextField()
         loadComments()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow , object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide , object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
+    func keyboardWillShow(_ notification: NSNotification) {
+    
+        if let keyboardFrame = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue {
+            
+            UIView.animate(withDuration: 0.3, animations: {
+                self.tableViewBottomConstraint.constant = keyboardFrame.height
+                self.view.layoutIfNeeded()
+            })
+        }
+    }
+    
+    func keyboardWillHide(_ notification: NSNotification) {
+
+        UIView.animate(withDuration: 0.3, animations: {
+            self.tableViewBottomConstraint.constant = 0
+            self.view.layoutIfNeeded()
+        })
     }
     
     private func loadComments() {
@@ -112,10 +139,9 @@ class CommentViewController: UIViewController {
                                         }
                                         
                                     })
-                                    
-                                    
                                     self.commentTextField.text = ""
                                     self.textFieldDidChanged()
+                                    self.view.endEditing(true)
                                     
         }
     }

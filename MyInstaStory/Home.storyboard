@@ -306,6 +306,7 @@
                         <outlet property="commentTextField" destination="PlH-A5-5qu" id="DZg-Ax-BDt"/>
                         <outlet property="sendBtn" destination="hKc-0G-RW1" id="jgy-6A-2Sy"/>
                         <outlet property="tableView" destination="aO8-P4-i6A" id="CnG-cx-tIY"/>
+                        <outlet property="tableViewBottomConstraint" destination="oeX-QK-QMj" id="sOX-bC-xgq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qmy-1N-hLs" userLabel="First Responder" sceneMemberID="firstResponder"/>
