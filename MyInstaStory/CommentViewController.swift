@@ -20,7 +20,7 @@ class CommentViewController: UIViewController {
     var comments = [Comment]()
     var users = [User]()
     
-    let postId = "-Kr17bBzfUNMNCDB6-iv"
+    var postId: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +38,11 @@ class CommentViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = true
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
@@ -52,7 +57,7 @@ class CommentViewController: UIViewController {
             })
         }
     }
-    
+
     func keyboardWillHide(_ notification: NSNotification) {
 
         UIView.animate(withDuration: 0.3, animations: {
@@ -130,14 +135,12 @@ class CommentViewController: UIViewController {
                                         ProgressHUD.showError(error!.localizedDescription)
                                         return
                                     }
-                                    let postId = "-Kr17bBzfUNMNCDB6-iv"
-                                    let postCommentRef = FIRDatabase.database().reference().child(POST_COMMENTS).child(postId).child(newCommentId)
+                                    let postCommentRef = FIRDatabase.database().reference().child(POST_COMMENTS).child(self.postId).child(newCommentId)
                                     postCommentRef.setValue(true, withCompletionBlock: { (error, ref) in
                                         if error != nil {
                                             ProgressHUD.showError(error!.localizedDescription)
                                             return
                                         }
-                                        
                                     })
                                     self.commentTextField.text = ""
                                     self.textFieldDidChanged()

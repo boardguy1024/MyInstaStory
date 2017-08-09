@@ -20,6 +20,8 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var likeCountBtn: UIButton!
     @IBOutlet weak var captionLabel: UILabel!
     
+    var homeVC: HomeViewController?
+    
     var post: Post? {
         didSet {
             updateView()
@@ -47,13 +49,23 @@ class HomeTableViewCell: UITableViewCell {
         if let profileImageUrlString = user?.profileImageUrl, let profileImageUrl = URL(string: profileImageUrlString) {
             profileImageView.sd_setImage(with: profileImageUrl, placeholderImage: UIImage(named: "placeholderImg.png"))
         }
-        
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         nameLabel.text = ""
         captionLabel.text = ""
+        commentImageView.isUserInteractionEnabled = true
+        commentImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(commentImageViewTapped)))
+    }
+    
+    func commentImageViewTapped() {
+        
+        if let postId =  post?.id {
+            
+            homeVC?.performSegue(withIdentifier: "CommentViewSegue", sender: postId)
+            
+        }
     }
     
     override func prepareForReuse() {

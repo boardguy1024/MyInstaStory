@@ -28,19 +28,14 @@ class HomeViewController: UIViewController {
         tableView.dataSource = self
         loadPosts()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.tabBarController?.tabBar.isHidden = false
-    }
-    
+
     func loadPosts() {
         activityIndicatorView.startAnimating()
         //PostsDBにAddEventが生じた場合、呼び出される。
         FIRDatabase.database().reference().child(POSTS).observe(.childAdded, with: { (snapshot) in
             
             if let dictionary = snapshot.value as? [String: Any] {
-                let newPost = Post.tranformPost(dic: dictionary)
+                let newPost = Post.tranformPost(dic: dictionary, key: snapshot.key)
                 self.fetchUser(userId: newPost.userId!, completion: {
                     //postInfoをposts配列にセット
                     self.posts.append(newPost)
@@ -78,9 +73,15 @@ class HomeViewController: UIViewController {
     
     
     @IBAction func dummyBtn(_ sender: Any) {
-        performSegue(withIdentifier: "CommentViewController", sender: nil)
+        performSegue(withIdentifier: "CommentSegue", sender: nil)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "CommentViewSegue" {
+            let commentVC = segue.destination as! CommentViewController
+            commentVC.postId = sender as! String
+        }
+    }
 }
 
 extension HomeViewController: UITableViewDataSource {
@@ -94,6 +95,7 @@ extension HomeViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! HomeTableViewCell
         cell.post = posts[indexPath.row]
         cell.user = users[indexPath.row]
+        cell.homeVC = self
         return cell
     }
 }

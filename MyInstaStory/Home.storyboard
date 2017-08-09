@@ -139,14 +139,6 @@
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="cKu-gx-dLr">
                                 <rect key="frame" x="177" y="323" width="20" height="20"/>
                             </activityIndicatorView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6wc-fi-aQj">
-                                <rect key="frame" x="164" y="318" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="dummyBtn:" destination="3Ww-pe-dFx" eventType="touchUpInside" id="UBs-yO-WsH"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -173,7 +165,7 @@
                     <connections>
                         <outlet property="activityIndicatorView" destination="cKu-gx-dLr" id="N3C-UY-bRa"/>
                         <outlet property="tableView" destination="lJC-Af-qOi" id="xcg-Or-amS"/>
-                        <segue destination="Z3Z-72-9uj" kind="show" identifier="CommentViewController" id="hsO-GS-Tcv"/>
+                        <segue destination="Z3Z-72-9uj" kind="show" identifier="CommentViewSegue" id="hsO-GS-Tcv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9ib-f0-zWn" userLabel="First Responder" sceneMemberID="firstResponder"/>
