@@ -32,7 +32,9 @@ class HomeViewController: UIViewController {
     func loadPosts() {
         activityIndicatorView.startAnimating()
         Api.Post.observePosts { (newPost) in
-            self.fetchUser(userId: newPost.userId!, completion: {
+            
+            guard let postUserId = newPost.userId else { return }
+            self.fetchUser(userId: postUserId, completion: {
                 self.posts.append(newPost)
                 self.activityIndicatorView.stopAnimating()
                 self.tableView.reloadData()

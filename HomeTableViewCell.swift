@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseDatabase
+import FirebaseAuth
 
 class HomeTableViewCell: UITableViewCell {
     
@@ -40,7 +41,24 @@ class HomeTableViewCell: UITableViewCell {
         if let postImageUrlString = post?.photoUrl, let postImageUrl = URL(string: postImageUrlString) {
             postImageView.sd_setImage(with: postImageUrl)
             captionLabel.text = post?.caption
+            //PostのLikeを反映
+            reflectLikes()
         }
+    }
+    
+    private func reflectLikes() {
+        guard let currentUserId = FIRAuth.auth()?.currentUser?.uid, let postId = post?.id else { return }
+        //Set like observe
+        //このセルが表示される際、カレントユーザーがこのPostにLikeした記録の値が取得できた場合にはLike,でない場合にはNoLike
+        Api.User.REF_USERS.child(currentUserId).child("likes").child(postId).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let _ = snapshot.value as? NSNull {
+                self.likeImageView.image = UIImage(named: "like.png")
+            } else {
+                self.likeImageView.image = UIImage(named: "likeSelected.png")
+            }
+        })
+        
     }
     
     private func setupUserInfo() {
@@ -57,6 +75,8 @@ class HomeTableViewCell: UITableViewCell {
         captionLabel.text = ""
         commentImageView.isUserInteractionEnabled = true
         commentImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(commentImageViewTapped)))
+        likeImageView.isUserInteractionEnabled = true
+        likeImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(likeImageViewTapped)))
     }
     
     func commentImageViewTapped() {
@@ -66,6 +86,23 @@ class HomeTableViewCell: UITableViewCell {
             homeVC?.performSegue(withIdentifier: "CommentViewSegue", sender: postId)
             
         }
+    }
+    func likeImageViewTapped() {
+    
+        guard let currentUserId = FIRAuth.auth()?.currentUser?.uid, let postId = post?.id else { return }
+        
+        //currentUserのlikeがある場合にはlikeを解除、likeがnullの場合にはlikeSelected
+        Api.User.REF_USERS.child(currentUserId).child("likes").child(postId).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let _ = snapshot.value as? NSNull {
+                Api.User.REF_USERS.child(currentUserId).child("likes").child(postId).setValue(true)
+                self.likeImageView.image = UIImage(named: "likeSelected")
+                
+            } else {
+                Api.User.REF_USERS.child(currentUserId).child("likes").child(postId).removeValue()
+                self.likeImageView.image = UIImage(named: "like")
+            }
+        })
     }
     
     override func prepareForReuse() {
