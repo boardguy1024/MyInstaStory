@@ -49,7 +49,14 @@ class HomeTableViewCell: UITableViewCell {
     }
     
     private func updateLike(post: Post) {
+        
         likeImageView.image = UIImage(named: post.isLiked != nil ? "likeSelected.png" : "like.png")
+
+        if let count = post.likeCount , count != 0 {
+            likeCountBtn.setTitle("\(count) likes", for: .normal)
+        } else if post.likeCount == 0 {
+            likeCountBtn.setTitle("Be the first like this", for: .normal)
+        }
     }
     
     private func setupUserInfo() {
