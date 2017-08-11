@@ -95,7 +95,7 @@ class HomeTableViewCell: UITableViewCell {
                 //nil -> [:]
                 var likes = post["likes"] as? [String : Bool] ?? [:]
                 //nil -> 0
-                var likeCount = post["likesCount"] as? Int ?? 0
+                var likeCount = post["likeCount"] as? Int ?? 0
                 
                 // currentUserがlikesした履歴が取得できた場合には
                 // --likeCount ,自分がいいねした値(currentUserId)を削除
