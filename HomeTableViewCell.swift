@@ -23,6 +23,8 @@ class HomeTableViewCell: UITableViewCell {
     
     var homeVC: HomeViewController?
     
+    var postRef: FIRDatabaseReference!
+    
     var post: Post? {
         didSet {
             updateView()
@@ -42,23 +44,12 @@ class HomeTableViewCell: UITableViewCell {
             postImageView.sd_setImage(with: postImageUrl)
             captionLabel.text = post?.caption
             //PostのLikeを反映
-            reflectLikes()
+            updateLike(post: post!)
         }
     }
     
-    private func reflectLikes() {
-        guard let currentUserId = FIRAuth.auth()?.currentUser?.uid, let postId = post?.id else { return }
-        //Set like observe
-        //このセルが表示される際、カレントユーザーがこのPostにLikeした記録の値が取得できた場合にはLike,でない場合にはNoLike
-        Api.User.REF_USERS.child(currentUserId).child("likes").child(postId).observeSingleEvent(of: .value, with: { (snapshot) in
-            
-            if let _ = snapshot.value as? NSNull {
-                self.likeImageView.image = UIImage(named: "like.png")
-            } else {
-                self.likeImageView.image = UIImage(named: "likeSelected.png")
-            }
-        })
-        
+    private func updateLike(post: Post) {
+        likeImageView.image = UIImage(named: post.isLiked != nil ? "likeSelected.png" : "like.png")
     }
     
     private func setupUserInfo() {
@@ -88,22 +79,55 @@ class HomeTableViewCell: UITableViewCell {
         }
     }
     func likeImageViewTapped() {
-    
-        guard let currentUserId = FIRAuth.auth()?.currentUser?.uid, let postId = post?.id else { return }
         
-        //currentUserのlikeがある場合にはlikeを解除、likeがnullの場合にはlikeSelected
-        Api.User.REF_USERS.child(currentUserId).child("likes").child(postId).observeSingleEvent(of: .value, with: { (snapshot) in
-            
-            if let _ = snapshot.value as? NSNull {
-                Api.User.REF_USERS.child(currentUserId).child("likes").child(postId).setValue(true)
-                self.likeImageView.image = UIImage(named: "likeSelected")
-                
-            } else {
-                Api.User.REF_USERS.child(currentUserId).child("likes").child(postId).removeValue()
-                self.likeImageView.image = UIImage(named: "like")
-            }
-        })
+        if let postId = post?.id {
+            postRef = Api.Post.REF_POSTS.child(postId)
+            incrementOrdecreaseLikes(forRef: postRef)
+        }
     }
+    
+    func incrementOrdecreaseLikes(forRef ref: FIRDatabaseReference ) {
+        
+        ref.runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
+            
+            if var post = currentData.value as? [String : AnyObject], let uid = FIRAuth.auth()?.currentUser?.uid {
+                
+                //nil -> [:]
+                var likes = post["likes"] as? [String : Bool] ?? [:]
+                //nil -> 0
+                var likeCount = post["likesCount"] as? Int ?? 0
+                
+                // currentUserがlikesした履歴が取得できた場合には
+                // --likeCount ,自分がいいねした値(currentUserId)を削除
+                if let _ = likes[uid] {
+                    likeCount -= 1
+                    likes.removeValue(forKey: uid)
+                    //currentUserがlikeしていないならインクリメントする。
+                } else {
+                    likeCount += 1
+                    likes[uid] = true
+                }
+                //postに値を反映
+                post["likeCount"] = likeCount as AnyObject?
+                post["likes"] = likes as AnyObject?
+                
+                // Set value and report transaction success
+                currentData.value = post
+                
+                //FirDBに変更されたデータをPushBack!
+                return FIRTransactionResult.success(withValue: currentData)
+            }
+            return FIRTransactionResult.success(withValue: currentData)
+        }) { (error, committed, snapshot) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            guard let dic = snapshot?.value as? [String: Any] else { return }
+            let post = Post.tranformPost(dic: dic, key: snapshot!.key)
+            self.updateLike(post: post)
+        }
+    }
+    
     
     override func prepareForReuse() {
         super.prepareForReuse()
