@@ -45,16 +45,27 @@ class HomeTableViewCell: UITableViewCell {
             captionLabel.text = post?.caption
             //PostのLikeを反映
             updateLike(post: post!)
+            
+            //該当postのchildChanged Observeを追加し、何らかの変更があった場合に画面に反映する
+            Api.Post.REF_POSTS.child(post!.id!).observe(.childChanged, with: { (snapshot) in
+                
+                //LikeCountのみを取得したいので　Int型だけを取得する
+                guard let count = snapshot.value as? Int else { return }
+                
+                self.likeCountBtn.setTitle("\(count) likes", for: .normal)
+            })
         }
     }
     
     private func updateLike(post: Post) {
         
         likeImageView.image = UIImage(named: post.isLiked != nil ? "likeSelected.png" : "like.png")
-
-        if let count = post.likeCount , count != 0 {
+        
+        guard let count = post.likeCount else { return }
+        
+        if count != 0 {
             likeCountBtn.setTitle("\(count) likes", for: .normal)
-        } else if post.likeCount == 0 {
+        } else {
             likeCountBtn.setTitle("Be the first like this", for: .normal)
         }
     }
