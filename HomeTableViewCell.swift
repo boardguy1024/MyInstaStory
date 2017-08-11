@@ -43,8 +43,13 @@ class HomeTableViewCell: UITableViewCell {
         if let postImageUrlString = post?.photoUrl, let postImageUrl = URL(string: postImageUrlString) {
             postImageView.sd_setImage(with: postImageUrl)
             captionLabel.text = post?.caption
-            //PostのLikeを反映
-            updateLike(post: post!)
+           
+            //セルがreuse時、postデータはDBから取得するようにする
+            Api.Post.REF_POSTS.child(post!.id!).observeSingleEvent(of: .value, with: { (snapshot) in
+                guard let dic = snapshot.value as? [String: Any] else { return }
+                let post = Post.tranformPost(dic: dic, key: snapshot.key)
+                self.updateLike(post: post)
+            })
             
             //該当postのchildChanged Observeを追加し、何らかの変更があった場合に画面に反映する
             Api.Post.REF_POSTS.child(post!.id!).observe(.childChanged, with: { (snapshot) in
@@ -56,6 +61,7 @@ class HomeTableViewCell: UITableViewCell {
             })
         }
     }
+    
     
     private func updateLike(post: Post) {
         
