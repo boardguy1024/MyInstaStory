@@ -18,8 +18,19 @@ class UserApi {
         REF_USERS.child(withId).observeSingleEvent(of: .value, with: { (snapshot) in
            
             if let dic = snapshot.value as? [String: Any] {
-                let user = User.fransformUser(dic: dic)
+                let user = User.transformUser(dic: dic)
                 completion(user)
+            }
+        })
+    }
+    
+    func observeCurrentUser(completion: @escaping (User)->()) {
+        guard let currentUser = FIRAuth.auth()?.currentUser else { return }
+        REF_USERS.child(currentUser.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let dic = snapshot.value as? [String: Any] {
+                let currentUser = User.transformUser(dic: dic)
+                completion(currentUser)
             }
         })
     }

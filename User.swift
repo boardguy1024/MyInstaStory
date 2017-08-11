@@ -15,7 +15,7 @@ class User {
 }
 
 extension User {
-    static func fransformUser(dic: [String: Any]) -> User {
+    static func transformUser(dic: [String: Any]) -> User {
         
         let user = User()
         user.email = dic["email"] as? String
