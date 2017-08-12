@@ -84,8 +84,8 @@ class CameraViewController: UIViewController {
     func sendDataToDataBase(photoUrl: String) {
         let ref = FIRDatabase.database().reference()
         let postsRef = ref.child("posts")
-        let newPostsId = postsRef.childByAutoId().key
-        let newPostsRef = postsRef.child(newPostsId)
+        let newPostId = postsRef.childByAutoId().key
+        let newPostsRef = postsRef.child(newPostId)
         guard let currentUserId = FIRAuth.auth()?.currentUser?.uid else { return }
         newPostsRef.setValue(["userId": currentUserId,
                               "photoUrl":photoUrl,
@@ -95,6 +95,17 @@ class CameraViewController: UIViewController {
                                     ProgressHUD.showError(error!.localizedDescription)
                                     return
                                 }
+                                
+                                //send postしたrefをmypostsにもupdateする（profileVCにてpost一覧を表示するため）
+                                let myPostRef = Api.myPosts.REF_MYPOSTS.child(currentUserId).child(newPostId)
+                                myPostRef.setValue(true, withCompletionBlock: { (error, ref) in
+                                    
+                                    if error != nil {
+                                        ProgressHUD.showError(error!.localizedDescription)
+                                        return
+                                    }
+                                })
+                                
                                 ProgressHUD.showSuccess("Success")
                                 self.postClean()
                                 //DBに保存成功した場合、HomeTabBarVCに遷移する

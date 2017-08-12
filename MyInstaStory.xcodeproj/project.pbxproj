@@ -24,6 +24,7 @@
 		A24FDED11F3B63CD0019A061 /* CommentApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FDED01F3B63CD0019A061 /* CommentApi.swift */; };
 		A24FDED31F3B6A910019A061 /* PostCommentApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FDED21F3B6A910019A061 /* PostCommentApi.swift */; };
 		A278C3D41F3DFD28004887A7 /* HeaderProfileCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A278C3D31F3DFD28004887A7 /* HeaderProfileCollectionReusableView.swift */; };
+		A278C3D61F3E9317004887A7 /* MyPostApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = A278C3D51F3E9317004887A7 /* MyPostApi.swift */; };
 		A2997E2E1F34280300D8230B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2997E2D1F34280300D8230B /* AppDelegate.swift */; };
 		A2997E331F34280300D8230B /* Start.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2997E311F34280300D8230B /* Start.storyboard */; };
 		A2997E351F34280300D8230B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2997E341F34280300D8230B /* Assets.xcassets */; };
@@ -68,6 +69,7 @@
 		A24FDED01F3B63CD0019A061 /* CommentApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentApi.swift; sourceTree = "<group>"; };
 		A24FDED21F3B6A910019A061 /* PostCommentApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCommentApi.swift; sourceTree = "<group>"; };
 		A278C3D31F3DFD28004887A7 /* HeaderProfileCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderProfileCollectionReusableView.swift; sourceTree = "<group>"; };
+		A278C3D51F3E9317004887A7 /* MyPostApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPostApi.swift; sourceTree = "<group>"; };
 		A2997E2A1F34280300D8230B /* MyInstaStory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyInstaStory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2997E2D1F34280300D8230B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2997E321F34280300D8230B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Start.storyboard; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				A24FDECC1F3B5B170019A061 /* UserApi.swift */,
 				A24FDED01F3B63CD0019A061 /* CommentApi.swift */,
 				A24FDED21F3B6A910019A061 /* PostCommentApi.swift */,
+				A278C3D51F3E9317004887A7 /* MyPostApi.swift */,
 				A24FDECE1F3B61F60019A061 /* Api.swift */,
 				A24FDEB51F36BD7F0019A061 /* ProgressHUD.bundle */,
 				A24FDEB61F36BD7F0019A061 /* ProgressHUD.h */,
@@ -362,6 +365,7 @@
 				A2997E441F344E0C00D8230B /* HomeViewController.swift in Sources */,
 				A2997E4A1F344E4D00D8230B /* ActivityViewController.swift in Sources */,
 				A24FDED11F3B63CD0019A061 /* CommentApi.swift in Sources */,
+				A278C3D61F3E9317004887A7 /* MyPostApi.swift in Sources */,
 				A24FDEC51F3992A60019A061 /* CommentViewController.swift in Sources */,
 				A24FDEC31F384D010019A061 /* User.swift in Sources */,
 				A24FDECF1F3B61F60019A061 /* Api.swift in Sources */,

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ProfileViewController: UIViewController {
     
@@ -18,18 +19,29 @@ class ProfileViewController: UIViewController {
         }
     }
     
+    var posts = [Post]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.dataSource = self
         fetchUser()
+        fetchMyPosts()
     }
     
     func fetchUser() {
-        
         Api.User.observeCurrentUser { (currentUser) in
-            
             self.user = currentUser
         }
+    }
+    func fetchMyPosts() {
+        guard let currentUserId = FIRAuth.auth()?.currentUser?.uid else { return }
+        Api.myPosts.REF_MYPOSTS.child(currentUserId).observe(.childAdded, with: { (snapshot) in
+            
+            Api.Post.observePost(postId: snapshot.key, completion: { (myPost) in
+                self.posts.append(myPost)
+                self.collectionView.reloadData()
+            })
+        })
     }
 }
 

@@ -23,4 +23,14 @@ class PostApi {
         })
     }
     
+    func observePost(postId: String, completion: @escaping (Post)->()) {
+        REF_POSTS.child(postId).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let dictionary = snapshot.value as? [String: Any] {
+                let myPost = Post.tranformPost(dic: dictionary, key: snapshot.key)
+                completion(myPost)
+            }
+        })
+    }
+    
 }
