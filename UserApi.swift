@@ -35,6 +35,16 @@ class UserApi {
         })
     }
     
+    func observeUsers(completion: @escaping (User)->()) {
+        REF_USERS.observe(.childAdded, with: { (snapshot) in
+            
+            if let dic = snapshot.value as? [String: Any] {
+               let user = User.transformUser(dic: dic)
+               completion(user)
+            }
+        })
+    }
+    
     //retrun currentUser
     var CURRENT_USER: FIRUser? {
         if let currentUSer = FIRAuth.auth()?.currentUser {

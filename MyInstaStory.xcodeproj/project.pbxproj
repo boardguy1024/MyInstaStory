@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		A23027411F401F1000C23EB8 /* HelperService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23027401F401F1000C23EB8 /* HelperService.swift */; };
+		A23027431F40A0E200C23EB8 /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23027421F40A0E200C23EB8 /* PeopleViewController.swift */; };
+		A23027451F40A1B200C23EB8 /* PeopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23027441F40A1B200C23EB8 /* PeopleTableViewCell.swift */; };
 		A24FDEB11F3561A30019A061 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A24FDEB01F3561A30019A061 /* GoogleService-Info.plist */; };
 		A24FDEB31F3608630019A061 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FDEB21F3608630019A061 /* AuthService.swift */; };
 		A24FDEB81F36BD7F0019A061 /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A24FDEB51F36BD7F0019A061 /* ProgressHUD.bundle */; };
@@ -53,6 +55,8 @@
 		31BB1266603867734A1F0154 /* Pods-MyInstaStory.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyInstaStory.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyInstaStory/Pods-MyInstaStory.release.xcconfig"; sourceTree = "<group>"; };
 		619EE85C78FA9D166600BE81 /* Pods-MyInstaStory.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyInstaStory.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyInstaStory/Pods-MyInstaStory.debug.xcconfig"; sourceTree = "<group>"; };
 		A23027401F401F1000C23EB8 /* HelperService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperService.swift; sourceTree = "<group>"; };
+		A23027421F40A0E200C23EB8 /* PeopleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleViewController.swift; sourceTree = "<group>"; };
+		A23027441F40A1B200C23EB8 /* PeopleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleTableViewCell.swift; sourceTree = "<group>"; };
 		A24FDEB01F3561A30019A061 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "MyInstaStory/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A24FDEB21F3608630019A061 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthService.swift; path = MyInstaStory/AuthService.swift; sourceTree = "<group>"; };
 		A24FDEB41F36BD7F0019A061 /* MyInstaStory-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MyInstaStory-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -171,6 +175,7 @@
 				A24FDEC61F3993480019A061 /* CommentTableViewCell.swift */,
 				A278C3D31F3DFD28004887A7 /* HeaderProfileCollectionReusableView.swift */,
 				A278C3D71F3EA20E004887A7 /* PhotoCollectionViewCell.swift */,
+				A23027441F40A1B200C23EB8 /* PeopleTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -204,6 +209,7 @@
 				A2997E471F344E3F00D8230B /* CameraViewController.swift */,
 				A2997E491F344E4D00D8230B /* ActivityViewController.swift */,
 				A2997E4B1F344E5F00D8230B /* ProfileViewController.swift */,
+				A23027421F40A0E200C23EB8 /* PeopleViewController.swift */,
 				A2997E2D1F34280300D8230B /* AppDelegate.swift */,
 			);
 			name = Controllers;
@@ -359,7 +365,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A278C3D41F3DFD28004887A7 /* HeaderProfileCollectionReusableView.swift in Sources */,
+				A23027431F40A0E200C23EB8 /* PeopleViewController.swift in Sources */,
 				A278C3D81F3EA20E004887A7 /* PhotoCollectionViewCell.swift in Sources */,
+				A23027451F40A1B200C23EB8 /* PeopleTableViewCell.swift in Sources */,
 				A2997E421F34319500D8230B /* SignupViewController.swift in Sources */,
 				A2997E601F34A87700D8230B /* Extensions.swift in Sources */,
 				A24FDEC11F3802CE0019A061 /* HomeTableViewCell.swift in Sources */,

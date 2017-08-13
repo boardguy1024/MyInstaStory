@@ -208,10 +208,11 @@
             </objects>
             <point key="canvasLocation" x="3732" y="102.99850074962519"/>
         </scene>
-        <!--View Controller-->
+        <!--People View Controller-->
         <scene sceneID="GUx-iG-rGy">
             <objects>
-                <viewController id="459-YU-Z0h" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0qv-2A-PLo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="459-YU-Z0h" customClass="PeopleViewController" customModule="MyInstaStory" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Q7m-PL-eDx"/>
                         <viewControllerLayoutGuide type="bottom" id="V6w-Rt-R4k"/>
@@ -220,18 +221,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="72" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9Rf-Er-Duv">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="85" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9Rf-Er-Duv">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="80" id="8mA-50-Vxv">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="80"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PeopleTableViewCell" rowHeight="85" id="8mA-50-Vxv" customClass="PeopleTableViewCell" customModule="MyInstaStory" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="85"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8mA-50-Vxv" id="4W2-QE-3Y0">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="84.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eKw-SI-RKA">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eKw-SI-RKA">
                                                     <rect key="frame" x="15" y="10" width="60" height="60"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="4cr-YX-z4F"/>
@@ -259,14 +260,19 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="eKw-SI-RKA" secondAttribute="bottom" constant="10" id="19f-U2-Pm2"/>
                                                 <constraint firstItem="eKw-SI-RKA" firstAttribute="leading" secondItem="4W2-QE-3Y0" secondAttribute="leading" constant="15" id="2rO-Wm-n67"/>
-                                                <constraint firstItem="9aO-VE-MqI" firstAttribute="leading" secondItem="eKw-SI-RKA" secondAttribute="trailing" constant="15" id="Hfe-qF-1UF"/>
+                                                <constraint firstItem="9aO-VE-MqI" firstAttribute="leading" secondItem="eKw-SI-RKA" secondAttribute="trailing" constant="15" id="Nbu-eE-UAN"/>
+                                                <constraint firstItem="eKw-SI-RKA" firstAttribute="top" secondItem="4W2-QE-3Y0" secondAttribute="top" constant="10" id="eOg-dr-QRh"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="ghk-ab-F5B" secondAttribute="trailing" constant="15" id="fFI-fX-Icj"/>
-                                                <constraint firstItem="eKw-SI-RKA" firstAttribute="top" secondItem="9aO-VE-MqI" secondAttribute="bottom" constant="-40" id="oR0-kA-Nks"/>
-                                                <constraint firstItem="ghk-ab-F5B" firstAttribute="centerY" secondItem="9aO-VE-MqI" secondAttribute="centerY" id="x56-KR-BVs"/>
+                                                <constraint firstItem="9aO-VE-MqI" firstAttribute="top" secondItem="eKw-SI-RKA" secondAttribute="bottom" constant="-37" id="foX-0z-RaQ"/>
+                                                <constraint firstItem="ghk-ab-F5B" firstAttribute="top" secondItem="eKw-SI-RKA" secondAttribute="bottom" constant="-43" id="lug-OP-oGy"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="followBtn" destination="ghk-ab-F5B" id="HBM-ba-4Xm"/>
+                                            <outlet property="nameLabel" destination="9aO-VE-MqI" id="7nN-Xq-hez"/>
+                                            <outlet property="profileImageView" destination="eKw-SI-RKA" id="MAE-4k-S5p"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -279,8 +285,10 @@
                             <constraint firstItem="9Rf-Er-Duv" firstAttribute="top" secondItem="dZf-hf-dQO" secondAttribute="top" id="yaz-g0-bnq"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="9Rf-Er-Duv" id="Kdw-UH-Whv"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0qv-2A-PLo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4452" y="102.99850074962519"/>
         </scene>
