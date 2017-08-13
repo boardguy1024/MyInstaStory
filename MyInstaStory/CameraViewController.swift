@@ -7,10 +7,6 @@
 //
 
 import UIKit
-import FirebaseDatabase
-import FirebaseStorage
-import FirebaseAuth
-
 
 class CameraViewController: UIViewController {
     
@@ -63,55 +59,18 @@ class CameraViewController: UIViewController {
         ProgressHUD.show("Waiting..", interaction: false)
         
         if let photoImage = self.photoImageView.image, let imageData = UIImageJPEGRepresentation(photoImage, 0.1) {
-            
-            //postImageのuidを自動生成
-            let uid = NSUUID().uuidString
-            //ストレージRef
-            let storageRef = FIRStorage.storage().reference().child(POSTS).child(uid)
-            //ストレージにprofileImageを保存
-            storageRef.put(imageData, metadata: nil, completion: { (metaData, error) in
-                if error != nil {
-                    ProgressHUD.showError(error!.localizedDescription)
-                    return
-                }
-                let photoUrl = metaData?.downloadURL()?.absoluteString
+
+            HelperService.uploadDataToServer(data: imageData, caption: captionTextView.text!, onSuccess: {
                 
-                //データベースにpostを保存
-                self.sendDataToDataBase(photoUrl: photoUrl!)
+                self.postClean()
+                //DBに保存成功した場合、HomeTabBarVCに遷移する
+                self.tabBarController?.selectedIndex = 0
             })
+        } else {
+            ProgressHUD.showError("Image can't be empty")
         }
     }
-    func sendDataToDataBase(photoUrl: String) {
-        let ref = FIRDatabase.database().reference()
-        let postsRef = ref.child("posts")
-        let newPostId = postsRef.childByAutoId().key
-        let newPostsRef = postsRef.child(newPostId)
-        guard let currentUserId = FIRAuth.auth()?.currentUser?.uid else { return }
-        newPostsRef.setValue(["userId": currentUserId,
-                              "photoUrl":photoUrl,
-                              "captionText": captionTextView.text!]) { (error, ref) in
-                                
-                                if error != nil {
-                                    ProgressHUD.showError(error!.localizedDescription)
-                                    return
-                                }
-                                
-                                //send postしたrefをmypostsにもupdateする（profileVCにてpost一覧を表示するため）
-                                let myPostRef = Api.myPosts.REF_MYPOSTS.child(currentUserId).child(newPostId)
-                                myPostRef.setValue(true, withCompletionBlock: { (error, ref) in
-                                    
-                                    if error != nil {
-                                        ProgressHUD.showError(error!.localizedDescription)
-                                        return
-                                    }
-                                })
-                                
-                                ProgressHUD.showSuccess("Success")
-                                self.postClean()
-                                //DBに保存成功した場合、HomeTabBarVCに遷移する
-                                self.tabBarController?.selectedIndex = 0
-        }
-    }
+
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)

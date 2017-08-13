@@ -67,5 +67,20 @@ class AuthService {
         completion()
     }
     
+    static func logOut(onSuccess: @escaping ()->(), onError: @escaping (_ errorMessage: String)->()) {
+        
+        do {
+            try FIRAuth.auth()?.signOut()
+            onSuccess()
+        } catch let error {
+            onError(error.localizedDescription)
+        }
+    }
+    
+    
+    
+    
+    
+    
     
 }

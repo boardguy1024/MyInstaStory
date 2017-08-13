@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import FirebaseAuth
 
 class SigninViewController: UIViewController {
     
@@ -27,7 +26,7 @@ class SigninViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if FIRAuth.auth()?.currentUser != nil {
+        if Api.User.CURRENT_USER != nil {
             //自動TabBarHomeへ遷移は完全にビューが表示できてから遷移させる
             //Viewがまだpresentingする前の時点だとビューへ遷移などのタスクをさせないため
             self.performSegue(withIdentifier: "signToTabBarVC", sender: nil)

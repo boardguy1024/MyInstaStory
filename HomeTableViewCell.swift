@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import FirebaseDatabase
-import FirebaseAuth
 
 class HomeTableViewCell: UITableViewCell {
     
@@ -22,8 +20,6 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var captionLabel: UILabel!
     
     var homeVC: HomeViewController?
-    
-    var postRef: FIRDatabaseReference!
     
     var post: Post? {
         didSet {
@@ -43,7 +39,7 @@ class HomeTableViewCell: UITableViewCell {
         if let postImageUrlString = post?.photoUrl, let postImageUrl = URL(string: postImageUrlString) {
             postImageView.sd_setImage(with: postImageUrl)
             captionLabel.text = post?.caption
-           
+            
             //セルがreuse時、postデータはDBから取得するようにする
             Api.Post.REF_POSTS.child(post!.id!).observeSingleEvent(of: .value, with: { (snapshot) in
                 guard let dic = snapshot.value as? [String: Any] else { return }
@@ -56,7 +52,6 @@ class HomeTableViewCell: UITableViewCell {
                 
                 //LikeCountのみを取得したいので　Int型だけを取得する
                 guard let count = snapshot.value as? Int else { return }
-                
                 self.likeCountBtn.setTitle("\(count) likes", for: .normal)
             })
         }
@@ -99,59 +94,18 @@ class HomeTableViewCell: UITableViewCell {
         if let postId =  post?.id {
             
             homeVC?.performSegue(withIdentifier: "CommentViewSegue", sender: postId)
-            
         }
     }
     func likeImageViewTapped() {
         
         if let postId = post?.id {
-            postRef = Api.Post.REF_POSTS.child(postId)
-            incrementOrdecreaseLikes(forRef: postRef)
+            Api.Post.incrementOrdecreaseLikes(withPostId: postId , onSuccess: { (post) in
+                self.updateLike(post: post)
+            }, onError: { (error) in
+                ProgressHUD.showError(error)
+            })
         }
     }
-    
-    func incrementOrdecreaseLikes(forRef ref: FIRDatabaseReference ) {
-        
-        ref.runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
-            
-            if var post = currentData.value as? [String : AnyObject], let uid = FIRAuth.auth()?.currentUser?.uid {
-                
-                //nil -> [:]
-                var likes = post["likes"] as? [String : Bool] ?? [:]
-                //nil -> 0
-                var likeCount = post["likeCount"] as? Int ?? 0
-                
-                // currentUserがlikesした履歴が取得できた場合には
-                // --likeCount ,自分がいいねした値(currentUserId)を削除
-                if let _ = likes[uid] {
-                    likeCount -= 1
-                    likes.removeValue(forKey: uid)
-                    //currentUserがlikeしていないならインクリメントする。
-                } else {
-                    likeCount += 1
-                    likes[uid] = true
-                }
-                //postに値を反映
-                post["likeCount"] = likeCount as AnyObject?
-                post["likes"] = likes as AnyObject?
-                
-                // Set value and report transaction success
-                currentData.value = post
-                
-                //FirDBに変更されたデータをPushBack!
-                return FIRTransactionResult.success(withValue: currentData)
-            }
-            return FIRTransactionResult.success(withValue: currentData)
-        }) { (error, committed, snapshot) in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-            guard let dic = snapshot?.value as? [String: Any] else { return }
-            let post = Post.tranformPost(dic: dic, key: snapshot!.key)
-            self.updateLike(post: post)
-        }
-    }
-    
     
     override func prepareForReuse() {
         super.prepareForReuse()

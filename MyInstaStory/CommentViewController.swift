@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import FirebaseDatabase
-import FirebaseAuth
 
 class CommentViewController: UIViewController {
     
@@ -106,7 +104,7 @@ class CommentViewController: UIViewController {
         let newCommentId = commentRef.childByAutoId().key
         let newCommentRef = commentRef.child(newCommentId)
         
-        guard let currentUserId = FIRAuth.auth()?.currentUser?.uid else { return }
+        guard let currentUserId = Api.User.CURRENT_USER?.uid else { return }
         
         newCommentRef.setValue(["userId": currentUserId,
                                 "comment": commentTextField.text!]) { (error, ref) in
@@ -125,7 +123,6 @@ class CommentViewController: UIViewController {
                                     self.commentTextField.text = ""
                                     self.textFieldDidChanged()
                                     self.view.endEditing(true)
-                                    
         }
     }
 }

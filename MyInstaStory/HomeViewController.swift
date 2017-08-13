@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import FirebaseAuth
-import FirebaseDatabase
 import SDWebImage
 
 class HomeViewController: UIViewController {
@@ -53,15 +51,13 @@ class HomeViewController: UIViewController {
     
     @IBAction func logOutBtnTapped(_ sender: Any) {
         
-        do {
-            try FIRAuth.auth()?.signOut()
-        } catch let error {
-            print("Failed SignOut. reson is: \(error)")
-            return
+        AuthService.logOut(onSuccess: {
+            
+            self.dismiss(animated: true, completion: nil)
+        }) { (errorMessage) in
+            ProgressHUD.showError(errorMessage)
         }
-        dismiss(animated: true, completion: nil)
     }
-    
     
     @IBAction func dummyBtn(_ sender: Any) {
         performSegue(withIdentifier: "CommentSegue", sender: nil)
