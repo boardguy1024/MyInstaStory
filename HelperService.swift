@@ -46,7 +46,7 @@ class HelperService {
                                 }
                                 
                                 //send postしたrefをmypostsにもupdateする（profileVCにてpost一覧を表示するため）
-                                let myPostRef = Api.myPosts.REF_MYPOSTS.child(currentUserId).child(newPostId)
+                                let myPostRef = Api.MyPosts.REF_MYPOSTS.child(currentUserId).child(newPostId)
                                 myPostRef.setValue(true, withCompletionBlock: { (error, ref) in
                                     
                                     if error != nil {

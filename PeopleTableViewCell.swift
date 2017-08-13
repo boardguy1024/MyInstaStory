@@ -25,6 +25,19 @@ class PeopleTableViewCell: UITableViewCell {
             profileImageView.sd_setImage(with: profileImageUrl, placeholderImage: UIImage(named: "placeholderImg.png"))
             nameLabel.text = user?.username
         }
+        //Viewに表示した後TargetをAdd
+       // followBtn.addTarget(self, action: #selector(followAction), for: .touchUpInside)
+      followBtn.addTarget(self, action: #selector(unfollowAction), for: .touchUpInside)
+    }
+    
+    func followAction() {
+        Api.Follow.REF_FOLLOWING.child(Api.User.CURRENT_USER!.uid).child(user!.id!).setValue(true)
+        Api.Follow.REF_FOLLOWERS.child(user!.id!).child(Api.User.CURRENT_USER!.uid).setValue(true)
+    }
+    
+    func unfollowAction() {
+        Api.Follow.REF_FOLLOWING.child(Api.User.CURRENT_USER!.uid).child(user!.id!).setValue(NSNull())
+        Api.Follow.REF_FOLLOWERS.child(user!.id!).child(Api.User.CURRENT_USER!.uid).setValue(NSNull())
     }
     
     override func awakeFromNib() {

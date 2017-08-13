@@ -36,7 +36,7 @@ class ProfileViewController: UIViewController {
     }
     func fetchMyPosts() {
         guard let currentUserId = Api.User.CURRENT_USER?.uid else { return }
-        Api.myPosts.REF_MYPOSTS.child(currentUserId).observe(.childAdded, with: { (snapshot) in
+        Api.MyPosts.REF_MYPOSTS.child(currentUserId).observe(.childAdded, with: { (snapshot) in
             
             Api.Post.observePost(postId: snapshot.key, completion: { (myPost) in
                 self.posts.append(myPost)

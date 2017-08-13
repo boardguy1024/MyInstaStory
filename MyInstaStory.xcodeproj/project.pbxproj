@@ -10,6 +10,7 @@
 		A23027411F401F1000C23EB8 /* HelperService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23027401F401F1000C23EB8 /* HelperService.swift */; };
 		A23027431F40A0E200C23EB8 /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23027421F40A0E200C23EB8 /* PeopleViewController.swift */; };
 		A23027451F40A1B200C23EB8 /* PeopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23027441F40A1B200C23EB8 /* PeopleTableViewCell.swift */; };
+		A23027471F40B81700C23EB8 /* FollowApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23027461F40B81700C23EB8 /* FollowApi.swift */; };
 		A24FDEB11F3561A30019A061 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A24FDEB01F3561A30019A061 /* GoogleService-Info.plist */; };
 		A24FDEB31F3608630019A061 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FDEB21F3608630019A061 /* AuthService.swift */; };
 		A24FDEB81F36BD7F0019A061 /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A24FDEB51F36BD7F0019A061 /* ProgressHUD.bundle */; };
@@ -57,6 +58,7 @@
 		A23027401F401F1000C23EB8 /* HelperService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperService.swift; sourceTree = "<group>"; };
 		A23027421F40A0E200C23EB8 /* PeopleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleViewController.swift; sourceTree = "<group>"; };
 		A23027441F40A1B200C23EB8 /* PeopleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleTableViewCell.swift; sourceTree = "<group>"; };
+		A23027461F40B81700C23EB8 /* FollowApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowApi.swift; sourceTree = "<group>"; };
 		A24FDEB01F3561A30019A061 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "MyInstaStory/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A24FDEB21F3608630019A061 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthService.swift; path = MyInstaStory/AuthService.swift; sourceTree = "<group>"; };
 		A24FDEB41F36BD7F0019A061 /* MyInstaStory-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MyInstaStory-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				A24FDED01F3B63CD0019A061 /* CommentApi.swift */,
 				A24FDED21F3B6A910019A061 /* PostCommentApi.swift */,
 				A278C3D51F3E9317004887A7 /* MyPostApi.swift */,
+				A23027461F40B81700C23EB8 /* FollowApi.swift */,
 				A24FDECE1F3B61F60019A061 /* Api.swift */,
 				A24FDEB51F36BD7F0019A061 /* ProgressHUD.bundle */,
 				A24FDEB61F36BD7F0019A061 /* ProgressHUD.h */,
@@ -393,6 +396,7 @@
 				A2997E4C1F344E5F00D8230B /* ProfileViewController.swift in Sources */,
 				A2997E481F344E3F00D8230B /* CameraViewController.swift in Sources */,
 				A24FDEBB1F36CD9D0019A061 /* Constant.swift in Sources */,
+				A23027471F40B81700C23EB8 /* FollowApi.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
