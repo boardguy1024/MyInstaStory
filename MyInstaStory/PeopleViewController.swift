@@ -21,9 +21,17 @@ class PeopleViewController: UIViewController {
     
     func loadUser() {
         Api.User.observeUsers { (user) in
-            self.users.append(user)
-            self.tableView.reloadData()
+            
+            self.isFollowing(userId: user.id!, completion: { (result) in
+                user.isFollowing = result
+                self.users.append(user)
+                self.tableView.reloadData()
+            })
         }
+    }
+    
+    func isFollowing(userId: String, completion: @escaping (Bool)->()) {
+        Api.Follow.isFollowing(userId: userId, completion: completion)
     }
 }
 
@@ -33,7 +41,7 @@ extension PeopleViewController: UITableViewDataSource {
         return users.count
     }
     
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PeopleTableViewCell", for: indexPath) as! PeopleTableViewCell
         cell.user = users[indexPath.row]

@@ -25,20 +25,44 @@ class PeopleTableViewCell: UITableViewCell {
             profileImageView.sd_setImage(with: profileImageUrl, placeholderImage: UIImage(named: "placeholderImg.png"))
             nameLabel.text = user?.username
         }
-        //Viewに表示した後TargetをAdd
-       // followBtn.addTarget(self, action: #selector(followAction), for: .touchUpInside)
-      followBtn.addTarget(self, action: #selector(unfollowAction), for: .touchUpInside)
+        
+        //userがcurrentUserとfollower関係によりボタンのステータスやtargetを設定
+        if user!.isFollowing! {
+            configureUnFollowButton()
+        } else {
+            configureFollowButton()
+        }
     }
     
+    func configureFollowButton() {
+        followBtn.layer.borderWidth = 1
+        followBtn.layer.borderColor = UIColor(red: 226/255, green: 228/255, blue: 232/255, alpha: 1).cgColor
+        followBtn.layer.cornerRadius = 5
+        followBtn.clipsToBounds = true
+        followBtn.setTitleColor(.white, for: .normal)
+        followBtn.backgroundColor = UIColor(red: 69/255, green: 142/255, blue: 255/255, alpha: 1)
+        followBtn.setTitle("follow", for: .normal)
+        followBtn.addTarget(self, action: #selector(followAction), for: .touchUpInside)
+    }
+    func configureUnFollowButton() {
+        followBtn.layer.borderWidth = 1
+        followBtn.layer.borderColor = UIColor(red: 226/255, green: 228/255, blue: 232/255, alpha: 1).cgColor
+        followBtn.layer.cornerRadius = 5
+        followBtn.clipsToBounds = true
+        followBtn.setTitleColor(.black, for: .normal)
+        followBtn.backgroundColor = .clear
+        followBtn.setTitle("following", for: .normal)
+        followBtn.addTarget(self, action: #selector(unfollowAction), for: .touchUpInside)
+    }
     func followAction() {
-        Api.Follow.REF_FOLLOWING.child(Api.User.CURRENT_USER!.uid).child(user!.id!).setValue(true)
-        Api.Follow.REF_FOLLOWERS.child(user!.id!).child(Api.User.CURRENT_USER!.uid).setValue(true)
+        Api.Follow.followAction(withUserId: user!.id!)
+        configureUnFollowButton()
+    }
+    func unfollowAction() {
+        Api.Follow.unfollowAction(withUserId: user!.id!)
+        configureFollowButton()
     }
     
-    func unfollowAction() {
-        Api.Follow.REF_FOLLOWING.child(Api.User.CURRENT_USER!.uid).child(user!.id!).setValue(NSNull())
-        Api.Follow.REF_FOLLOWERS.child(user!.id!).child(Api.User.CURRENT_USER!.uid).setValue(NSNull())
-    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
