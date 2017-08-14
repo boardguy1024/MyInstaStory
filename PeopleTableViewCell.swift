@@ -26,11 +26,16 @@ class PeopleTableViewCell: UITableViewCell {
             nameLabel.text = user?.username
         }
         
-        //userがcurrentUserとfollower関係によりボタンのステータスやtargetを設定
-        if user!.isFollowing! {
-            configureUnFollowButton()
-        } else {
-            configureFollowButton()
+        //followボタン押下でステータスを変更後、スクロールしてしまうとセルがReuseされ押下前の状態に戻る
+        //原因はスクロール時、セルがReuseされPeopleVCのusers配列にキャッシュされているUserでこのセルを再表示しているためである。
+        //Reuseされても正確にボタンのステータスを表示するためにサーバの値で確認する
+        Api.Follow.isFollowing(userId: user!.id!) { (isFollowing) in
+            
+            if isFollowing {
+                self.configureUnFollowButton()
+            } else {
+                self.configureFollowButton()
+            }
         }
     }
     
