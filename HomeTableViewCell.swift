@@ -39,21 +39,7 @@ class HomeTableViewCell: UITableViewCell {
         if let postImageUrlString = post?.photoUrl, let postImageUrl = URL(string: postImageUrlString) {
             postImageView.sd_setImage(with: postImageUrl)
             captionLabel.text = post?.caption
-            
-            //セルがreuse時、postデータはDBから取得するようにする
-            Api.Post.REF_POSTS.child(post!.id!).observeSingleEvent(of: .value, with: { (snapshot) in
-                guard let dic = snapshot.value as? [String: Any] else { return }
-                let post = Post.tranformPost(dic: dic, key: snapshot.key)
-                self.updateLike(post: post)
-            })
-            
-            //該当postのchildChanged Observeを追加し、何らかの変更があった場合に画面に反映する
-            Api.Post.REF_POSTS.child(post!.id!).observe(.childChanged, with: { (snapshot) in
-                
-                //LikeCountのみを取得したいので　Int型だけを取得する
-                guard let count = snapshot.value as? Int else { return }
-                self.likeCountBtn.setTitle("\(count) likes", for: .normal)
-            })
+            self.updateLike(post: post!)
         }
     }
     
@@ -101,6 +87,12 @@ class HomeTableViewCell: UITableViewCell {
         if let postId = post?.id {
             Api.Post.incrementOrdecreaseLikes(withPostId: postId , onSuccess: { (post) in
                 self.updateLike(post: post)
+                //cellがReuse時、
+                //dbにupdateが成功した場合にController内のposts配列内にキャッシュされている該当postにもupdateする
+                self.post?.isLiked = post.isLiked
+                self.post?.likeCount = post.likeCount
+                self.post?.likes = post.likes
+                
             }, onError: { (error) in
                 ProgressHUD.showError(error)
             })
