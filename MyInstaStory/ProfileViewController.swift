@@ -30,7 +30,7 @@ class ProfileViewController: UIViewController {
     
     func fetchUser() {
         Api.User.observeCurrentUser { (currentUser) in
-            self.title = currentUser.username
+            self.navigationItem.title = currentUser.username
             self.user = currentUser
         }
     }
