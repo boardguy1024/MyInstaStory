@@ -9,8 +9,8 @@
 写真、動画共有アプリ
 
 ## 仕様
-Firebase RealTimeDataBase,Storageを使ったアプリを開発。
-写真や動画の共有、写真のフィルター、通知、ユーザー設定、いいね機能など実装中
+Firebase Authentication,DataBase,Storage,Notificationライブラリーを使い
+写真や動画の共有、フォーロしたユーザーたちとのリアルタイム投稿、ユーザー設定、いいねボタン、コメント機能などを実装
 
 ## スクリーンショット
 ![header](./background.jpg)
