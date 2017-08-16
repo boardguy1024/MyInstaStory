@@ -24,10 +24,12 @@ class FeedApi {
         })
     }
     
-    func observeFeedRemoved(withId id: String, completion: @escaping (String)->()) {
+    func observeFeedRemoved(withId id: String, completion: @escaping (Post)->()) {
         REF_FEED.child(id).observe(.childRemoved, with: { (snapshot) in
             
-            completion(snapshot.key)
+           Api.Post.observePost(postId: snapshot.key, completion: { (post) in
+            completion(post)
+           })
         })
         
     }

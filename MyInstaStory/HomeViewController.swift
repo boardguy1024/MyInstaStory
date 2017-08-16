@@ -41,10 +41,10 @@ class HomeViewController: UIViewController {
             })
         }
         
-        Api.Feed.observeFeedRemoved(withId: currentUser.uid) { (key) in
+        Api.Feed.observeFeedRemoved(withId: currentUser.uid) { (post) in
             
-            //removeされたkey以外のpostにフィルタリングして再代入
-            self.posts = self.posts.filter { $0.id != key }
+            self.posts = self.posts.filter { $0.id != post.id }
+            self.users = self.users.filter { $0.id != post.userId }
             self.tableView.reloadData()
         }
     }
