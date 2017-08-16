@@ -8,6 +8,7 @@
 
 import Foundation
 import FirebaseStorage
+import FirebaseDatabase
 
 class HelperService {
     
@@ -44,6 +45,10 @@ class HelperService {
                                     ProgressHUD.showError(error!.localizedDescription)
                                     return
                                 }
+                                
+                                //feed内にも格納
+                                FIRDatabase.database().reference().child("feed").child(Api.User.CURRENT_USER!.uid).child(newPostId).setValue(true)
+                                
                                 
                                 //send postしたrefをmypostsにもupdateする（profileVCにてpost一覧を表示するため）
                                 let myPostRef = Api.MyPosts.REF_MYPOSTS.child(currentUserId).child(newPostId)

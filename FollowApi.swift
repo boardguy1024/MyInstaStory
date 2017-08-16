@@ -15,6 +15,22 @@ class FollowApi {
     var REF_FOLLOWING = FIRDatabase.database().reference().child("following")
     
     func followAction(withUserId id: String) {
+        
+        //currentUserが相手をfollowing時、myPosts内の相手のpostたちを取得してfeedノードに格納する
+        Api.MyPosts.REF_MYPOSTS.child(id).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let dic = snapshot.value as? [String: Any] {
+                
+                for key in dic.keys {
+                    
+                    print(key)
+                    
+                    FIRDatabase.database().reference().child("feed").child(Api.User.CURRENT_USER!.uid).child(key).setValue(true)
+                    
+                }
+            }
+        })
+        
         guard let currentUserId = Api.User.CURRENT_USER?.uid else { return }
         REF_FOLLOWING.child(currentUserId).child(id).setValue(true)
         REF_FOLLOWERS.child(id).child(currentUserId).setValue(true)
