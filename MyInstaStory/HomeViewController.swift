@@ -29,14 +29,23 @@ class HomeViewController: UIViewController {
     
     func loadPosts() {
         activityIndicatorView.startAnimating()
-        Api.Post.observePosts { (newPost) in
-            
-            guard let postUserId = newPost.userId else { return }
+        
+        guard let currentUser = Api.User.CURRENT_USER else { return }
+        
+        Api.Feed.ovserveFeed(withId: currentUser.uid) { (post) in
+            guard let postUserId = post.userId else { return }
             self.fetchUser(userId: postUserId, completion: {
-                self.posts.append(newPost)
+                self.posts.append(post)
                 self.activityIndicatorView.stopAnimating()
                 self.tableView.reloadData()
             })
+        }
+        
+        Api.Feed.observeFeedRemoved(withId: currentUser.uid) { (key) in
+            
+            //removeされたkey以外のpostにフィルタリングして再代入
+            self.posts = self.posts.filter { $0.id != key }
+            self.tableView.reloadData()
         }
     }
     

@@ -23,10 +23,7 @@ class FollowApi {
                 
                 for key in dic.keys {
                     
-                    print(key)
-                    
                     FIRDatabase.database().reference().child("feed").child(Api.User.CURRENT_USER!.uid).child(key).setValue(true)
-                    
                 }
             }
         })
@@ -37,6 +34,19 @@ class FollowApi {
     }
     
     func unfollowAction(withUserId id: String) {
+        
+        //feedノードに格納されている相手のpostIdを削除する
+        Api.MyPosts.REF_MYPOSTS.child(id).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let dic = snapshot.value as? [String: Any] {
+                
+                for key in dic.keys {
+                    
+                    Api.Feed.REF_FEED.child(Api.User.CURRENT_USER!.uid).child(key).removeValue()
+                }
+            }
+        })
+
         guard let currentUserId = Api.User.CURRENT_USER?.uid else { return }
         REF_FOLLOWING.child(currentUserId).child(id).setValue(NSNull())
         REF_FOLLOWERS.child(id).child(currentUserId).setValue(NSNull())
