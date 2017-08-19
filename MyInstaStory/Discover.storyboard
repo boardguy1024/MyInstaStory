@@ -21,7 +21,50 @@
                     <view key="view" contentMode="scaleToFill" id="VMY-Pt-vn1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="nWg-zK-Khz">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Fpo-l5-Glu">
+                                    <size key="itemSize" width="109" height="107"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DiscoverCollectionViewCell" id="j6o-bK-GIR" customClass="DiscoverCollectionViewCell" customModule="MyInstaStory" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tp5-ua-BIJ">
+                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="tp5-ua-BIJ" firstAttribute="top" secondItem="j6o-bK-GIR" secondAttribute="top" id="AEa-ey-tbF"/>
+                                            <constraint firstItem="tp5-ua-BIJ" firstAttribute="leading" secondItem="j6o-bK-GIR" secondAttribute="leading" id="Da3-n9-ssZ"/>
+                                            <constraint firstAttribute="trailing" secondItem="tp5-ua-BIJ" secondAttribute="trailing" id="LVJ-0s-NmE"/>
+                                            <constraint firstAttribute="bottom" secondItem="tp5-ua-BIJ" secondAttribute="bottom" id="Tt7-92-ewc"/>
+                                        </constraints>
+                                        <size key="customSize" width="100" height="100"/>
+                                        <connections>
+                                            <outlet property="photoImageView" destination="tp5-ua-BIJ" id="Tjy-oQ-jyU"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="nWg-zK-Khz" secondAttribute="trailing" id="El0-JC-2Rw"/>
+                            <constraint firstItem="nWg-zK-Khz" firstAttribute="top" secondItem="VMY-Pt-vn1" secondAttribute="top" id="aLt-5F-fcy"/>
+                            <constraint firstItem="nWg-zK-Khz" firstAttribute="leading" secondItem="VMY-Pt-vn1" secondAttribute="leading" id="fmv-rw-Z50"/>
+                            <constraint firstAttribute="bottom" secondItem="nWg-zK-Khz" secondAttribute="bottom" id="wtM-No-7up"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Discover" id="a1P-dt-Ahn">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="search" id="lbp-pa-oKh">
@@ -30,6 +73,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="collectionView" destination="nWg-zK-Khz" id="scO-l8-swD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5ao-ni-bZM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -131,7 +177,7 @@
                     </tabBarItem>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="TLs-lv-Jdf">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="TLs-lv-Jdf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

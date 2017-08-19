@@ -211,7 +211,6 @@
         <!--People View Controller-->
         <scene sceneID="GUx-iG-rGy">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0qv-2A-PLo" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="459-YU-Z0h" customClass="PeopleViewController" customModule="MyInstaStory" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Q7m-PL-eDx"/>
@@ -289,6 +288,7 @@
                         <outlet property="tableView" destination="9Rf-Er-Duv" id="Kdw-UH-Whv"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0qv-2A-PLo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4452" y="102.99850074962519"/>
         </scene>

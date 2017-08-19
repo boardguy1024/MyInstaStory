@@ -38,7 +38,8 @@ class HelperService {
         guard let currentUserId = Api.User.CURRENT_USER?.uid else { return }
         
         newPostRef.setValue(["userId": currentUserId,
-                             "photoUrl":photoUrl,
+                             "photoUrl": photoUrl,
+                             "likeCount": 0,
                              "captionText": caption]) { (error, ref) in
                                 
                                 if error != nil {

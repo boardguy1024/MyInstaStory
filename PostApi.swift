@@ -33,6 +33,22 @@ class PostApi {
         })
     }
     
+    //likeCountが多い順でpostが表示するようにpostをreturnする
+    func observeTopPosts(completion: @escaping (Post)->()) {
+        REF_POSTS.queryOrdered(byChild: "likeCount").observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            let arraySnapshot = (snapshot.children.allObjects as! [FIRDataSnapshot]).reversed()
+            
+            arraySnapshot.forEach({ (child) in
+                
+                if let dictionary = child.value as? [String: Any] {
+                    let post = Post.tranformPost(dic: dictionary, key: snapshot.key)
+                    completion(post)
+                }
+            })
+        })
+    }
+    
     func incrementOrdecreaseLikes(withPostId postId: String, onSuccess: @escaping (Post)->(), onError: @escaping (_ errorMessage: String)->()) {
         
         let postRef = REF_POSTS.child(postId)
