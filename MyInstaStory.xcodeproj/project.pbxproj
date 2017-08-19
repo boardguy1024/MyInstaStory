@@ -12,6 +12,7 @@
 		A23027451F40A1B200C23EB8 /* PeopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23027441F40A1B200C23EB8 /* PeopleTableViewCell.swift */; };
 		A23027471F40B81700C23EB8 /* FollowApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23027461F40B81700C23EB8 /* FollowApi.swift */; };
 		A23027491F43EF4200C23EB8 /* FeedApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23027481F43EF4200C23EB8 /* FeedApi.swift */; };
+		A230274B1F448FD900C23EB8 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A230274A1F448FD900C23EB8 /* SearchViewController.swift */; };
 		A24FDEB11F3561A30019A061 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A24FDEB01F3561A30019A061 /* GoogleService-Info.plist */; };
 		A24FDEB31F3608630019A061 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FDEB21F3608630019A061 /* AuthService.swift */; };
 		A24FDEB81F36BD7F0019A061 /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A24FDEB51F36BD7F0019A061 /* ProgressHUD.bundle */; };
@@ -61,6 +62,7 @@
 		A23027441F40A1B200C23EB8 /* PeopleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleTableViewCell.swift; sourceTree = "<group>"; };
 		A23027461F40B81700C23EB8 /* FollowApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowApi.swift; sourceTree = "<group>"; };
 		A23027481F43EF4200C23EB8 /* FeedApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedApi.swift; sourceTree = "<group>"; };
+		A230274A1F448FD900C23EB8 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		A24FDEB01F3561A30019A061 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "MyInstaStory/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A24FDEB21F3608630019A061 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthService.swift; path = MyInstaStory/AuthService.swift; sourceTree = "<group>"; };
 		A24FDEB41F36BD7F0019A061 /* MyInstaStory-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MyInstaStory-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				A2997E3F1F342B7F00D8230B /* SigninViewController.swift */,
 				A2997E411F34319500D8230B /* SignupViewController.swift */,
 				A2997E431F344E0C00D8230B /* HomeViewController.swift */,
+				A230274A1F448FD900C23EB8 /* SearchViewController.swift */,
 				A24FDEC41F3992A60019A061 /* CommentViewController.swift */,
 				A2997E451F344E2300D8230B /* DiscoverViewController.swift */,
 				A2997E471F344E3F00D8230B /* CameraViewController.swift */,
@@ -380,6 +383,7 @@
 				A2997E401F342B7F00D8230B /* SigninViewController.swift in Sources */,
 				A2997E2E1F34280300D8230B /* AppDelegate.swift in Sources */,
 				A24FDED31F3B6A910019A061 /* PostCommentApi.swift in Sources */,
+				A230274B1F448FD900C23EB8 /* SearchViewController.swift in Sources */,
 				A24FDEBE1F370B040019A061 /* post.swift in Sources */,
 				A24FDEC71F3993480019A061 /* CommentTableViewCell.swift in Sources */,
 				A24FDEC91F3AB1870019A061 /* Comment.swift in Sources */,

@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Discover-->
         <scene sceneID="z1n-Ah-V5g">
             <objects>
-                <viewController id="o83-0q-4y7" customClass="DiscoverViewController" customModule="MyInsta" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="o83-0q-4y7" customClass="DiscoverViewController" customModule="MyInstaStory" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="raP-3f-LcD"/>
                         <viewControllerLayoutGuide type="bottom" id="2pR-R7-p2i"/>
@@ -22,11 +23,98 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Discover" id="a1P-dt-Ahn"/>
+                    <navigationItem key="navigationItem" title="Discover" id="a1P-dt-Ahn">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="search" id="lbp-pa-oKh">
+                            <connections>
+                                <segue destination="Xpx-CE-mBp" kind="show" id="ZtB-Gf-bTq"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5ao-ni-bZM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1153" y="103"/>
+        </scene>
+        <!--Search View Controller-->
+        <scene sceneID="L8H-bQ-4fd">
+            <objects>
+                <viewController id="Xpx-CE-mBp" customClass="SearchViewController" customModule="MyInstaStory" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Zs0-ey-RHW"/>
+                        <viewControllerLayoutGuide type="bottom" id="xET-pu-Iht"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="OrU-bp-V7c">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="85" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lO2-PQ-LWn">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PeopleTableViewCell" rowHeight="85" id="07l-uG-1JH" customClass="PeopleTableViewCell" customModule="MyInstaStory" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="85"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="07l-uG-1JH" id="kny-q6-Efy">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="84.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4C2-iA-QGi">
+                                                    <rect key="frame" x="15" y="10" width="60" height="60"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="60" id="8gy-HY-hXo"/>
+                                                        <constraint firstAttribute="height" constant="60" id="Vmp-y4-b7Q"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="30"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X2f-lu-kie">
+                                                    <rect key="frame" x="90" y="33" width="36" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fcA-IG-gKm">
+                                                    <rect key="frame" x="252" y="27" width="100" height="29"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="100" id="NBu-9b-SA0"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                    <state key="normal" title="Follow"/>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="fcA-IG-gKm" firstAttribute="top" secondItem="4C2-iA-QGi" secondAttribute="bottom" constant="-43" id="0zY-Ey-VnY"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="fcA-IG-gKm" secondAttribute="trailing" constant="15" id="8xP-km-r9q"/>
+                                                <constraint firstItem="X2f-lu-kie" firstAttribute="top" secondItem="4C2-iA-QGi" secondAttribute="bottom" constant="-37" id="959-aD-zN7"/>
+                                                <constraint firstItem="X2f-lu-kie" firstAttribute="leading" secondItem="4C2-iA-QGi" secondAttribute="trailing" constant="15" id="MW6-Vq-MG0"/>
+                                                <constraint firstItem="4C2-iA-QGi" firstAttribute="top" secondItem="kny-q6-Efy" secondAttribute="top" constant="10" id="bVi-Ng-8EE"/>
+                                                <constraint firstItem="4C2-iA-QGi" firstAttribute="leading" secondItem="kny-q6-Efy" secondAttribute="leading" constant="15" id="ug0-YH-WMD"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="followBtn" destination="fcA-IG-gKm" id="W7n-gT-flE"/>
+                                            <outlet property="nameLabel" destination="X2f-lu-kie" id="cfW-bQ-7aM"/>
+                                            <outlet property="profileImageView" destination="4C2-iA-QGi" id="DQG-fD-gbq"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="lO2-PQ-LWn" secondAttribute="bottom" id="GXh-Hc-TgF"/>
+                            <constraint firstItem="lO2-PQ-LWn" firstAttribute="leading" secondItem="OrU-bp-V7c" secondAttribute="leading" id="Jk0-Iz-FO8"/>
+                            <constraint firstAttribute="trailing" secondItem="lO2-PQ-LWn" secondAttribute="trailing" id="Uwm-12-Rz7"/>
+                            <constraint firstItem="lO2-PQ-LWn" firstAttribute="top" secondItem="OrU-bp-V7c" secondAttribute="top" id="awp-8l-j4D"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iAa-PT-YhI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1935" y="103"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="OB9-WN-2fX">

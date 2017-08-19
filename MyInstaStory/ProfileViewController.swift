@@ -29,6 +29,11 @@ class ProfileViewController: UIViewController {
     }
     
     func fetchUser() {
+
+        for item in posts {
+            print(item)
+        }
+        
         Api.User.observeCurrentUser { (currentUser) in
             self.navigationItem.title = currentUser.username
             self.user = currentUser
