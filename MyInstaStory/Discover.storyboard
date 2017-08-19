@@ -101,6 +101,9 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Xpx-CE-mBp" id="RzS-Zf-tT3"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -111,6 +114,9 @@
                             <constraint firstItem="lO2-PQ-LWn" firstAttribute="top" secondItem="OrU-bp-V7c" secondAttribute="top" id="awp-8l-j4D"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="lO2-PQ-LWn" id="529-eR-m2q"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iAa-PT-YhI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -125,7 +131,7 @@
                     </tabBarItem>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="TLs-lv-Jdf">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="TLs-lv-Jdf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

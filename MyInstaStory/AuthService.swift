@@ -62,6 +62,7 @@ class AuthService {
         let userRef = ref.child("users")
         let newUserRef = userRef.child(uid)
         newUserRef.setValue(["username": username,
+                             "username_lowercase": username.lowercased(),
                              "email": email,
                              "profileImageUrl": profileImageUrl])
         completion()

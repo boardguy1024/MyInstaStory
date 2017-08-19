@@ -46,6 +46,25 @@ class UserApi {
         })
     }
     
+    //textでuserをquery
+    func queryUsers(withText text: String, completion: @escaping (User)->()) {
+        REF_USERS.queryOrdered(byChild: "username_lowercase")
+            .queryStarting(atValue: text)
+            .queryEnding(atValue: text+"\u{f8ff}")
+            .queryLimited(toLast: 10)
+            .observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            print("snapshot: \(snapshot.children)")
+            snapshot.children.forEach({ (s) in
+                let child = s as! FIRDataSnapshot
+                if let dic = child.value as? [String: Any] {
+                    let user = User.transformUser(dic: dic, key: snapshot.key)
+                    completion(user)
+                }
+            })
+        })
+    }
+    
     //retrun currentUser
     var CURRENT_USER: FIRUser? {
         if let currentUSer = FIRAuth.auth()?.currentUser {
