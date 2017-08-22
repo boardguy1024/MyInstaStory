@@ -14,6 +14,8 @@ class PeopleTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var followBtn: UIButton!
     
+    var peopleVC: PeopleViewController?
+    
     var user: User? {
         didSet {
             updateView()
@@ -72,6 +74,15 @@ class PeopleTableViewCell: UITableViewCell {
         super.awakeFromNib()
         nameLabel.text = ""
         profileImageView.image = UIImage(named: "placeholderImg.png")
+        nameLabel.isUserInteractionEnabled = true
+        nameLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(nameLabelTapped)))
+    }
+    
+    func nameLabelTapped() {
+        
+        if let userId = user?.id {
+            peopleVC?.performSegue(withIdentifier: "ProfileSegue", sender: userId)
+        }
     }
     
     override func prepareForReuse() {

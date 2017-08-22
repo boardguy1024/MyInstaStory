@@ -1,22 +1,24 @@
 //
-//  ProfileViewController.swift
-//  MyInsta
+//  ProfileUserViewController.swift
+//  MyInstaStory
 //
-//  Created by park kyung suk on 2017/08/04.
+//  Created by park kyung suk on 2017/08/22.
 //  Copyright © 2017年 park kyung suk. All rights reserved.
 //
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ProfileUserViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
-    
     var user: User!
     var posts = [Post]()
+    var userId = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("userId: \(userId)")
+        
         collectionView.dataSource = self
         collectionView.delegate = self
         fetchUser()
@@ -24,19 +26,16 @@ class ProfileViewController: UIViewController {
     }
     
     func fetchUser() {
-
-        for item in posts {
-            print(item)
-        }
-        
-        Api.User.observeCurrentUser { (currentUser) in
-            self.navigationItem.title = currentUser.username
-            self.user = currentUser
+     
+        Api.User.observeUser(withId: userId) { (user) in
+            self.navigationItem.title = user.username
+            self.user = user
         }
     }
+    
     func fetchMyPosts() {
-        guard let currentUserId = Api.User.CURRENT_USER?.uid else { return }
-        Api.MyPosts.REF_MYPOSTS.child(currentUserId).observe(.childAdded, with: { (snapshot) in
+        
+        Api.MyPosts.REF_MYPOSTS.child(userId).observe(.childAdded, with: { (snapshot) in
             
             Api.Post.observePost(postId: snapshot.key, completion: { (myPost) in
                 self.posts.append(myPost)
@@ -45,10 +44,9 @@ class ProfileViewController: UIViewController {
         })
     }
 }
-
 //MARK:- extensions
 
-extension ProfileViewController: UICollectionViewDataSource {
+extension ProfileUserViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
@@ -73,7 +71,7 @@ extension ProfileViewController: UICollectionViewDataSource {
     }
 }
 
-extension ProfileViewController: UICollectionViewDelegateFlowLayout {
+extension ProfileUserViewController: UICollectionViewDelegateFlowLayout {
     
     //セルの水平方向のマージンを設定
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -91,5 +89,3 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: cellSize , height: cellSize)
     }
 }
-
-
