@@ -91,7 +91,20 @@ extension HomeViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! HomeTableViewCell
         cell.post = posts[indexPath.row]
         cell.user = users[indexPath.row]
-        cell.homeVC = self
+        cell.delegate = self
         return cell
     }
 }
+
+extension HomeViewController: HomeTableViewCellDelegate {
+    
+    func goToCommentVC(withId postId: String) {
+        
+      self.performSegue(withIdentifier: "CommentViewSegue", sender: postId)
+    }
+}
+
+
+
+
+

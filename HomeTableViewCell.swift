@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol HomeTableViewCellDelegate {
+    func goToCommentVC(withId postId: String)
+}
+
 class HomeTableViewCell: UITableViewCell {
     
     @IBOutlet weak var profileImageView: UIImageView!
@@ -19,8 +23,9 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var likeCountBtn: UIButton!
     @IBOutlet weak var captionLabel: UILabel!
     
-    var homeVC: HomeViewController?
-    
+    //HomeTableViewCellのDelegate
+    var delegate: HomeTableViewCellDelegate?
+        
     var post: Post? {
         didSet {
             updateView()
@@ -79,9 +84,10 @@ class HomeTableViewCell: UITableViewCell {
         
         if let postId =  post?.id {
             
-            homeVC?.performSegue(withIdentifier: "CommentViewSegue", sender: postId)
+            delegate?.goToCommentVC(withId: postId)
         }
     }
+    
     func likeImageViewTapped() {
         
         if let postId = post?.id {

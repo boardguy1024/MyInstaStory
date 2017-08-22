@@ -52,12 +52,19 @@ extension PeopleViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PeopleTableViewCell", for: indexPath) as! PeopleTableViewCell
-        cell.peopleVC = self
         cell.user = users[indexPath.row]
-        
+        cell.delegate = self
         return cell
     }
     
+}
+
+extension PeopleViewController: PeopleTableViewCellDelegate {
+   
+    func goToProfileUserVC(withId userId: String) {
+        
+        self.performSegue(withIdentifier: "ProfileSegue", sender: userId)
+    }
 }
 
 
