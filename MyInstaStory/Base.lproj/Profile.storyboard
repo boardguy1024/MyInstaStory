@@ -211,7 +211,7 @@
         <!--Profile-->
         <scene sceneID="izM-Tv-WXI">
             <objects>
-                <viewController id="bAI-1j-qbf" customClass="ProfileUserViewController" customModule="MyInstaStory" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileUserViewController" id="bAI-1j-qbf" customClass="ProfileUserViewController" customModule="MyInstaStory" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Iej-pC-dt5"/>
                         <viewControllerLayoutGuide type="bottom" id="Qfa-AL-MVr"/>

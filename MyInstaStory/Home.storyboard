@@ -166,11 +166,20 @@
                         <outlet property="activityIndicatorView" destination="cKu-gx-dLr" id="N3C-UY-bRa"/>
                         <outlet property="tableView" destination="lJC-Af-qOi" id="xcg-Or-amS"/>
                         <segue destination="Z3Z-72-9uj" kind="show" identifier="CommentViewSegue" id="hsO-GS-Tcv"/>
+                        <segue destination="IsI-Fl-Kx1" kind="show" identifier="Home_ProfileSegue" id="jgx-5O-XdZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9ib-f0-zWn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="248.80000000000001" y="102.99850074962519"/>
+        </scene>
+        <!--ProfileUserViewController-->
+        <scene sceneID="RKK-wV-god">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Profile" referencedIdentifier="ProfileUserViewController" id="IsI-Fl-Kx1" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ioG-uQ-lWm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="976" y="-205"/>
         </scene>
         <!--Comment View Controller-->
         <scene sceneID="L18-cr-pAM">
@@ -303,7 +312,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qmy-1N-hLs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1005.6" y="102.99850074962519"/>
+            <point key="canvasLocation" x="1124" y="256"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="nEp-qD-fuz">

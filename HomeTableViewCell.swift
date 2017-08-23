@@ -10,6 +10,7 @@ import UIKit
 
 protocol HomeTableViewCellDelegate {
     func goToCommentVC(withId postId: String)
+    func goToPrfileUserVC(withId userId: String)
 }
 
 class HomeTableViewCell: UITableViewCell {
@@ -78,7 +79,18 @@ class HomeTableViewCell: UITableViewCell {
         commentImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(commentImageViewTapped)))
         likeImageView.isUserInteractionEnabled = true
         likeImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(likeImageViewTapped)))
+        nameLabel.isUserInteractionEnabled = true
+        nameLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(nameLabelTapped)))
     }
+    
+    func nameLabelTapped() {
+        
+        if let userId = user?.id {
+            
+            delegate?.goToPrfileUserVC(withId: userId)
+        }
+    }
+
     
     func commentImageViewTapped() {
         
@@ -118,3 +130,14 @@ class HomeTableViewCell: UITableViewCell {
     }
     
 }
+
+
+
+
+
+
+
+
+
+
+
