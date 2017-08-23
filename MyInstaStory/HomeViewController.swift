@@ -109,7 +109,7 @@ extension HomeViewController: HomeTableViewCellDelegate {
       self.performSegue(withIdentifier: "CommentViewSegue", sender: postId)
     }
     
-    func goToPrfileUserVC(withId userId: String) {
+    func goToProfileUserVC(withId userId: String) {
         
         self.performSegue(withIdentifier: "Home_ProfileSegue", sender: userId)
     }

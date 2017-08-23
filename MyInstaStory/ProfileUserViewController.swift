@@ -17,7 +17,6 @@ class ProfileUserViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("userId: \(userId)")
         
         collectionView.dataSource = self
         collectionView.delegate = self

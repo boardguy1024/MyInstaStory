@@ -10,7 +10,7 @@ import UIKit
 
 protocol HomeTableViewCellDelegate {
     func goToCommentVC(withId postId: String)
-    func goToPrfileUserVC(withId userId: String)
+    func goToProfileUserVC(withId userId: String)
 }
 
 class HomeTableViewCell: UITableViewCell {
@@ -87,7 +87,7 @@ class HomeTableViewCell: UITableViewCell {
         
         if let userId = user?.id {
             
-            delegate?.goToPrfileUserVC(withId: userId)
+            delegate?.goToProfileUserVC(withId: userId)
         }
     }
 

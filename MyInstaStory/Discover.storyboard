@@ -162,11 +162,20 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="lO2-PQ-LWn" id="529-eR-m2q"/>
+                        <segue destination="uFp-I1-EFi" kind="show" identifier="Search_ProfileSegue" id="mfO-qf-gEq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iAa-PT-YhI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1935" y="103"/>
+        </scene>
+        <!--ProfileUserViewController-->
+        <scene sceneID="wLJ-hD-Q73">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Profile" referencedIdentifier="ProfileUserViewController" id="uFp-I1-EFi" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eLM-md-Sov" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2750" y="103"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="OB9-WN-2fX">

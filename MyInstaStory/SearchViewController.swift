@@ -41,7 +41,6 @@ class SearchViewController: UIViewController {
         
         if let searchText = searchBar.text?.lowercased() {
             Api.User.queryUsers(withText: searchText, completion: { (user) in
-                
                 self.isFollowing(userId: user.id!, completion: { (result) in
                     user.isFollowing = result
                     self.users.append(user)
@@ -53,6 +52,14 @@ class SearchViewController: UIViewController {
     
     func isFollowing(userId: String, completion: @escaping (Bool)->()) {
         Api.Follow.isFollowing(userId: userId, completion: completion)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "Search_ProfileSegue" {
+            let profileVC = segue.destination as! ProfileUserViewController
+            profileVC.userId = sender as! String
+        }
     }
 }
 
@@ -77,7 +84,16 @@ extension SearchViewController: UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "PeopleTableViewCell", for: indexPath) as! PeopleTableViewCell
         cell.user = users[indexPath.row]
+        cell.delegate = self
         return cell
+    }
+}
+
+extension SearchViewController: PeopleTableViewCellDelegate {
+    
+    func goToProfileUserVC(withId userId: String) {
+        
+        self.performSegue(withIdentifier: "Search_ProfileSegue", sender: userId)
     }
 }
 

@@ -53,12 +53,12 @@ class UserApi {
             .queryEnding(atValue: text+"\u{f8ff}")
             .queryLimited(toLast: 10)
             .observeSingleEvent(of: .value, with: { (snapshot) in
-            
-            print("snapshot: \(snapshot.children)")
+                
             snapshot.children.forEach({ (s) in
                 let child = s as! FIRDataSnapshot
                 if let dic = child.value as? [String: Any] {
-                    let user = User.transformUser(dic: dic, key: snapshot.key)
+                    
+                    let user = User.transformUser(dic: dic, key: child.key)
                     completion(user)
                 }
             })

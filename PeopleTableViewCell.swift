@@ -85,7 +85,6 @@ class PeopleTableViewCell: UITableViewCell {
     func nameLabelTapped() {
         
         if let userId = user?.id {
-            
             delegate?.goToProfileUserVC(withId: userId)
         }
     }

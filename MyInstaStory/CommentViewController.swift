@@ -125,7 +125,16 @@ class CommentViewController: UIViewController {
                                     self.view.endEditing(true)
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "Comment_ProfileSegue" {
+            let profileVC = segue.destination as! ProfileUserViewController
+            profileVC.userId = sender as! String
+        }
+    }
 }
+
 
 extension CommentViewController: UITableViewDataSource {
     
@@ -138,6 +147,15 @@ extension CommentViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as! CommentTableViewCell
         cell.comment = comments[indexPath.row]
         cell.user = users[indexPath.row]
+        cell.delegate = self
         return cell
     }
 }
+
+extension CommentViewController: CommentTableViewCellDelegate {
+    func goToProfileUserVC(withId userId: String) {
+        
+        self.performSegue(withIdentifier: "Comment_ProfileSegue", sender: userId)
+    }
+}
+
