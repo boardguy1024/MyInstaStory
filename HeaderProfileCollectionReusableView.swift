@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol HeaderProfileCollectionReusableViewDelegate {
+    func updateFollowButton(forUser user: User)
+}
+
 class HeaderProfileCollectionReusableView: UICollectionReusableView {
     
     @IBOutlet weak var profileImageView: UIImageView!
@@ -15,10 +19,15 @@ class HeaderProfileCollectionReusableView: UICollectionReusableView {
     @IBOutlet weak var myPostsCountLabel: UILabel!
     @IBOutlet weak var followingCountLabel: UILabel!
     @IBOutlet weak var followerCounterLabel: UILabel!
+    @IBOutlet weak var followBtn: UIButton!
 
+    var delegate: HeaderProfileCollectionReusableViewDelegate?
+    
     var user: User? {
         didSet {
-            updateView()
+            if user != nil {
+                updateView()
+            }
         }
     }
     
@@ -28,7 +37,72 @@ class HeaderProfileCollectionReusableView: UICollectionReusableView {
             self.profileImageView.sd_setImage(with: profileImageUrl, placeholderImage: UIImage(named: "placeholderImg.png"))
             self.nameLabel.text = user?.username
         }
+        
+        if user?.id == Api.User.CURRENT_USER?.uid {
+            followBtn.setTitle("Edit Profile", for: .normal)
+        } else {
+            //ここのuserがcurrentUserでない場合には
+            //currentUserとfollowしているかどうかをチェックしボタンにそのステータスを反映
+            //そのボタンの機能も追加
+            updateStateFollowBtn()
+        }
     }
+    
+    func updateStateFollowBtn() {
+        if user!.isFollowing! {
+            configureUnFollowButton()
+        } else {
+            configureFollowButton()
+        }
+    }
+    
+    func configureFollowButton() {
+        followBtn.layer.borderWidth = 1
+        followBtn.layer.borderColor = UIColor(red: 226/255, green: 228/255, blue: 232/255, alpha: 1).cgColor
+        followBtn.layer.cornerRadius = 5
+        followBtn.clipsToBounds = true
+        followBtn.setTitleColor(.white, for: .normal)
+        followBtn.backgroundColor = UIColor(red: 69/255, green: 142/255, blue: 255/255, alpha: 1)
+        followBtn.setTitle("follow", for: .normal)
+        followBtn.addTarget(self, action: #selector(followAction), for: .touchUpInside)
+    }
+    func configureUnFollowButton() {
+        followBtn.layer.borderWidth = 1
+        followBtn.layer.borderColor = UIColor(red: 226/255, green: 228/255, blue: 232/255, alpha: 1).cgColor
+        followBtn.layer.cornerRadius = 5
+        followBtn.clipsToBounds = true
+        followBtn.setTitleColor(.black, for: .normal)
+        followBtn.backgroundColor = .clear
+        followBtn.setTitle("following", for: .normal)
+        followBtn.addTarget(self, action: #selector(unfollowAction), for: .touchUpInside)
+    }
+    func followAction() {
+        Api.Follow.followAction(withUserId: user!.id!)
+        configureUnFollowButton()
+        //followしたので該当userのisFollowingにもtrueに設定（reuse時にはこのuser.isFollowの参照をみるため）
+        user?.isFollowing = true
+        delegate?.updateFollowButton(forUser: user!)
+    }
+    func unfollowAction() {
+        Api.Follow.unfollowAction(withUserId: user!.id!)
+        configureFollowButton()
+        //unfollowをしたので該当userのisFollowingにもfalseに設定（reuse時にはこのuser.isFollowをみるため）
+        user?.isFollowing = false
+    }
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

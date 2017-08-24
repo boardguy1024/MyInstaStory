@@ -171,6 +171,7 @@
                                         <constraint firstItem="vN9-AM-y2F" firstAttribute="height" secondItem="7Yw-LC-2QG" secondAttribute="height" id="jq5-4w-tk5"/>
                                     </constraints>
                                     <connections>
+                                        <outlet property="followBtn" destination="b0o-da-Qga" id="xiD-t6-WXb"/>
                                         <outlet property="followerCounterLabel" destination="AZ4-Tp-xWT" id="nse-sJ-Tzl"/>
                                         <outlet property="followingCountLabel" destination="S68-oK-USl" id="lAL-FA-TtE"/>
                                         <outlet property="myPostsCountLabel" destination="QaW-J3-ddr" id="NO4-lQ-9hx"/>
@@ -270,8 +271,8 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jane" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Sy-dK-QH3">
-                                            <rect key="frame" x="15" y="130" width="39.5" height="20.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Sy-dK-QH3">
+                                            <rect key="frame" x="15" y="130" width="82" height="20.5"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -286,7 +287,7 @@
                                                         <constraint firstAttribute="height" constant="30" id="F78-HD-ehz"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
-                                                    <state key="normal" title="Edit Profile">
+                                                    <state key="normal" title="Loading...">
                                                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     </state>
                                                 </button>
@@ -369,6 +370,7 @@
                                         <constraint firstItem="Ujv-2J-2aQ" firstAttribute="leading" secondItem="goO-yn-SY6" secondAttribute="trailing" constant="12" id="y99-e1-EDz"/>
                                     </constraints>
                                     <connections>
+                                        <outlet property="followBtn" destination="ta8-pu-IrS" id="43v-Cl-Y25"/>
                                         <outlet property="followerCounterLabel" destination="yNF-yQ-M0K" id="r4N-T9-DQq"/>
                                         <outlet property="followingCountLabel" destination="fWX-qa-mjY" id="MLk-u0-GVu"/>
                                         <outlet property="myPostsCountLabel" destination="Hfe-tg-LHT" id="Cpx-2c-2kH"/>
