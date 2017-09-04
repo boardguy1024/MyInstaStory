@@ -25,14 +25,11 @@ class SettingTableViewController: UITableViewController {
     
         Api.User.observeCurrentUser { (user) in
         
-            guard let imageUrlString = user.profileImageUrl,
-                  let imageUrl = URL(string: imageUrlString),
-                  let userName = user.username,
-                let email = user.email else { return }
-            
-            self.profileImageView.sd_setImage(with: imageUrl)
-            self.nameTextField.text = userName
-            self.emailTextField.text = email
+            self.nameTextField.text = user.username
+            self.emailTextField.text = user.email
+            if let urlString = user.profileImageUrl, let imageUrl = URL(string: urlString) {
+                self.profileImageView.sd_setImage(with: imageUrl)
+            }
         }
     }
 }
