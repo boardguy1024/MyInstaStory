@@ -38,6 +38,19 @@ class HeaderProfileCollectionReusableView: UICollectionReusableView {
             self.nameLabel.text = user?.username
         }
         
+        Api.MyPosts.fetchCountMyPosts(userId: user!.id!) { (postCount) in
+            self.myPostsCountLabel.text = "\(postCount)"
+        }
+        
+        Api.Follow.fetchCountFollowing(userId: user!.id!) { (followingCount) in
+            self.followingCountLabel.text = "\(followingCount)"
+        }
+        
+        Api.Follow.fetchCountFollower(userId: user!.id!) { (followerCount) in
+            self.followerCounterLabel.text = "\(followerCount)"
+        }
+
+        
         if user?.id == Api.User.CURRENT_USER?.uid {
             followBtn.setTitle("Edit Profile", for: .normal)
         } else {
