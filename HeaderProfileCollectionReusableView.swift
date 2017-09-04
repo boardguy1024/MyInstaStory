@@ -88,6 +88,7 @@ class HeaderProfileCollectionReusableView: UICollectionReusableView {
         configureFollowButton()
         //unfollowをしたので該当userのisFollowingにもfalseに設定（reuse時にはこのuser.isFollowをみるため）
         user?.isFollowing = false
+        delegate?.updateFollowButton(forUser: user!)
     }
     
 }
