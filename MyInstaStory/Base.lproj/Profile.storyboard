@@ -571,6 +571,11 @@
                             <outlet property="delegate" destination="qJL-Fu-XJe" id="RdN-IZ-cSx"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="emailTextField" destination="XIe-ft-nV4" id="M3c-R5-bdH"/>
+                        <outlet property="nameTextField" destination="E4m-aP-fT1" id="1uW-EU-2If"/>
+                        <outlet property="profileImageView" destination="ahL-Bi-NDo" id="dwe-S2-CEh"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1sZ-SU-RGR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
