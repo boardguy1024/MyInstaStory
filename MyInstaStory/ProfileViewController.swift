@@ -68,6 +68,7 @@ extension ProfileViewController: UICollectionViewDataSource {
         
         let headerViewCell = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "HeaderProfileCollectionReusableView", for: indexPath) as! HeaderProfileCollectionReusableView
         headerViewCell.user = self.user
+        headerViewCell.delegateForSwitchSettingVC = self
         
         return headerViewCell
     }
@@ -89,6 +90,13 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout {
         
         let cellSize = collectionView.frame.width / 3 - 1.0
         return CGSize(width: cellSize , height: cellSize)
+    }
+}
+
+extension ProfileViewController: HeaderProfileCollectionReusableViewDelegateToSwitchSettingVC {
+    func goToSettingVC() {
+        print("tapped")
+        performSegue(withIdentifier: "Profile_SettingSegue", sender: nil)
     }
 }
 

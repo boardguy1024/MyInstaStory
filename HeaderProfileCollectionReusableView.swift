@@ -12,6 +12,10 @@ protocol HeaderProfileCollectionReusableViewDelegate {
     func updateFollowButton(forUser user: User)
 }
 
+protocol HeaderProfileCollectionReusableViewDelegateToSwitchSettingVC {
+    func goToSettingVC()
+}
+
 class HeaderProfileCollectionReusableView: UICollectionReusableView {
     
     @IBOutlet weak var profileImageView: UIImageView!
@@ -22,6 +26,7 @@ class HeaderProfileCollectionReusableView: UICollectionReusableView {
     @IBOutlet weak var followBtn: UIButton!
 
     var delegate: HeaderProfileCollectionReusableViewDelegate?
+    var delegateForSwitchSettingVC: HeaderProfileCollectionReusableViewDelegateToSwitchSettingVC?
     
     var user: User? {
         didSet {
@@ -50,15 +55,23 @@ class HeaderProfileCollectionReusableView: UICollectionReusableView {
             self.followerCounterLabel.text = "\(followerCount)"
         }
 
-        
+        //CurrentUserの場合
         if user?.id == Api.User.CURRENT_USER?.uid {
             followBtn.setTitle("Edit Profile", for: .normal)
+            followBtn.addTarget(self, action: #selector(goToSettingVC), for: .touchUpInside)
         } else {
             //ここのuserがcurrentUserでない場合には
             //currentUserとfollowしているかどうかをチェックしボタンにそのステータスを反映
             //そのボタンの機能も追加
             updateStateFollowBtn()
         }
+    }
+    
+    //Edit Profileボタンがタップした際SettingVCへの遷移をprofileVCにやってもらうようにする
+    func goToSettingVC() {
+        print("goto")
+        print(delegateForSwitchSettingVC)
+        delegateForSwitchSettingVC?.goToSettingVC()
     }
     
     func updateStateFollowBtn() {
