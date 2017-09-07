@@ -72,6 +72,15 @@ extension ProfileViewController: UICollectionViewDataSource {
         
         return headerViewCell
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "Profile_SettingSegue" {
+            if let settingVC = segue.destination as? SettingTableViewController {
+                settingVC.delegate = self
+            }
+        }
+    }
 }
 
 extension ProfileViewController: UICollectionViewDelegateFlowLayout {
@@ -95,8 +104,13 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout {
 
 extension ProfileViewController: HeaderProfileCollectionReusableViewDelegateToSwitchSettingVC {
     func goToSettingVC() {
-        print("tapped")
         performSegue(withIdentifier: "Profile_SettingSegue", sender: nil)
+    }
+}
+
+extension ProfileViewController: SettingTableViewControllerDelegate {
+    func updateUserInfo() {
+        fetchUser()
     }
 }
 

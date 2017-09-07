@@ -58,15 +58,6 @@ class HomeViewController: UIViewController {
         }
     }
     
-    @IBAction func logOutBtnTapped(_ sender: Any) {
-        
-        AuthService.logOut(onSuccess: {
-            
-            self.dismiss(animated: true, completion: nil)
-        }) { (errorMessage) in
-            ProgressHUD.showError(errorMessage)
-        }
-    }
     
     @IBAction func dummyBtn(_ sender: Any) {
         performSegue(withIdentifier: "CommentSegue", sender: nil)

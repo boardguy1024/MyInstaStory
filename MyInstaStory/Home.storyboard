@@ -150,18 +150,7 @@
                             <constraint firstItem="cKu-gx-dLr" firstAttribute="centerX" secondItem="Rmg-fX-8Qn" secondAttribute="centerX" id="rYA-no-Jxb"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Home" id="bd5-tj-hhl">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="nEo-oq-83o">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ehh-VA-CEk">
-                                <rect key="frame" x="16" y="7" width="83" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="LogOut"/>
-                                <connections>
-                                    <action selector="logOutBtnTapped:" destination="3Ww-pe-dFx" eventType="touchUpInside" id="6lw-Tv-zV6"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Home" id="bd5-tj-hhl"/>
                     <connections>
                         <outlet property="activityIndicatorView" destination="cKu-gx-dLr" id="N3C-UY-bRa"/>
                         <outlet property="tableView" destination="lJC-Af-qOi" id="xcg-Or-amS"/>
@@ -346,6 +335,6 @@
         <image name="share" width="37" height="41"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="zlH-By-WiV"/>
+        <segue reference="jgx-5O-XdZ"/>
     </inferredMetricsTieBreakers>
 </document>

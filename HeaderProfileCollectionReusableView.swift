@@ -69,8 +69,6 @@ class HeaderProfileCollectionReusableView: UICollectionReusableView {
     
     //Edit Profileボタンがタップした際SettingVCへの遷移をprofileVCにやってもらうようにする
     func goToSettingVC() {
-        print("goto")
-        print(delegateForSwitchSettingVC)
         delegateForSwitchSettingVC?.goToSettingVC()
     }
     

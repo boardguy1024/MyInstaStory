@@ -57,6 +57,49 @@ class AuthService {
             })
         })
     }
+    
+    
+    static func updateUserInfo(username: String, email: String, imageData: Data, onSuccess: @escaping ()->(), onError: @escaping (_ errorMessage: String?)->()) {
+        
+        ProgressHUD.show("Waiting...")
+        //authticationのuserのemailをupdate後、databaseのuser情報をupdateする
+        Api.User.CURRENT_USER?.updateEmail(email, completion: { (error) in
+            if error != nil {
+                onError(error?.localizedDescription)
+            } else {
+                
+                let uid = Api.User.CURRENT_USER?.uid
+                let storageRef = FIRStorage.storage().reference().child(PROFILE_IMAGES).child(uid!)
+                storageRef.put(imageData, metadata: nil) { (metaData, error) in
+                    if error != nil {
+                        return
+                    }
+                    let profileImageUrl = metaData?.downloadURL()?.absoluteString
+                    updateDatabse(profileImageUrl: profileImageUrl!, username: username, email: email, onSuccess: onSuccess, onError: onError)
+                }
+            }
+        })
+    }
+    
+    static func updateDatabse(profileImageUrl: String, username: String, email: String, onSuccess: @escaping ()->(),
+                              onError: @escaping (_ errorMessage: String?)->()) {
+        
+        let dic = ["profileImageUrl": profileImageUrl,
+                   "username": username,
+                   "username_lowercase": username.lowercased(),
+                   "email": email
+        ]
+        
+        //DB内のUserのカレントユーザー情報をアップデートする
+        Api.User.REF_CURRENT_USER?.updateChildValues(dic, withCompletionBlock: { (error, ref) in
+            if error != nil {
+                onError(error?.localizedDescription)
+            } else {
+                onSuccess()
+            }
+        })
+    }
+    
     static private func setUserInfomationToDataBase(profileImageUrl: String, username: String, email: String, uid: String, completion: @escaping ()->()) {
         let ref = FIRDatabase.database().reference()
         let userRef = ref.child("users")
