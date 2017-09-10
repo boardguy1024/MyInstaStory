@@ -42,7 +42,7 @@ class PostApi {
             arraySnapshot.forEach({ (child) in
                 
                 if let dictionary = child.value as? [String: Any] {
-                    let post = Post.tranformPost(dic: dictionary, key: snapshot.key)
+                    let post = Post.tranformPost(dic: dictionary, key: child.key )
                     completion(post)
                 }
             })

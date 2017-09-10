@@ -13,8 +13,7 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
-    
-    
+        
     var posts = [Post]()
     var users = [User]()
     
@@ -105,6 +104,7 @@ extension HomeViewController: HomeTableViewCellDelegate {
         self.performSegue(withIdentifier: "Home_ProfileSegue", sender: userId)
     }
 }
+
 
 
 

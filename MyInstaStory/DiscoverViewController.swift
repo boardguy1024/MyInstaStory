@@ -20,31 +20,30 @@ class DiscoverViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         
-
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         loadTopPost()
     }
-    
+        
     func loadTopPost() {
+        ProgressHUD.show("Loading...", interaction: false)
         self.posts.removeAll()
+        self.collectionView.reloadData()
         Api.Post.observeTopPosts { (post) in
             self.posts.append(post)
             self.collectionView.reloadData()
+            ProgressHUD.dismiss()
         }
     }
     
-    func fetchMyPosts() {
-        guard let currentUserId = Api.User.CURRENT_USER?.uid else { return }
-        Api.MyPosts.REF_MYPOSTS.child(currentUserId).observe(.childAdded, with: { (snapshot) in
-            
-            Api.Post.observePost(postId: snapshot.key, completion: { (myPost) in
-                self.posts.append(myPost)
-                self.collectionView.reloadData()
-            })
-        })
+    @IBAction func refreshButtonTapped(_ sender: Any) {
+        loadTopPost()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "Discover_DetailSegue" {
+            if let detailVC = segue.destination as? DetailViewController, let postId = sender as? String {
+                detailVC.postId = postId
+            }
+        }
     }
 
 }
@@ -63,6 +62,7 @@ extension DiscoverViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DiscoverCollectionViewCell", for: indexPath) as! DiscoverCollectionViewCell
         
         cell.post = posts[indexPath.row]
+        cell.delegate = self
         
         return cell
     }
@@ -87,3 +87,14 @@ extension DiscoverViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: cellSize , height: cellSize)
     }
 }
+
+
+extension DiscoverViewController: DiscoverCollectionViewCellDelegate {
+    func goToDetailVC(postId: String) {
+        
+        performSegue(withIdentifier: "Discover_DetailSegue", sender: postId)
+    }
+}
+
+
+
