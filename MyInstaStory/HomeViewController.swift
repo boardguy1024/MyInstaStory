@@ -12,8 +12,7 @@ import SDWebImage
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
-        
+    
     var posts = [Post]()
     var users = [User]()
     
@@ -27,7 +26,6 @@ class HomeViewController: UIViewController {
     }
     
     func loadPosts() {
-        activityIndicatorView.startAnimating()
         
         guard let currentUser = Api.User.CURRENT_USER else { return }
         
@@ -35,7 +33,6 @@ class HomeViewController: UIViewController {
             guard let postUserId = post.userId else { return }
             self.fetchUser(userId: postUserId, completion: {
                 self.posts.append(post)
-                self.activityIndicatorView.stopAnimating()
                 self.tableView.reloadData()
             })
         }

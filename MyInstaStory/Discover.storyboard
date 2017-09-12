@@ -212,25 +212,28 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="acV-6j-9t8" id="U0N-L2-L86"/>
+                                </connections>
                             </tableView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="BYb-nM-BAK">
-                                <rect key="frame" x="177" y="298.5" width="20" height="20"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="4UH-9x-Zud" secondAttribute="trailing" id="Djo-x5-U6p"/>
-                            <constraint firstItem="BYb-nM-BAK" firstAttribute="centerY" secondItem="4UH-9x-Zud" secondAttribute="centerY" id="Jru-eA-aC0"/>
-                            <constraint firstItem="BYb-nM-BAK" firstAttribute="centerX" secondItem="4UH-9x-Zud" secondAttribute="centerX" id="QIT-GK-nsO"/>
                             <constraint firstItem="Rvh-Gx-BaW" firstAttribute="top" secondItem="4UH-9x-Zud" secondAttribute="bottom" id="dYU-BL-xn0"/>
                             <constraint firstItem="4UH-9x-Zud" firstAttribute="leading" secondItem="uhT-Ov-5Bt" secondAttribute="leading" id="uod-Ec-Q6d"/>
                             <constraint firstItem="4UH-9x-Zud" firstAttribute="top" secondItem="uhT-Ov-5Bt" secondAttribute="top" id="zKC-6u-keX"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="4UH-9x-Zud" id="AWR-10-ZTP"/>
+                        <segue destination="uFp-I1-EFi" kind="show" identifier="Home_ProfileSegue" id="5zS-Oo-qrA"/>
+                        <segue destination="VqW-am-GmY" kind="show" identifier="CommentViewSegue" id="X89-Vx-Mfk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sb0-YH-8Sx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1153" y="880"/>
+            <point key="canvasLocation" x="1153" y="874"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="L8H-bQ-4fd">
@@ -326,7 +329,15 @@
                 <viewControllerPlaceholder storyboardName="Profile" referencedIdentifier="ProfileUserViewController" id="uFp-I1-EFi" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eLM-md-Sov" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2750" y="103"/>
+            <point key="canvasLocation" x="2770" y="390"/>
+        </scene>
+        <!--CommentViewController-->
+        <scene sceneID="pI0-9S-h7y">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Home" referencedIdentifier="CommentViewController" id="VqW-am-GmY" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qHg-QZ-CRS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2778" y="862"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="OB9-WN-2fX">
@@ -358,4 +369,7 @@
         <image name="like" width="46" height="41"/>
         <image name="share" width="37" height="41"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="5zS-Oo-qrA"/>
+    </inferredMetricsTieBreakers>
 </document>

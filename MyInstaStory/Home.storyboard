@@ -136,23 +136,17 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="cKu-gx-dLr">
-                                <rect key="frame" x="177" y="323" width="20" height="20"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="cKu-gx-dLr" firstAttribute="centerY" secondItem="Rmg-fX-8Qn" secondAttribute="centerY" id="8LP-Nb-5jg"/>
                             <constraint firstItem="lJC-Af-qOi" firstAttribute="top" secondItem="Rmg-fX-8Qn" secondAttribute="top" id="Ad4-Qb-4Zt"/>
                             <constraint firstAttribute="trailing" secondItem="lJC-Af-qOi" secondAttribute="trailing" id="QaZ-WQ-qWf"/>
                             <constraint firstItem="lJC-Af-qOi" firstAttribute="leading" secondItem="Rmg-fX-8Qn" secondAttribute="leading" id="jMl-D2-wJQ"/>
                             <constraint firstAttribute="bottom" secondItem="lJC-Af-qOi" secondAttribute="bottom" id="km1-YP-Ep6"/>
-                            <constraint firstItem="cKu-gx-dLr" firstAttribute="centerX" secondItem="Rmg-fX-8Qn" secondAttribute="centerX" id="rYA-no-Jxb"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="bd5-tj-hhl"/>
                     <connections>
-                        <outlet property="activityIndicatorView" destination="cKu-gx-dLr" id="N3C-UY-bRa"/>
                         <outlet property="tableView" destination="lJC-Af-qOi" id="xcg-Or-amS"/>
                         <segue destination="Z3Z-72-9uj" kind="show" identifier="CommentViewSegue" id="hsO-GS-Tcv"/>
                         <segue destination="IsI-Fl-Kx1" kind="show" identifier="Home_ProfileSegue" id="jgx-5O-XdZ"/>
@@ -173,7 +167,7 @@
         <!--Comment View Controller-->
         <scene sceneID="L18-cr-pAM">
             <objects>
-                <viewController id="Z3Z-72-9uj" customClass="CommentViewController" customModule="MyInstaStory" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CommentViewController" id="Z3Z-72-9uj" customClass="CommentViewController" customModule="MyInstaStory" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NxY-Bu-EVk"/>
                         <viewControllerLayoutGuide type="bottom" id="Irh-JY-VJX"/>
@@ -335,6 +329,6 @@
         <image name="share" width="37" height="41"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="jgx-5O-XdZ"/>
+        <segue reference="zlH-By-WiV"/>
     </inferredMetricsTieBreakers>
 </document>
