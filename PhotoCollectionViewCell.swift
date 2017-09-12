@@ -8,9 +8,15 @@
 
 import UIKit
 
+protocol PhotoCollectionViewCellDelegate {
+    func goToDetailVC(postId: String)
+}
+
 class PhotoCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var photoImageView: UIImageView!
+    
+    var delegate: PhotoCollectionViewCellDelegate?
     
     var post: Post? {
         didSet {
@@ -22,6 +28,15 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         
         if let photoUrlString = post?.photoUrl, let url = URL(string: photoUrlString) {
             photoImageView.sd_setImage(with: url)
+        }
+        
+        photoImageView.isUserInteractionEnabled = true
+        photoImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(photoImageViewTapped)))
+    }
+    
+    func photoImageViewTapped() {
+        if let postId = post?.id {
+            delegate?.goToDetailVC(postId: postId)
         }
     }
 }

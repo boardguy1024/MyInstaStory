@@ -204,11 +204,20 @@
                     <connections>
                         <outlet property="collectionView" destination="0zs-YR-wP6" id="Vln-co-sKs"/>
                         <segue destination="qJL-Fu-XJe" kind="show" identifier="Profile_SettingSegue" id="QPR-S1-cS4"/>
+                        <segue destination="Ikd-Nc-Oru" kind="show" identifier="Profile_DetailSegue" id="EcT-el-rIp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dUo-0n-SDl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3732" y="102.99850074962519"/>
+        </scene>
+        <!--DetailViewController-->
+        <scene sceneID="CTl-xa-F8v">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Discover" referencedIdentifier="DetailViewController" id="Ikd-Nc-Oru" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tKL-Az-thl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4451" y="587"/>
         </scene>
         <!--Profile-->
         <scene sceneID="izM-Tv-WXI">
@@ -393,6 +402,7 @@
                     <connections>
                         <outlet property="collectionView" destination="A2V-ID-2JO" id="DhM-9g-cLJ"/>
                         <segue destination="qJL-Fu-XJe" kind="show" identifier="Profile_UserSettingSegue" id="U8P-ps-GTZ"/>
+                        <segue destination="Ikd-Nc-Oru" kind="show" identifier="ProfileUser_DetailSegue" id="2nn-gi-58p"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fUj-TF-BbU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -594,7 +604,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1sZ-SU-RGR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4452" y="914.392803598201"/>
+            <point key="canvasLocation" x="4452" y="1080"/>
         </scene>
         <!--People View Controller-->
         <scene sceneID="GUx-iG-rGy">
@@ -711,6 +721,7 @@
         <image name="placeholderImg" width="225" height="225"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="2nn-gi-58p"/>
         <segue reference="U8P-ps-GTZ"/>
     </inferredMetricsTieBreakers>
 </document>

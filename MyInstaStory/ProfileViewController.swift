@@ -60,6 +60,7 @@ extension ProfileViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCollectionViewCell", for: indexPath) as! PhotoCollectionViewCell
         
         cell.post = posts[indexPath.row]
+        cell.delegate = self
         
         return cell
     }
@@ -78,6 +79,12 @@ extension ProfileViewController: UICollectionViewDataSource {
         if segue.identifier == "Profile_SettingSegue" {
             if let settingVC = segue.destination as? SettingTableViewController {
                 settingVC.delegate = self
+            }
+        }
+        
+        if segue.identifier == "Profile_DetailSegue" {
+            if let detailVC = segue.destination as? DetailViewController {
+                detailVC.postId = sender as! String
             }
         }
     }
@@ -100,6 +107,7 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout {
         let cellSize = collectionView.frame.width / 3 - 1.0
         return CGSize(width: cellSize , height: cellSize)
     }
+    
 }
 
 extension ProfileViewController: HeaderProfileCollectionReusableViewDelegateToSwitchSettingVC {
@@ -113,5 +121,19 @@ extension ProfileViewController: SettingTableViewControllerDelegate {
         fetchUser()
     }
 }
+
+extension ProfileViewController: PhotoCollectionViewCellDelegate {
+    func goToDetailVC(postId: String) {
+        performSegue(withIdentifier: "Profile_DetailSegue", sender: postId)
+    }
+}
+
+
+
+
+
+
+
+
 
 

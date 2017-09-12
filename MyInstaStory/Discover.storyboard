@@ -90,7 +90,7 @@
         <!--Detail View Controller-->
         <scene sceneID="Jc1-en-h4b">
             <objects>
-                <viewController id="acV-6j-9t8" customClass="DetailViewController" customModule="MyInstaStory" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailViewController" id="acV-6j-9t8" customClass="DetailViewController" customModule="MyInstaStory" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Eft-8z-whJ"/>
                         <viewControllerLayoutGuide type="bottom" id="Rvh-Gx-BaW"/>
