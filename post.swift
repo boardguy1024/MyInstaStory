@@ -18,6 +18,7 @@ class Post {
     var likeCount: Int?
     var likes: [String: Any]?
     var isLiked: Bool?
+    var ratio: CGFloat?
 }
 
 extension Post {
@@ -30,6 +31,7 @@ extension Post {
         post.photoUrl = dic["photoUrl"] as? String
         post.likeCount = dic["likeCount"] as? Int
         post.likes = dic["likes"] as? [String: Any]
+        post.ratio = dic["ratio"] as? CGFloat
         post.id = key
         
         //まずlikesがnilかどうかを確認後nilではない場合に

@@ -60,7 +60,9 @@ class CameraViewController: UIViewController {
         
         if let photoImage = self.photoImageView.image, let imageData = UIImageJPEGRepresentation(photoImage, 0.1) {
 
-            HelperService.uploadDataToServer(data: imageData, caption: captionTextView.text!, onSuccess: {
+            print("size: \(photoImage.size)")
+            let ratio = photoImage.size.width / photoImage.size.height
+            HelperService.uploadDataToServer(data: imageData, ratio: ratio, caption: captionTextView.text!, onSuccess: {
                 
                 self.postClean()
                 //DBに保存成功した場合、HomeTabBarVCに遷移する

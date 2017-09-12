@@ -30,6 +30,8 @@ class HomeViewController: UIViewController {
         guard let currentUser = Api.User.CURRENT_USER else { return }
         
         Api.Feed.ovserveFeed(withId: currentUser.uid) { (post) in
+            
+            print("ratio : \(post.ratio)")
             guard let postUserId = post.userId else { return }
             self.fetchUser(userId: postUserId, completion: {
                 self.posts.append(post)

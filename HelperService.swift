@@ -12,7 +12,7 @@ import FirebaseDatabase
 
 class HelperService {
     
-    static func uploadDataToServer(data: Data, caption: String, onSuccess: @escaping ()->()) {
+    static func uploadDataToServer(data: Data, ratio: CGFloat, caption: String, onSuccess: @escaping ()->()) {
         
         //postImageのuidを自動生成
         let photoId = NSUUID().uuidString
@@ -27,10 +27,11 @@ class HelperService {
             }
             let photoUrl = metaData?.downloadURL()?.absoluteString
             //データベースにpostを保存
-            self.sendDataToDataBase(photoUrl: photoUrl!, caption: caption, onSucess: onSuccess)
+            self.sendDataToDataBase(photoUrl: photoUrl!, ratio: ratio, caption: caption, onSucess: onSuccess)
         }
     }
-    static private func sendDataToDataBase(photoUrl: String, caption: String, onSucess: @escaping ()->()) {
+    
+    static private func sendDataToDataBase(photoUrl: String, ratio: CGFloat, caption: String, onSucess: @escaping ()->()) {
         
         let newPostId = Api.Post.REF_POSTS.childByAutoId().key
         let newPostRef = Api.Post.REF_POSTS.child(newPostId)
@@ -40,7 +41,8 @@ class HelperService {
         newPostRef.setValue(["userId": currentUserId,
                              "photoUrl": photoUrl,
                              "likeCount": 0,
-                             "captionText": caption]) { (error, ref) in
+                             "captionText": caption,
+                             "ratio": ratio]) { (error, ref) in
                                 
                                 if error != nil {
                                     ProgressHUD.showError(error!.localizedDescription)

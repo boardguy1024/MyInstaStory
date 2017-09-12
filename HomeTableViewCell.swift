@@ -23,10 +23,11 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var shareImageView: UIImageView!
     @IBOutlet weak var likeCountBtn: UIButton!
     @IBOutlet weak var captionLabel: UILabel!
+    @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     
     //HomeTableViewCellのDelegate
     var delegate: HomeTableViewCellDelegate?
-        
+    
     var post: Post? {
         didSet {
             updateView()
@@ -41,7 +42,12 @@ class HomeTableViewCell: UITableViewCell {
     
     private func updateView() {
         
-        //profileImageView.image = UIImage(named: "sample.jpg")
+        // ratio = widthPhoto / heightPhoto    == 1.5
+        // heightPhoto = widthPhoto / ratio
+        if let ratio = post?.ratio {
+            heightConstraint.constant = UIScreen.main.bounds.width / ratio
+        }
+        
         if let postImageUrlString = post?.photoUrl, let postImageUrl = URL(string: postImageUrlString) {
             postImageView.sd_setImage(with: postImageUrl)
             captionLabel.text = post?.caption
@@ -90,7 +96,7 @@ class HomeTableViewCell: UITableViewCell {
             delegate?.goToProfileUserVC(withId: userId)
         }
     }
-
+    
     
     func commentImageViewTapped() {
         
