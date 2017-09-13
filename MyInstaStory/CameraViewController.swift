@@ -16,7 +16,7 @@ class CameraViewController: UIViewController {
     @IBOutlet weak var captionTextView: UITextView!
     @IBOutlet weak var shareBtn: UIButton!
     var selectedImage: UIImage?
-    var movieUrl: URL?
+    var videoUrl: URL?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,9 +62,8 @@ class CameraViewController: UIViewController {
         
         if let photoImage = self.photoImageView.image, let imageData = UIImageJPEGRepresentation(photoImage, 0.1) {
             
-            print("size: \(photoImage.size)")
             let ratio = photoImage.size.width / photoImage.size.height
-            HelperService.uploadDataToServer(data: imageData, ratio: ratio, caption: captionTextView.text!, onSuccess: {
+            HelperService.uploadDataToServer(data: imageData, videoUrl: self.videoUrl, ratio: ratio, caption: captionTextView.text!, onSuccess: {
                 
                 self.postClean()
                 //DBに保存成功した場合、HomeTabBarVCに遷移する
@@ -96,12 +95,11 @@ extension CameraViewController: UIImagePickerControllerDelegate, UINavigationCon
     //MARK:- UIImagePicker Delegate Mathods
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
-        print(info)
-        
         if let movieUrl = info["UIImagePickerControllerMediaURL"] as? URL {
             if let thumbnailImage = thumbnailImageForMovieFileUrl(movieUrl) {
-                self.movieUrl = movieUrl
+                self.videoUrl = movieUrl
                 self.photoImageView.image = thumbnailImage
+                self.selectedImage = thumbnailImage
             }
             
         }
