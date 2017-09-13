@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class CameraViewController: UIViewController {
     
@@ -15,6 +16,7 @@ class CameraViewController: UIViewController {
     @IBOutlet weak var captionTextView: UITextView!
     @IBOutlet weak var shareBtn: UIButton!
     var selectedImage: UIImage?
+    var movieUrl: URL?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +61,7 @@ class CameraViewController: UIViewController {
         ProgressHUD.show("Waiting..", interaction: false)
         
         if let photoImage = self.photoImageView.image, let imageData = UIImageJPEGRepresentation(photoImage, 0.1) {
-
+            
             print("size: \(photoImage.size)")
             let ratio = photoImage.size.width / photoImage.size.height
             HelperService.uploadDataToServer(data: imageData, ratio: ratio, caption: captionTextView.text!, onSuccess: {
@@ -72,7 +74,7 @@ class CameraViewController: UIViewController {
             ProgressHUD.showError("Image can't be empty")
         }
     }
-
+    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
@@ -87,17 +89,70 @@ extension CameraViewController: UIImagePickerControllerDelegate, UINavigationCon
         let imagePickerCotroller = UIImagePickerController()
         imagePickerCotroller.delegate = self
         imagePickerCotroller.allowsEditing = true
+        imagePickerCotroller.mediaTypes = ["public.image","public.movie"]
         present(imagePickerCotroller, animated: true, completion: nil)
     }
     
     //MARK:- UIImagePicker Delegate Mathods
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        print(info)
+        
+        if let movieUrl = info["UIImagePickerControllerMediaURL"] as? URL {
+            if let thumbnailImage = thumbnailImageForMovieFileUrl(movieUrl) {
+                self.movieUrl = movieUrl
+                self.photoImageView.image = thumbnailImage
+            }
+            
+        }
+        
         if let image = info["UIImagePickerControllerEditedImage"] as? UIImage {
             photoImageView.image = image
             selectedImage = image
         }
         dismiss(animated: true, completion: nil)
     }
+    
+    func thumbnailImageForMovieFileUrl(_ fileUrl: URL) -> UIImage? {
+        
+        let asset = AVAsset(url: fileUrl)
+        let imageGenerator = AVAssetImageGenerator(asset: asset)
+        
+        do  {
+            let thumbnailCGImage = try imageGenerator.copyCGImage(at: CMTimeMake(1, 10), actualTime: nil)
+            return UIImage(cgImage: thumbnailCGImage)
+        } catch let error {
+            print(error)
+        }
+        
+        return nil
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
