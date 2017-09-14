@@ -19,6 +19,7 @@ class Post {
     var likes: [String: Any]?
     var isLiked: Bool?
     var ratio: CGFloat?
+    var videoUrl: String?
 }
 
 extension Post {
@@ -29,6 +30,7 @@ extension Post {
         post.userId = dic["userId"] as? String
         post.caption = dic["captionText"] as? String
         post.photoUrl = dic["photoUrl"] as? String
+        post.videoUrl = dic["videoUrl"] as? String
         post.likeCount = dic["likeCount"] as? Int
         post.likes = dic["likes"] as? [String: Any]
         post.ratio = dic["ratio"] as? CGFloat

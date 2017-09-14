@@ -87,7 +87,7 @@ extension CameraViewController: UIImagePickerControllerDelegate, UINavigationCon
         //Photo Librayを表示する
         let imagePickerCotroller = UIImagePickerController()
         imagePickerCotroller.delegate = self
-        imagePickerCotroller.allowsEditing = true
+        //imagePickerCotroller.allowsEditing = true
         imagePickerCotroller.mediaTypes = ["public.image","public.movie"]
         present(imagePickerCotroller, animated: true, completion: nil)
     }
@@ -104,7 +104,7 @@ extension CameraViewController: UIImagePickerControllerDelegate, UINavigationCon
             
         }
         
-        if let image = info["UIImagePickerControllerEditedImage"] as? UIImage {
+        if let image = info["UIImagePickerControllerOriginalImage"] as? UIImage {
             photoImageView.image = image
             selectedImage = image
         }

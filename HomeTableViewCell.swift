@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 protocol HomeTableViewCellDelegate {
     func goToCommentVC(withId postId: String)
@@ -24,6 +25,9 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var likeCountBtn: UIButton!
     @IBOutlet weak var captionLabel: UILabel!
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
+    
+    var player: AVPlayer?
+    var playerLayer: AVPlayerLayer?
     
     //HomeTableViewCellのDelegate
     var delegate: HomeTableViewCellDelegate?
@@ -45,7 +49,19 @@ class HomeTableViewCell: UITableViewCell {
         // ratio = widthPhoto / heightPhoto    == 1.5
         // heightPhoto = widthPhoto / ratio
         if let ratio = post?.ratio {
+            print("frame post Image: \(postImageView.frame)")
             heightConstraint.constant = UIScreen.main.bounds.width / ratio
+            print("frame post Image: \(postImageView.frame)")
+            layoutIfNeeded()
+        }
+        
+        if let videoUrlString = post?.videoUrl, let videoUrl = URL(string: videoUrlString) {
+            player = AVPlayer(url: videoUrl)
+            playerLayer = AVPlayerLayer(player: player)
+            playerLayer?.frame = self.postImageView.frame
+            playerLayer?.frame.size.width = UIScreen.main.bounds.width
+            self.contentView.layer.addSublayer(playerLayer!)
+            player?.play()
         }
         
         if let postImageUrlString = post?.photoUrl, let postImageUrl = URL(string: postImageUrlString) {
@@ -127,6 +143,9 @@ class HomeTableViewCell: UITableViewCell {
         super.prepareForReuse()
         //セルがreuseされる際、表示中のデータが誤って一瞬表示する不具合を防ぐためここでdefaultデータを設定
         profileImageView.image = UIImage(named: "placeholderImg.png")
+        
+        playerLayer?.removeFromSuperlayer()
+        player?.pause()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
