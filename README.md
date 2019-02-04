@@ -6,7 +6,7 @@
 ![language](https://img.shields.io/badge/language-swift3-red.svg)
 
 ## 概要
-写真、動画共有アプリ
+写真、動画共有アプリのインスタグラムクローンを実装
 
 ## 仕様
 Firebase Authentication,DataBase,Storage,Notificationライブラリーを使い
