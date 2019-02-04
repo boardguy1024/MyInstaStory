@@ -13,5 +13,6 @@ Firebase Authentication,DataBase,Storage,Notificationライブラリーを使い
 写真や動画の共有、フォーロしたユーザーたちとのリアルタイム投稿、ユーザー設定、いいねボタン、コメント機能などを実装
 
 ## スクリーンショット
-![header](./background.jpg)
+![header](./my_insta_sample.jpg)
+![header](./movie.gif)
 
