@@ -73,6 +73,8 @@ class HelperService {
         
         guard let currentUserId = Api.User.CURRENT_USER?.uid else { return }
         
+        let timestamp = Int(Date().timeIntervalSince1970)
+        
         var dict: [String: Any] = ["userId": currentUserId,
                                    "photoUrl": photoUrl,
                                    "likeCount": 0,
@@ -93,9 +95,21 @@ class HelperService {
             }
             
             //feed内にも格納
-            FIRDatabase.database().reference().child("feed").child(Api.User.CURRENT_USER!.uid).child(newPostId).setValue(true)
-            
-            
+            Api.Feed.REF_FEED.child(Api.User.CURRENT_USER!.uid).child(newPostId).setValue(true)
+            Api.Follow.REF_FOLLOWERS.child(Api.User.CURRENT_USER!.uid).observeSingleEvent(of: .value, with: { snapshot in
+                guard let arrayShapshot = snapshot.children.allObjects as? [FIRDataSnapshot] else { return }
+                
+                arrayShapshot.forEach { child in
+                    Api.Feed.REF_FEED.child(child.key).updateChildValues(["\(newPostId)": true])
+                    let newNotificationId = Api.Notification.REF_NOTIFICATION.child(child.key).childByAutoId().key
+                    let newNotificationRef = Api.Notification.REF_NOTIFICATION.child(child.key).child(newNotificationId)
+                    newNotificationRef.setValue(["from": Api.User.CURRENT_USER!.uid,
+                                                 "type": "feed",
+                                                 "objectId": newPostId,
+                                                 "timestamp": timestamp])
+                    
+                }
+            })
             //send postしたrefをmypostsにもupdateする（profileVCにてpost一覧を表示するため）
             let myPostRef = Api.MyPosts.REF_MYPOSTS.child(currentUserId).child(newPostId)
             myPostRef.setValue(true, withCompletionBlock: { (error, ref) in

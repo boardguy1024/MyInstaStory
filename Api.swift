@@ -10,11 +10,12 @@ import Foundation
 
 struct Api {
     
-    static var Post = PostApi()
-    static var User = UserApi()
-    static var Comment = CommentApi()
-    static var Post_Comment = PostCommentApi()
-    static var MyPosts = MyPostApi()
-    static var Follow = FollowApi()
-    static var Feed = FeedApi()
+    static let Post = PostApi()
+    static let User = UserApi()
+    static let Comment = CommentApi()
+    static let Post_Comment = PostCommentApi()
+    static let MyPosts = MyPostApi()
+    static let Follow = FollowApi()
+    static let Feed = FeedApi()
+    static let Notification = NotificationApi()
 }

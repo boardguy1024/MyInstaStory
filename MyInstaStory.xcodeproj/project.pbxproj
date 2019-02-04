@@ -54,6 +54,9 @@
 		A2997E5B1F34625C00D8230B /* Activity.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2997E5A1F34625C00D8230B /* Activity.storyboard */; };
 		A2997E5E1F34628400D8230B /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2997E5C1F34628400D8230B /* Profile.storyboard */; };
 		A2997E601F34A87700D8230B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2997E5F1F34A87700D8230B /* Extensions.swift */; };
+		A2CCA8B822082949006DA955 /* ActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CCA8B722082949006DA955 /* ActivityTableViewCell.swift */; };
+		A2CCA8BA22082E0D006DA955 /* NotificationApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CCA8B922082E0D006DA955 /* NotificationApi.swift */; };
+		A2CCA8BC2208309F006DA955 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CCA8BB2208309F006DA955 /* Notification.swift */; };
 		FD8A91340FC857CFE2C463C1 /* Pods_MyInstaStory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A828218B573D88818E48C86 /* Pods_MyInstaStory.framework */; };
 /* End PBXBuildFile section */
 
@@ -112,6 +115,9 @@
 		A2997E5A1F34625C00D8230B /* Activity.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Activity.storyboard; sourceTree = "<group>"; };
 		A2997E5D1F34628400D8230B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Profile.storyboard; sourceTree = "<group>"; };
 		A2997E5F1F34A87700D8230B /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = MyInstaStory/Extensions.swift; sourceTree = "<group>"; };
+		A2CCA8B722082949006DA955 /* ActivityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTableViewCell.swift; sourceTree = "<group>"; };
+		A2CCA8B922082E0D006DA955 /* NotificationApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationApi.swift; sourceTree = "<group>"; };
+		A2CCA8BB2208309F006DA955 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +160,7 @@
 				A278C3D51F3E9317004887A7 /* MyPostApi.swift */,
 				A23027461F40B81700C23EB8 /* FollowApi.swift */,
 				A24FDECE1F3B61F60019A061 /* Api.swift */,
+				A2CCA8B922082E0D006DA955 /* NotificationApi.swift */,
 			);
 			name = Api;
 			sourceTree = "<group>";
@@ -195,6 +202,7 @@
 				A24FDEBD1F370B040019A061 /* post.swift */,
 				A24FDEC21F384D010019A061 /* User.swift */,
 				A24FDEC81F3AB1870019A061 /* Comment.swift */,
+				A2CCA8BB2208309F006DA955 /* Notification.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -208,6 +216,7 @@
 				A278C3D71F3EA20E004887A7 /* PhotoCollectionViewCell.swift */,
 				A229CA991F4869D100D51C1B /* DiscoverCollectionViewCell.swift */,
 				A23027441F40A1B200C23EB8 /* PeopleTableViewCell.swift */,
+				A2CCA8B722082949006DA955 /* ActivityTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -421,6 +430,7 @@
 				A2997E441F344E0C00D8230B /* HomeViewController.swift in Sources */,
 				A2997E4A1F344E4D00D8230B /* ActivityViewController.swift in Sources */,
 				A24FDED11F3B63CD0019A061 /* CommentApi.swift in Sources */,
+				A2CCA8BC2208309F006DA955 /* Notification.swift in Sources */,
 				A278C3D61F3E9317004887A7 /* MyPostApi.swift in Sources */,
 				A24FDEC51F3992A60019A061 /* CommentViewController.swift in Sources */,
 				A23027411F401F1000C23EB8 /* HelperService.swift in Sources */,
@@ -429,12 +439,14 @@
 				A24FDEB91F36BD7F0019A061 /* ProgressHUD.m in Sources */,
 				A24FDECD1F3B5B170019A061 /* UserApi.swift in Sources */,
 				A24D948A1F658E110013B8AC /* DetailViewController.swift in Sources */,
+				A2CCA8B822082949006DA955 /* ActivityTableViewCell.swift in Sources */,
 				A2997E461F344E2300D8230B /* DiscoverViewController.swift in Sources */,
 				A23027491F43EF4200C23EB8 /* FeedApi.swift in Sources */,
 				A24FDEB31F3608630019A061 /* AuthService.swift in Sources */,
 				A24FDECB1F3B54DA0019A061 /* PostApi.swift in Sources */,
 				A2997E4C1F344E5F00D8230B /* ProfileViewController.swift in Sources */,
 				A2997E481F344E3F00D8230B /* CameraViewController.swift in Sources */,
+				A2CCA8BA22082E0D006DA955 /* NotificationApi.swift in Sources */,
 				A24FDEBB1F36CD9D0019A061 /* Constant.swift in Sources */,
 				A23027471F40B81700C23EB8 /* FollowApi.swift in Sources */,
 			);
