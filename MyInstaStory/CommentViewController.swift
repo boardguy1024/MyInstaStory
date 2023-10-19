@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ProgressHUD
 
 class CommentViewController: UIViewController {
     
@@ -27,8 +28,8 @@ class CommentViewController: UIViewController {
         handleTextField()
         loadComments()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow , object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide , object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification , object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification , object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,9 +46,9 @@ class CommentViewController: UIViewController {
         view.endEditing(true)
     }
     
-    func keyboardWillShow(_ notification: NSNotification) {
+    @objc func keyboardWillShow(_ notification: NSNotification) {
         
-        if let keyboardFrame = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue {
+        if let keyboardFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as AnyObject).cgRectValue {
             
             UIView.animate(withDuration: 0.3, animations: {
                 self.tableViewBottomConstraint.constant = keyboardFrame.height
@@ -56,7 +57,7 @@ class CommentViewController: UIViewController {
         }
     }
     
-    func keyboardWillHide(_ notification: NSNotification) {
+    @objc func keyboardWillHide(_ notification: NSNotification) {
         
         UIView.animate(withDuration: 0.3, animations: {
             self.tableViewBottomConstraint.constant = 0
@@ -88,7 +89,7 @@ class CommentViewController: UIViewController {
         commentTextField.addTarget(self, action: #selector(textFieldDidChanged), for: .editingChanged)
     }
     
-    func textFieldDidChanged() {
+    @objc func textFieldDidChanged() {
         if let comment = commentTextField.text, !comment.isEmpty {
             sendBtn.setTitleColor(.black, for: .normal)
             sendBtn.isEnabled = true
@@ -102,27 +103,26 @@ class CommentViewController: UIViewController {
         
         let commentRef = Api.Comment.REF_COMMENTS
         let newCommentId = commentRef.childByAutoId().key
-        let newCommentRef = commentRef.child(newCommentId)
+        let newCommentRef = commentRef.child(newCommentId!)
         
         guard let currentUserId = Api.User.CURRENT_USER?.uid else { return }
         
         newCommentRef.setValue(["userId": currentUserId,
-                                "comment": commentTextField.text!]) { (error, ref) in
-                                    
-                                    if error != nil {
-                                        ProgressHUD.showError(error!.localizedDescription)
-                                        return
-                                    }
-                                    
-                                    Api.Post_Comment.REF_POSTCOMMENTS.child(self.postId).child(newCommentId).setValue(true, withCompletionBlock: { (error, ref) in
-                                        if error != nil {
-                                            ProgressHUD.showError(error!.localizedDescription)
-                                            return
-                                        }
-                                    })
-                                    self.commentTextField.text = ""
-                                    self.textFieldDidChanged()
-                                    self.view.endEditing(true)
+                                "comment": commentTextField.text!]) { error, ref in
+            if error != nil {
+                ProgressHUD.error(error!.localizedDescription)
+                return
+            }
+            
+            Api.Post_Comment.REF_POSTCOMMENTS.child(self.postId).child(newCommentId!).setValue(true, withCompletionBlock: { (error, ref) in
+                if error != nil {
+                    ProgressHUD.error(error!.localizedDescription)
+                    return
+                }
+            })
+            self.commentTextField.text = ""
+            self.textFieldDidChanged()
+            self.view.endEditing(true)
         }
     }
     

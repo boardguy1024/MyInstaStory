@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 protocol PeopleTableViewCellDelegate {
     func goToProfileUserVC(withId userId: String)
@@ -28,7 +29,7 @@ class PeopleTableViewCell: UITableViewCell {
     
     func updateView() {
         if let imageUrlString = user?.profileImageUrl, let profileImageUrl = URL(string: imageUrlString) {
-            profileImageView.sd_setImage(with: profileImageUrl, placeholderImage: UIImage(named: "placeholderImg.png"))
+            profileImageView.kf.setImage(with: profileImageUrl, placeholder: UIImage(named: "placeholderImg.png"))
             nameLabel.text = user?.username
         }
         
@@ -60,13 +61,13 @@ class PeopleTableViewCell: UITableViewCell {
         followBtn.setTitle("following", for: .normal)
         followBtn.addTarget(self, action: #selector(unfollowAction), for: .touchUpInside)
     }
-    func followAction() {
+    @objc func followAction() {
         Api.Follow.followAction(withUserId: user!.id!)
         configureUnFollowButton()
         //followしたので該当userのisFollowingにもtrueに設定（reuse時にはこのuser.isFollowの参照をみるため）
         user?.isFollowing = true
     }
-    func unfollowAction() {
+    @objc func unfollowAction() {
         Api.Follow.unfollowAction(withUserId: user!.id!)
         configureFollowButton()
         //unfollowをしたので該当userのisFollowingにもfalseに設定（reuse時にはこのuser.isFollowをみるため）
@@ -82,7 +83,7 @@ class PeopleTableViewCell: UITableViewCell {
         nameLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(nameLabelTapped)))
     }
     
-    func nameLabelTapped() {
+    @objc func nameLabelTapped() {
         
         if let userId = user?.id {
             delegate?.goToProfileUserVC(withId: userId)

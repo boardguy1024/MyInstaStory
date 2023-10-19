@@ -11,7 +11,7 @@ import FirebaseDatabase
 
 class PostApi {
     
-    var REF_POSTS = FIRDatabase.database().reference().child("posts")
+    var REF_POSTS = Database.database().reference().child("posts")
     
     func observePosts(completion: @escaping (Post)->()) {
         REF_POSTS.observe(.childAdded, with: { (snapshot) in
@@ -37,7 +37,7 @@ class PostApi {
     func observeTopPosts(completion: @escaping (Post)->()) {
         REF_POSTS.queryOrdered(byChild: "likeCount").observeSingleEvent(of: .value, with: { (snapshot) in
             
-            let arraySnapshot = (snapshot.children.allObjects as! [FIRDataSnapshot]).reversed()
+            let arraySnapshot = (snapshot.children.allObjects as! [DataSnapshot]).reversed()
             
             arraySnapshot.forEach({ (child) in
                 
@@ -53,7 +53,7 @@ class PostApi {
         
         let postRef = REF_POSTS.child(postId)
         
-        postRef.runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
+        postRef.runTransactionBlock({ (currentData: MutableData) -> TransactionResult in
             
             if var post = currentData.value as? [String : AnyObject], let uid = Api.User.CURRENT_USER?.uid {
                 
@@ -80,9 +80,9 @@ class PostApi {
                 currentData.value = post
                 
                 //FirDBに変更されたデータをPushBack!
-                return FIRTransactionResult.success(withValue: currentData)
+                return TransactionResult.success(withValue: currentData)
             }
-            return FIRTransactionResult.success(withValue: currentData)
+            return TransactionResult.success(withValue: currentData)
         }) { (error, committed, snapshot) in
             if let error = error {
                 

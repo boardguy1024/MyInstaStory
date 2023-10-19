@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 protocol CommentTableViewCellDelegate {
     func goToProfileUserVC(withId userId: String)
@@ -41,7 +42,7 @@ class CommentTableViewCell: UITableViewCell {
         nameLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(nameLabelTapped)))
 
     }
-    func nameLabelTapped() {
+    @objc func nameLabelTapped() {
         if let userId = user?.id {
             delegate?.goToProfileUserVC(withId: userId)
         }
@@ -60,7 +61,7 @@ class CommentTableViewCell: UITableViewCell {
     private func setupUserInfo() {
         nameLabel.text = user?.username
         if let profileImageUrlString = user?.profileImageUrl, let profileImageUrl = URL(string: profileImageUrlString) {
-            profileImageView.sd_setImage(with: profileImageUrl, placeholderImage: UIImage(named: "placeholderImg.png"))
+            profileImageView.kf.setImage(with: profileImageUrl, placeholder: UIImage(named: "placeholderImg.png"))
         }
     }
     

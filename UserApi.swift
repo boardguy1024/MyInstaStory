@@ -7,12 +7,13 @@
 //
 
 import Foundation
+import Firebase
 import FirebaseDatabase
 import FirebaseAuth
 
 class UserApi {
     
-    var REF_USERS = FIRDatabase.database().reference().child("users")
+    var REF_USERS = Database.database().reference().child("users")
     
     func observeUser(withId: String, completion: @escaping (User)->()) {
         REF_USERS.child(withId).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -25,7 +26,7 @@ class UserApi {
     }
     
     func observeCurrentUser(completion: @escaping (User)->()) {
-        guard let currentUser = FIRAuth.auth()?.currentUser else { return }
+        guard let currentUser = Auth.auth().currentUser else { return }
         REF_USERS.child(currentUser.uid).observeSingleEvent(of: .value, with: { (snapshot) in
             
             if let dic = snapshot.value as? [String: Any] {
@@ -55,7 +56,7 @@ class UserApi {
             .observeSingleEvent(of: .value, with: { (snapshot) in
                 
             snapshot.children.forEach({ (s) in
-                let child = s as! FIRDataSnapshot
+                let child = s as! DataSnapshot
                 if let dic = child.value as? [String: Any] {
                     
                     let user = User.transformUser(dic: dic, key: child.key)
@@ -66,16 +67,16 @@ class UserApi {
     }
     
     //retrun currentUser
-    var CURRENT_USER: FIRUser? {
-        if let currentUSer = FIRAuth.auth()?.currentUser {
+    var CURRENT_USER: FirebaseAuth.User? {
+        if let currentUSer = Auth.auth().currentUser {
             return currentUSer
         }
         return nil
     }
     
     //Return CurrentUserRef
-    var REF_CURRENT_USER: FIRDatabaseReference? {
-        guard let currentUser = FIRAuth.auth()?.currentUser else { return nil }
+    var REF_CURRENT_USER: DatabaseReference? {
+        guard let currentUser = Auth.auth().currentUser else { return nil }
         return REF_USERS.child(currentUser.uid)
     }
     

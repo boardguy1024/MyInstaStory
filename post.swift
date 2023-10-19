@@ -39,7 +39,7 @@ extension Post {
         //まずlikesがnilかどうかを確認後nilではない場合に
         if post.likes != nil {
             
-            if let currentUserId = FIRAuth.auth()?.currentUser?.uid {
+            if let currentUserId = Auth.auth().currentUser?.uid {
                 //currentUserId、つまりログインユーザーがlikeしたかどうか確認
                 post.isLiked = post.likes![currentUserId] != nil
                 

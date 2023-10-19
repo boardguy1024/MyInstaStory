@@ -8,6 +8,8 @@
 
 import UIKit
 import AVFoundation
+import ProgressHUD
+import Kingfisher
 
 protocol HomeTableViewCellDelegate {
     func goToCommentVC(withId postId: String)
@@ -65,7 +67,7 @@ class HomeTableViewCell: UITableViewCell {
         }
         
         if let postImageUrlString = post?.photoUrl, let postImageUrl = URL(string: postImageUrlString) {
-            postImageView.sd_setImage(with: postImageUrl)
+            postImageView.kf.setImage(with: postImageUrl)
             captionLabel.text = post?.caption
             self.updateLike(post: post!)
         }
@@ -89,7 +91,7 @@ class HomeTableViewCell: UITableViewCell {
         
         nameLabel.text = user?.username
         if let profileImageUrlString = user?.profileImageUrl, let profileImageUrl = URL(string: profileImageUrlString) {
-            profileImageView.sd_setImage(with: profileImageUrl, placeholderImage: UIImage(named: "placeholderImg.png"))
+            profileImageView.kf.setImage(with: profileImageUrl, placeholder: UIImage(named: "placeholderImg.png"))
         }
     }
     
@@ -105,7 +107,7 @@ class HomeTableViewCell: UITableViewCell {
         nameLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(nameLabelTapped)))
     }
     
-    func nameLabelTapped() {
+    @objc func nameLabelTapped() {
         
         if let userId = user?.id {
             
@@ -114,7 +116,7 @@ class HomeTableViewCell: UITableViewCell {
     }
     
     
-    func commentImageViewTapped() {
+    @objc func commentImageViewTapped() {
         
         if let postId =  post?.id {
             
@@ -122,7 +124,7 @@ class HomeTableViewCell: UITableViewCell {
         }
     }
     
-    func likeImageViewTapped() {
+    @objc func likeImageViewTapped() {
         
         if let postId = post?.id {
             Api.Post.incrementOrdecreaseLikes(withPostId: postId , onSuccess: { (post) in
@@ -134,7 +136,7 @@ class HomeTableViewCell: UITableViewCell {
                 self.post?.likes = post.likes
                 
             }, onError: { (error) in
-                ProgressHUD.showError(error)
+                ProgressHUD.error(error)
             })
         }
     }

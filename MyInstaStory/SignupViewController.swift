@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ProgressHUD
 
 class SignupViewController: UIViewController {
     
@@ -43,7 +44,7 @@ class SignupViewController: UIViewController {
     }
     
     //TextFieldがeditingするたびに呼び出される。
-    func textFieldDidChanged() {
+    @objc func textFieldDidChanged() {
         
         guard let username = usernameTextField.text, !username.isEmpty,
             let email = emailTextField.text, !email.isEmpty,
@@ -64,18 +65,18 @@ class SignupViewController: UIViewController {
     
     @IBAction func signUpBtnTapped(_ sender: UIButton) {
         
-        if let profileImage = self.profileImageView.image, let imageData = UIImageJPEGRepresentation(profileImage, 0.1) {
+        if let profileImage = self.profileImageView.image?.jpegData(compressionQuality: 0.1) {
             
-            ProgressHUD.show("Waiting..", interaction: false)
+            ProgressHUD.progress(1)
             AuthService.signUp(username: usernameTextField.text!,
                                email: emailTextField.text!,
                                password: passwordTextField.text!,
-                               imageData: imageData, completion: {
-                               ProgressHUD.showSuccess("Success")
+                               imageData: profileImage, completion: {
+                               ProgressHUD.succeed("Success")
                                self.performSegue(withIdentifier: "signToTabBarVC", sender: nil)
                                 
             }, onError: { (error) in
-                ProgressHUD.showError(error!.localizedDescription)
+                ProgressHUD.error(error)
             })
         }
     }
@@ -84,7 +85,7 @@ class SignupViewController: UIViewController {
 extension SignupViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     //MARK:- Gesture Methods
-    func handleProfileTap() {
+    @objc func handleProfileTap() {
         //Photo Librayを表示する
         let imagePickerCotroller = UIImagePickerController()
         imagePickerCotroller.delegate = self

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import SDWebImage
+import Kingfisher
 
 class HomeViewController: UIViewController {
     
@@ -20,7 +20,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         tableView.estimatedRowHeight = 513
         //Cellの高さを自動に調整してくれる
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.dataSource = self
         loadPosts()
     }
@@ -31,7 +31,6 @@ class HomeViewController: UIViewController {
         
         Api.Feed.ovserveFeed(withId: currentUser.uid) { (post) in
             
-            print("ratio : \(post.ratio)")
             guard let postUserId = post.userId else { return }
             self.fetchUser(userId: postUserId, completion: {
                 self.posts.append(post)

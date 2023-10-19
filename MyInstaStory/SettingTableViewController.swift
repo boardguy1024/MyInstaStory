@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Kingfisher
+import ProgressHUD
 
 protocol SettingTableViewControllerDelegate {
     func updateUserInfo()
@@ -34,7 +36,7 @@ class SettingTableViewController: UITableViewController {
             self.nameTextField.text = user.username
             self.emailTextField.text = user.email
             if let urlString = user.profileImageUrl, let imageUrl = URL(string: urlString) {
-                self.profileImageView.sd_setImage(with: imageUrl)
+                self.profileImageView.kf.setImage(with: imageUrl)
             }
         }
     }
@@ -48,13 +50,13 @@ class SettingTableViewController: UITableViewController {
     
     @IBAction func saveBtnTapped(_ sender: Any) {
         
-        if let profileImage = self.profileImageView.image, let imageData = UIImageJPEGRepresentation(profileImage, 0.1) {
+        if let profileImage = self.profileImageView.image?.jpegData(compressionQuality: 0.1) {
             
-            AuthService.updateUserInfo(username: nameTextField.text!, email: emailTextField.text!, imageData: imageData, onSuccess: {
-                ProgressHUD.showSuccess("Success")
+            AuthService.updateUserInfo(username: nameTextField.text!, email: emailTextField.text!, imageData: profileImage, onSuccess: {
+                ProgressHUD.progress(1)
                 self.delegate?.updateUserInfo()
             }, onError: { (errorMessage) in
-                ProgressHUD.showError(errorMessage)
+                ProgressHUD.error(errorMessage)
                 return
             })
         }
@@ -66,7 +68,7 @@ class SettingTableViewController: UITableViewController {
             
             self.dismiss(animated: true, completion: nil)
         }) { (errorMessage) in
-            ProgressHUD.showError(errorMessage)
+            ProgressHUD.error(errorMessage)
         }
     }
     

@@ -11,8 +11,8 @@ import FirebaseDatabase
 
 class FollowApi {
     
-    var REF_FOLLOWERS = FIRDatabase.database().reference().child("followers")
-    var REF_FOLLOWING = FIRDatabase.database().reference().child("following")
+    var REF_FOLLOWERS = Database.database().reference().child("followers")
+    var REF_FOLLOWING = Database.database().reference().child("following")
     
     func followAction(withUserId id: String) {
         
@@ -23,7 +23,7 @@ class FollowApi {
                 
                 for key in dic.keys {
                     
-                    FIRDatabase.database().reference().child("feed").child(Api.User.CURRENT_USER!.uid).child(key).setValue(true)
+                    Database.database().reference().child("feed").child(Api.User.CURRENT_USER!.uid).child(key).setValue(true)
                 }
             }
         })

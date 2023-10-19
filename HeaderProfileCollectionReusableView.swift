@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 protocol HeaderProfileCollectionReusableViewDelegate {
     func updateFollowButton(forUser user: User)
@@ -39,7 +40,7 @@ class HeaderProfileCollectionReusableView: UICollectionReusableView {
     func updateView() {
         
         if let imageUrlString = user?.profileImageUrl, let profileImageUrl = URL(string: imageUrlString) {
-            self.profileImageView.sd_setImage(with: profileImageUrl, placeholderImage: UIImage(named: "placeholderImg.png"))
+            self.profileImageView.kf.setImage(with: profileImageUrl, placeholder: UIImage(named: "placeholderImg.png"))
             self.nameLabel.text = user?.username
         }
         
@@ -68,7 +69,7 @@ class HeaderProfileCollectionReusableView: UICollectionReusableView {
     }
     
     //Edit Profileボタンがタップした際SettingVCへの遷移をprofileVCにやってもらうようにする
-    func goToSettingVC() {
+    @objc func goToSettingVC() {
         delegateForSwitchSettingVC?.goToSettingVC()
     }
     
@@ -100,14 +101,14 @@ class HeaderProfileCollectionReusableView: UICollectionReusableView {
         followBtn.setTitle("following", for: .normal)
         followBtn.addTarget(self, action: #selector(unfollowAction), for: .touchUpInside)
     }
-    func followAction() {
+    @objc func followAction() {
         Api.Follow.followAction(withUserId: user!.id!)
         configureUnFollowButton()
         //followしたので該当userのisFollowingにもtrueに設定（reuse時にはこのuser.isFollowの参照をみるため）
         user?.isFollowing = true
         delegate?.updateFollowButton(forUser: user!)
     }
-    func unfollowAction() {
+    @objc func unfollowAction() {
         Api.Follow.unfollowAction(withUserId: user!.id!)
         configureFollowButton()
         //unfollowをしたので該当userのisFollowingにもfalseに設定（reuse時にはこのuser.isFollowをみるため）

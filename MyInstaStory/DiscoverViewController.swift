@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ProgressHUD
 
 class DiscoverViewController: UIViewController {
 
@@ -24,7 +25,7 @@ class DiscoverViewController: UIViewController {
     }
         
     func loadTopPost() {
-        ProgressHUD.show("Loading...", interaction: false)
+        ProgressHUD.progress(1)
         self.posts.removeAll()
         self.collectionView.reloadData()
         Api.Post.observeTopPosts { (post) in

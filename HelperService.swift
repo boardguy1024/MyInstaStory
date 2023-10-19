@@ -7,7 +7,9 @@
 //
 
 import Foundation
+import Firebase
 import FirebaseStorage
+import ProgressHUD
 import FirebaseDatabase
 
 class HelperService {
@@ -36,40 +38,39 @@ class HelperService {
     
     static private func uploadVideoToFirebaseStorage(_ fileUrl: URL, onSuccess: @escaping (_ videoUrl: String)->()) {
         let videoId = NSUUID().uuidString
-        let storageRef = FIRStorage.storage().reference().child(POSTS).child(videoId)
+        let storageRef = Storage.storage().reference().child(POSTS).child(videoId)
         
-        storageRef.putFile(fileUrl, metadata: nil) { (metaData, error) in
+        storageRef.putFile(from: fileUrl, metadata: nil) { (metaData, error) in
             if error != nil {
-                ProgressHUD.showError(error!.localizedDescription)
+                ProgressHUD.error(error)
                 return
             }
-            if let videoUrl = metaData?.downloadURL()?.absoluteString {
-                onSuccess(videoUrl)
+            storageRef.downloadURL { url, _ in
+                if let videoUrl = url?.absoluteString {
+                    onSuccess(videoUrl)
+                }
             }
         }
-        
     }
     
     static private func uploadImageToFirebaseStorage(data: Data, onSuccess: @escaping (_ imageUrl: String)->()) {
         
         let photoId = NSUUID().uuidString
-        let storageRef = FIRStorage.storage().reference().child(POSTS).child(photoId)
-        storageRef.put(data, metadata: nil) { (metaData, error) in
-            if error != nil {
-                ProgressHUD.showError(error!.localizedDescription)
-                return
-            }
-            if let photoUrl = metaData?.downloadURL()?.absoluteString {
-                onSuccess(photoUrl)
+        let storageRef = Storage.storage().reference().child(POSTS).child(photoId)
+        storageRef.putData(data) { _ in
+            
+            storageRef.downloadURL { url, _ in
+                if let photoUrl = url?.absoluteString {
+                    onSuccess(photoUrl)
+                }
             }
         }
-        
     }
     
     static private func sendDataToDataBase(photoUrl: String, videoUrl: String? = nil, ratio: CGFloat, caption: String, onSucess: @escaping ()->()) {
         
         let newPostId = Api.Post.REF_POSTS.childByAutoId().key
-        let newPostRef = Api.Post.REF_POSTS.child(newPostId)
+        let newPostRef = Api.Post.REF_POSTS.child(newPostId!)
         
         guard let currentUserId = Api.User.CURRENT_USER?.uid else { return }
         
@@ -90,36 +91,36 @@ class HelperService {
         newPostRef.setValue(dict) { (error, ref) in
             
             if error != nil {
-                ProgressHUD.showError(error!.localizedDescription)
+                ProgressHUD.error(error)
                 return
             }
             
             //feed内にも格納
-            Api.Feed.REF_FEED.child(Api.User.CURRENT_USER!.uid).child(newPostId).setValue(true)
+            Api.Feed.REF_FEED.child(Api.User.CURRENT_USER!.uid).child(newPostId!).setValue(true)
             Api.Follow.REF_FOLLOWERS.child(Api.User.CURRENT_USER!.uid).observeSingleEvent(of: .value, with: { snapshot in
-                guard let arrayShapshot = snapshot.children.allObjects as? [FIRDataSnapshot] else { return }
+                guard let arrayShapshot = snapshot.children.allObjects as? [DataSnapshot] else { return }
                 
                 arrayShapshot.forEach { child in
-                    Api.Feed.REF_FEED.child(child.key).updateChildValues(["\(newPostId)": true])
+                    Api.Feed.REF_FEED.child(child.key).updateChildValues(["\(newPostId!)": true])
                     let newNotificationId = Api.Notification.REF_NOTIFICATION.child(child.key).childByAutoId().key
-                    let newNotificationRef = Api.Notification.REF_NOTIFICATION.child(child.key).child(newNotificationId)
+                    let newNotificationRef = Api.Notification.REF_NOTIFICATION.child(child.key).child(newNotificationId!)
                     newNotificationRef.setValue(["from": Api.User.CURRENT_USER!.uid,
                                                  "type": "feed",
-                                                 "objectId": newPostId,
+                                                 "objectId": newPostId!,
                                                  "timestamp": timestamp])
                     
                 }
             })
             //send postしたrefをmypostsにもupdateする（profileVCにてpost一覧を表示するため）
-            let myPostRef = Api.MyPosts.REF_MYPOSTS.child(currentUserId).child(newPostId)
+            let myPostRef = Api.MyPosts.REF_MYPOSTS.child(currentUserId).child(newPostId!)
             myPostRef.setValue(true, withCompletionBlock: { (error, ref) in
                 
                 if error != nil {
-                    ProgressHUD.showError(error!.localizedDescription)
+                    ProgressHUD.error(error!.localizedDescription)
                     return
                 }
             })
-            ProgressHUD.showSuccess("Success")
+            ProgressHUD.succeed("Success")
             onSucess()
         }
     }

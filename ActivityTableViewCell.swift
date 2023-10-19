@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ActivityTableViewCell: UITableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
@@ -45,7 +46,7 @@ class ActivityTableViewCell: UITableViewCell {
     func setupUserInfo() {
         usernameLabel.text = user?.username
         if let photoUrl = user?.profileImageUrl, let url = URL(string: photoUrl) {
-            profileImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "placeholderImg"))
+            profileImageView.kf.setImage(with: url, placeholder: UIImage(named: "placeholderImg"))
         }
     }
 }

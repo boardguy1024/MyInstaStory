@@ -10,7 +10,7 @@ import Foundation
 import FirebaseDatabase
 
 class NotificationApi {
-    var REF_NOTIFICATION = FIRDatabase.database().reference().child("notification")
+    var REF_NOTIFICATION = Database.database().reference().child("notification")
     
     func observeNotification(withId id: String, completion: @escaping (Notification) -> Void) {
         

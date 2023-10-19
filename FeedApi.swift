@@ -7,11 +7,12 @@
 //
 
 import Foundation
+import Firebase
 import FirebaseDatabase
 
 class FeedApi {
     
-    var REF_FEED = FIRDatabase.database().reference().child("feed")
+    var REF_FEED = Database.database().reference().child("feed")
     
     func ovserveFeed(withId id: String, completion: @escaping (Post)->()) {
         REF_FEED.child(id).observe(.childAdded, with: { (snapshot) in

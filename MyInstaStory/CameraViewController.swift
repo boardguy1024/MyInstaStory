@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import ProgressHUD
 
 class CameraViewController: UIViewController {
     
@@ -58,9 +59,9 @@ class CameraViewController: UIViewController {
     @IBAction func shareBtnTapped(_ sender: Any) {
         
         //   guard let uid = user?.uid else { return }
-        ProgressHUD.show("Waiting..", interaction: false)
+        ProgressHUD.progress(1)
         
-        if let photoImage = self.photoImageView.image, let imageData = UIImageJPEGRepresentation(photoImage, 0.1) {
+        if let photoImage = self.photoImageView.image, let imageData = photoImage.jpegData(compressionQuality: 0.1) {
             
             let ratio = photoImage.size.width / photoImage.size.height
             HelperService.uploadDataToServer(data: imageData, videoUrl: self.videoUrl, ratio: ratio, caption: captionTextView.text!, onSuccess: {
@@ -70,7 +71,7 @@ class CameraViewController: UIViewController {
                 self.tabBarController?.selectedIndex = 0
             })
         } else {
-            ProgressHUD.showError("Image can't be empty")
+            ProgressHUD.error()
         }
     }
     
@@ -83,7 +84,7 @@ class CameraViewController: UIViewController {
 extension CameraViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     //MARK:- Gesture Methods
-    func handleSelectPhoto() {
+    @objc func handleSelectPhoto() {
         //Photo Librayを表示する
         let imagePickerCotroller = UIImagePickerController()
         imagePickerCotroller.delegate = self
@@ -117,7 +118,7 @@ extension CameraViewController: UIImagePickerControllerDelegate, UINavigationCon
         let imageGenerator = AVAssetImageGenerator(asset: asset)
         
         do  {
-            let thumbnailCGImage = try imageGenerator.copyCGImage(at: CMTimeMake(1, 10), actualTime: nil)
+            let thumbnailCGImage = try imageGenerator.copyCGImage(at: CMTimeMake(value: 1, timescale: 10), actualTime: nil)
             return UIImage(cgImage: thumbnailCGImage)
         } catch let error {
             print(error)

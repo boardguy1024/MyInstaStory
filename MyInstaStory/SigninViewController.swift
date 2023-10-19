@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ProgressHUD
 
 class SigninViewController: UIViewController {
     
@@ -43,7 +44,7 @@ class SigninViewController: UIViewController {
     }
     
     //TextFieldがeditingするたびに呼び出される。
-    func textFieldDidChanged() {
+    @objc func textFieldDidChanged() {
         
         guard let email = emailTextField.text, !email.isEmpty,
               let password = passwordTextField.text, !password.isEmpty else {
@@ -57,12 +58,12 @@ class SigninViewController: UIViewController {
     }
     @IBAction func signInBtnTapped(_ sender: UIButton) {
         view.endEditing(true)
-        ProgressHUD.show("Waiting..", interaction: false)
+        ProgressHUD.progress(1)
         AuthService.signIn(email: emailTextField.text!, password: passwordTextField.text!, completion: {
-            ProgressHUD.showSuccess("Success")
+            ProgressHUD.succeed("Success")
             self.performSegue(withIdentifier: "signToTabBarVC", sender: nil)
         }) { (error) in
-            ProgressHUD.showError(error?.localizedDescription)
+            ProgressHUD.error(error)
         }
         
 

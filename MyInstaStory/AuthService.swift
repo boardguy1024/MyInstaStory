@@ -8,8 +8,9 @@
 
 import Foundation
 import FirebaseAuth
-import FirebaseStorage
 import FirebaseDatabase
+import FirebaseStorage
+import ProgressHUD
 
 class AuthService {
     
@@ -17,7 +18,7 @@ class AuthService {
     
     static func signIn(email: String, password: String, completion: @escaping ()->(), onError: @escaping (_ errorMessage: Error?)->()) {
         
-        FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
+        Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
             
             if error != nil {
                 onError(error)
@@ -30,30 +31,31 @@ class AuthService {
     static func signUp(username: String, email: String, password: String, imageData: Data, completion: @escaping ()->(), onError: @escaping (_ errorMessage: Error?)->()) {
         
         //Authenticationにユーザーを登録
-        FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
+        Auth.auth().createUser(withEmail: email, password: password, completion: { (result, error) in
             if error != nil {
                 onError(error)
                 return
             }
             
-            guard let uid = user?.uid else { return }
+            guard let uid = result?.user.uid else { return }
             //ストレージRef
-            let storageRef = FIRStorage.storage().reference().child(PROFILE_IMAGES).child(uid)
+            let storageRef = Storage.storage().reference(withPath: "/\(PROFILE_IMAGES)/\(uid)")
             
             //ストレージにユーザーのprofileImageを保存
-            storageRef.put(imageData, metadata: nil, completion: { (metaData, error) in
+            storageRef.putData(imageData, completion: { (metaData, error) in
                 
                 if error != nil {
                     print("Some Error to put strorage a profileImage :\(error!)")
                     return
                 }
                 
-                let profileImageUrl = metaData?.downloadURL()?.absoluteString
-                
-                //データベースにユーザー情報を保存
-                self.setUserInfomationToDataBase(profileImageUrl: profileImageUrl!,
-                                                 username: username,
-                                                 email: email, uid: uid, completion: completion)
+                storageRef.downloadURL { url, _ in
+                    guard let urlString = url?.absoluteString else { return }
+                    //データベースにユーザー情報を保存
+                    self.setUserInfomationToDataBase(profileImageUrl: urlString,
+                                                     username: username,
+                                                     email: email, uid: uid, completion: completion)
+                }
             })
         })
     }
@@ -61,21 +63,28 @@ class AuthService {
     
     static func updateUserInfo(username: String, email: String, imageData: Data, onSuccess: @escaping ()->(), onError: @escaping (_ errorMessage: String?)->()) {
         
-        ProgressHUD.show("Waiting...")
+        ProgressHUD.progress(0.15)
+        
         //authticationのuserのemailをupdate後、databaseのuser情報をupdateする
-        Api.User.CURRENT_USER?.updateEmail(email, completion: { (error) in
+        Api.User.CURRENT_USER?.updateEmail(to: email, completion: { error in
             if error != nil {
                 onError(error?.localizedDescription)
             } else {
                 
-                let uid = Api.User.CURRENT_USER?.uid
-                let storageRef = FIRStorage.storage().reference().child(PROFILE_IMAGES).child(uid!)
-                storageRef.put(imageData, metadata: nil) { (metaData, error) in
+                guard let uid = Api.User.CURRENT_USER?.uid else { return }
+                let storageRef = Storage.storage().reference(withPath: "/\(PROFILE_IMAGES)/\(uid)")
+                
+                
+                storageRef.putData(imageData) { (metaData, error) in
                     if error != nil {
                         return
                     }
-                    let profileImageUrl = metaData?.downloadURL()?.absoluteString
-                    updateDatabse(profileImageUrl: profileImageUrl!, username: username, email: email, onSuccess: onSuccess, onError: onError)
+                    
+                    storageRef.downloadURL { url, _ in
+                        guard let urlString = url?.absoluteString else { return }
+                        updateDatabse(profileImageUrl: urlString, username: username, email: email, onSuccess: onSuccess, onError: onError)
+
+                    }
                 }
             }
         })
@@ -101,7 +110,7 @@ class AuthService {
     }
     
     static private func setUserInfomationToDataBase(profileImageUrl: String, username: String, email: String, uid: String, completion: @escaping ()->()) {
-        let ref = FIRDatabase.database().reference()
+        let ref = Database.database().reference()
         let userRef = ref.child("users")
         let newUserRef = userRef.child(uid)
         newUserRef.setValue(["username": username,
@@ -114,7 +123,7 @@ class AuthService {
     static func logOut(onSuccess: @escaping ()->(), onError: @escaping (_ errorMessage: String)->()) {
         
         do {
-            try FIRAuth.auth()?.signOut()
+            try Auth.auth().signOut()
             onSuccess()
         } catch let error {
             onError(error.localizedDescription)

@@ -11,7 +11,7 @@ import FirebaseDatabase
 
 class CommentApi {
    
-    var REF_COMMENTS = FIRDatabase.database().reference().child("comments")
+    var REF_COMMENTS = Database.database().reference().child("comments")
     
     func observeComments(withId: String, completion: @escaping (Comment)->()) {
         
